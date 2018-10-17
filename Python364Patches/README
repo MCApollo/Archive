@@ -13,7 +13,5 @@ Run ./config.status
 
 Other files are just aids I used (and otherwise have no use).
 
-This is just a simple build, no changes to the code (.h, .c, etc.) were made.
-I had to edit _scproxy out of a python script for pip, iOS doesn't support it.
-HEY! I think removing MACOSX_DEPLOYMENT_TARGET from getting set, will fix pip.
+MACOSX_DEPLOYMENT_TARGET getting set prevents ipv6 support! You should look to fix that.
 
