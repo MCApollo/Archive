@@ -1,0 +1,10 @@
+Package: com.mc.jq
+Name: jq
+Version: 1.6rc1-16-g341a5fc
+Section: Utility
+Architecture: iphoneos-arm
+Author: stedolan
+Depends: com.mc.oniguruma
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Command-line JSON processor.

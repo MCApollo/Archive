@@ -1,0 +1,9 @@
+Package: com.mc.libjpeg
+Name: libjpeg
+Version: 9c
+Section: Development
+Architecture: iphoneos-arm
+Author: JPEG Group
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	widely used C library for reading and writing JPEG image files.

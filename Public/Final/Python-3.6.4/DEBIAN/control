@@ -1,0 +1,30 @@
+Package: com.mc.python3.6
+Name: Python 3.6
+Version: 3.6.4-9.2
+Section: Scripting
+Architecture: iphoneos-arm
+Depends: openssl, com.mc.readline, com.mc.zlib, ncurses, lzma, findutils, ldid
+Author: Apollo J
+Conflicts: com.mc.python3
+Maintainer: u/LULShotz
+Description: Compiled for ARM64. -  "mcapollo.github.io"
+	python - an interpreted, interactive, object-oriented programming language
+	-
+	** Update: Better pip support.
+	** As root...
+	Run `python3 -m ensurepip` to install pip.
+	Run `bash /usr/local/lib/python3.6/install_certificates.command` to install ssl certs.
+	-
+	** Notes
+	Install LLVM+Clang (64 Bit) and LD64 for pip use.
+	A profile.d script trys to change where pip's temp files go.
+	* Relogin after you install pip, profile.d only runs on login.
+	* Make sure TEMPDIR is set before using pip!
+	I recommend to symbolic link libaries and headers to /usr from a iOS SDK.
+	(Do NOT use the -f argument when doing this! You'll brick your device by replacing files.)
+	-
+	The metasploit package has a SDK (Don't tell Apple :p ) that works.
+	You can use CFLAGS and LDFLAGS to guide pip through installs if you need.
+	I also recommend to have a simulator SDK for some header files, but that's up to you.
+	-
+	PM me if you need my help.

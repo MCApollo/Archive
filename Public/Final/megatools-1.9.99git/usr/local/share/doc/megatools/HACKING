@@ -1,0 +1,21 @@
+How to contribute to megatools
+==============================
+
+If you want to contribute code to megatools, you can fork 
+official git repository at:
+
+    https://github.com/megous/megatools
+
+To contribute bug reports and feature requests, use issue 
+tracker at github:
+
+    https://github.com/megous/megatools/issues
+
+
+If you're developing application that uses libmega, be aware that
+libmega API is still experimental, and may change in the future.
+When megatools 2.0.0 will be released, libmega API will become
+stable, and backward comaptibility will be properly maintained.
+
+I will not be working on improving the tools themselves until I
+finish the new libmega library.

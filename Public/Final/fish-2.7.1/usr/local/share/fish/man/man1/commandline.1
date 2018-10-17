@@ -1,0 +1,100 @@
+.TH "commandline" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBcommandline\fP -- set or get the current command line buffer 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBcommandline\fP [OPTIONS] [CMD]
+.fi
+.PP
+.SS "Description"
+\fCcommandline\fP can be used to set or get the current contents of the command line buffer\&.
+.PP
+With no parameters, \fCcommandline\fP returns the current value of the command line\&.
+.PP
+With \fCCMD\fP specified, the command line buffer is erased and replaced with the contents of \fCCMD\fP\&.
+.PP
+The following options are available:
+.PP
+.IP "\(bu" 2
+\fC-C\fP or \fC--cursor\fP set or get the current cursor position, not the contents of the buffer\&. If no argument is given, the current cursor position is printed, otherwise the argument is interpreted as the new cursor position\&.
+.IP "\(bu" 2
+\fC-f\fP or \fC--function\fP inject readline functions into the reader\&. This option cannot be combined with any other option\&. It will cause any additional arguments to be interpreted as readline functions, and these functions will be injected into the reader, so that they will be returned to the reader before any additional actual key presses are read\&.
+.PP
+.PP
+The following options change the way \fCcommandline\fP updates the command line buffer:
+.PP
+.IP "\(bu" 2
+\fC-a\fP or \fC--append\fP do not remove the current commandline, append the specified string at the end of it
+.IP "\(bu" 2
+\fC-i\fP or \fC--insert\fP do not remove the current commandline, insert the specified string at the current cursor position
+.IP "\(bu" 2
+\fC-r\fP or \fC--replace\fP remove the current commandline and replace it with the specified string (default)
+.PP
+.PP
+The following options change what part of the commandline is printed or updated:
+.PP
+.IP "\(bu" 2
+\fC-b\fP or \fC--current-buffer\fP select the entire buffer (default)
+.IP "\(bu" 2
+\fC-j\fP or \fC--current-job\fP select the current job
+.IP "\(bu" 2
+\fC-p\fP or \fC--current-process\fP select the current process
+.IP "\(bu" 2
+\fC-t\fP or \fC--current-token\fP select the current token\&.
+.PP
+.PP
+The following options change the way \fCcommandline\fP prints the current commandline buffer:
+.PP
+.IP "\(bu" 2
+\fC-c\fP or \fC--cut-at-cursor\fP only print selection up until the current cursor position
+.IP "\(bu" 2
+\fC-o\fP or \fC--tokenize\fP tokenize the selection and print one string-type token per line
+.PP
+.PP
+If \fCcommandline\fP is called during a call to complete a given string using \fCcomplete -C STRING\fP, \fCcommandline\fP will consider the specified string to be the current contents of the command line\&.
+.PP
+The following options output metadata about the commandline state:
+.PP
+.IP "\(bu" 2
+\fC-L\fP or \fC--line\fP print the line that the cursor is on, with the topmost line starting at 1
+.IP "\(bu" 2
+\fC-S\fP or \fC--search-mode\fP evaluates to true if the commandline is performing a history search
+.IP "\(bu" 2
+\fC-P\fP or \fC--paging-mode\fP evaluates to true if the commandline is showing pager contents, such as tab completions
+.PP
+.SS "Example"
+\fCcommandline -j $history[3]\fP replaces the job under the cursor with the third item from the command line history\&.
+.PP
+If the commandline contains 
+.PP
+.nf
+
+> \fBecho\fP $flounder >&2 | \fBless\fP; \fBand\fP \fBecho\fP $catfish
+.fi
+.PP
+.PP
+(with the cursor on the 'o' of 'flounder')
+.PP
+Then the following invocations behave like this: 
+.PP
+.nf
+
+> \fBcommandline\fP -t
+$flounder
+> \fBcommandline\fP -ct
+$fl
+> \fBcommandline\fP -b  # or just commandline
+\fBecho\fP $flounder >&2 | \fBless\fP; \fBand\fP \fBecho\fP $catfish
+> \fBcommandline\fP -p
+\fBecho\fP $flounder >&2
+> \fBcommandline\fP -j
+\fBecho\fP $flounder >&2 | \fBless\fP
+.fi
+.PP
+ 

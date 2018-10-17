@@ -1,0 +1,27 @@
+.TH "funced" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBfunced\fP -- edit a function interactively 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBfunced\fP [OPTIONS] NAME
+.fi
+.PP
+.SS "Description"
+\fCfunced\fP provides an interface to edit the definition of the function \fCNAME\fP\&.
+.PP
+If the \fC$VISUAL\fP environment variable is set, it will be used as the program to edit the function\&. If \fC$VISUAL\fP is unset but \fC$EDITOR\fP is set, that will be used\&. Otherwise, a built-in editor will be used\&. Note that to enter a literal newline using the built-in editor you should press [\fBAlt\fP-\fIEnter\fP]\&. Pressing [\fBEnter\fP] signals that you are done editing the function\&. This does not apply to an external editor like emacs or vim\&.
+.PP
+If there is no function called \fCNAME\fP a new function will be created with the specified name
+.PP
+.IP "\(bu" 2
+\fC-e command\fP or \fC--editor command\fP Open the function body inside the text editor given by the command (for example, \fC-e vi\fP)\&. The special command \fCfish\fP will use the built-in editor (same as specifying \fC-i\fP)\&.
+.IP "\(bu" 2
+\fC-i\fP or \fC--interactive\fP Force opening the function body in the built-in editor even if \fC$VISUAL\fP or \fC$EDITOR\fP is defined\&. 
+.PP
+

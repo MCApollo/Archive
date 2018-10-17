@@ -1,0 +1,30 @@
+.TH "return" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBreturn\fP -- stop the current inner function 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBfunction\fP NAME; [COMMANDS\&.\&.\&.;] \fBreturn\fP [STATUS]; [COMMANDS\&.\&.\&.;] \fBend\fP
+.fi
+.PP
+.SS "Description"
+\fCreturn\fP halts a currently running function\&. The exit status is set to \fCSTATUS\fP if it is given\&.
+.PP
+It is usually added inside of a conditional block such as an \fCif\fP statement or a \fCswitch\fP statement to conditionally stop the executing function and return to the caller, but it can also be used to specify the exit status of a function\&.
+.SS "Example"
+The following code is an implementation of the false command as a fish function
+.PP
+.PP
+.nf
+
+\fBfunction\fP false
+    \fBreturn\fP 1
+\fBend\fP
+.fi
+.PP
+ 

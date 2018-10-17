@@ -1,0 +1,10 @@
+Package: com.mc.nc
+Name: netcat
+Version: 0.7.1-3
+Section: Networking
+Architecture: iphoneos-arm
+Author: GNU
+Maintainer: u/LULShotz
+Description: Compiled for ARM64
+	GNU's version of netcat.
+	** nmap has a better version of ncat, this is just a stand-alone package.

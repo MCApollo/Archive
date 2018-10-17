@@ -1,0 +1,44 @@
+.TH "popd" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBpopd\fP -- move through directory stack 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBpopd\fP
+.fi
+.PP
+.SS "Description"
+\fCpopd\fP removes the top directory from the directory stack and changes the working directory to the new top directory\&. Use \fC\fCpushd\fP\fP to add directories to the stack\&.
+.PP
+You may be interested in the \fC\fCcdh\fP\fP command which provides a more intuitive way to navigate to recently visited directories\&.
+.SS "Example"
+.PP
+.nf
+
+\fBpushd\fP /usr/src
+  Working directory is now /usr/src
+  Directory stack contains /usr/src
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBpushd\fP /usr/src/fish-shell
+  Working directory is now /usr/src/fish-shell
+  Directory stack contains /usr/src /usr/src/fish-shell
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBpopd\fP
+  Working directory is now /usr/src
+  Directory stack contains /usr/src
+.fi
+.PP
+ 

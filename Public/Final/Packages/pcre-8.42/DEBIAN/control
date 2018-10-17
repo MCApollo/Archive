@@ -1,0 +1,12 @@
+Package: com.mc.pcre
+Name: pcre
+Version: 8.42-2
+Section: Development
+Architecture: iphoneos-arm
+Author: Philip Hazel
+Depends: com.mc.readline, com.mc.zlib, bzip2
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Perl-compatible regular expressions
+	Different from pcre2. Compiled with jit, utf, libz, libbz2, libreadline support.
+

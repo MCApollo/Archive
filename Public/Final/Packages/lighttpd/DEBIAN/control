@@ -1,0 +1,12 @@
+Package: com.mc.lighttpd
+Name: lighttpd
+Version: 1.4.49-4
+Section: Networking
+Architecture: iphoneos-arm
+Author: Jan Kneschke
+Depends: openssl, com.mc.bzip2, com.mc.pcre, com.mc.libuuid 
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	very small, supposedly fast, webserver
+	** This is lighttpd-1.4.32!
+	** I have to debug where "Bad System Call: 12" is coming from; Until then, this is a downgrade.

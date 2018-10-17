@@ -1,0 +1,9 @@
+Package: com.mc.nmap
+Name: nmap
+Version: 7.70-3
+Section: Networking
+Architecture: iphoneos-arm
+Author: Gordon Lyon
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	analyze and scan remote network hosts

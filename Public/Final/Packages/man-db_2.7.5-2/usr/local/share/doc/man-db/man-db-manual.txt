@@ -1,0 +1,2046 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               mmaann--ddbb -- tthhee ddaattaabbaassee ccaacchheedd mmaannuuaall ppaaggeerr ssuuiittee
+
+
+                  _G_r_a_e_m_e _W_. _W_i_l_f_o_r_d _<_e_e_p_2_g_w_@_e_e_._s_u_r_r_e_y_._a_c_._u_k_>
+                      _C_o_l_i_n _W_a_t_s_o_n _<_c_j_w_a_t_s_o_n_@_d_e_b_i_a_n_._o_r_g_>
+
+
+
+
+
+
+    This  document  describes  the setup, maintenance and use of a generic
+    online manual page system with special reference to the man-db package
+    and its advanced features.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+UUNNIIXX is a registered trademark of the X/Open Company, Ltd.
+NFS is a registered trademark of Sun Microsystems, Inc.
+PostScript is a registered trademark of Adobe in the United States.
+
+The general conventions used throughout this manual include
+
+ +o file names and paths in _i_t_a_l_i_c, e.g.  _/_u_s_r_/_s_h_a_r_e_/_m_a_n.
+ +o variable  strings  (usually  path  components)  enclosed  within  <> and in
+   _i_t_a_l_i_c, eg.  _<_s_e_c_>,
+ +o program names in bboolldd, eg.  mmaann.                  _____       ____________
+ +o commands that can be typed at a shell prompt in a |_b_o_x_|_, eg.  |_m_a_n__f_o_o_b_a_r_|_.
+ +o environment variables denoted as follows: $EENNVV__VVAARR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Copyright (C) 1995 Graeme W. Wilford
+Copyright (C) 2001, 2002, 2003, 2007 Colin Watson
+
+Permission  is  granted  to make and distribute verbatim copies of this manual
+provided the copyright notice and this permission notice are preserved on  all
+copies.
+
+Permission  is granted to copy and distribute modified versions of this manual
+under the conditions for verbatim copying, provided that the entire  resulting
+derived work is distributed under the terms of a notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual  into
+another  language,  under  the  above conditions for modified versions, except
+that this permission notice may be stated in a  translation  approved  by  the
+copyright holder.
+
+
+
+
+
+
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+11..  IInnttrroodduuccttiioonn
+
+11..11..  mmaann--ddbb
+
+man-db  is a package that is designed to provide users with online information
+in a fast and friendly manner while at the same time offering  flexibility  to
+the system administrator.
+
+It is made up of several user programs:
+         ++oo mmaann       - an interface to the on-line reference manuals
+         ++oo wwhhaattiiss    - search the manual page names
+         ++oo aapprrooppooss   - search the manual page names and descriptions
+         ++oo mmaannppaatthh   - determine search path for manual pages
+         ++oo lleexxggrroogg   - directly read header information in manual pages
+several maintenance programs:
+         ++oo mmaannddbb     - create or update the manual page index caches
+         ++oo ccaattmmaann    - create or update the pre-formatted manual pages
+and a special pre-formatter that knows about compressed manual pages:
+         ++oo zzssooeelliimm   - satisfy .so requests in roff input
+
+
+In addition to these compiled programs, there are two shell scripts, mmkkccaattddiirrss
+and cchheecckkmmaann in the _t_o_o_l_s subdirectory.  These scripts aid the creation of cat
+directories and check for duplicated manual pages, respectively.
+
+The  following  manual pages are provided with this package to explain correct
+format and usage.  mmaann(1), wwhhaattiiss(1), aapprrooppooss(1), mmaannppaatthh(1), lleexxggrroogg(1), mmaann--
+ppaatthh(5), mmaannddbb(8), ccaattmmaann(8) and zzssooeelliimm(1).
+
+11..11..11..  TThhee ccoonncceepptt
+
+man-db  originally started out life as program suite man-1.1B, written by John
+W.  Eaton <jwe@che.utexas.edu> and maintained by Rik Faith  <faith@cs.unc.edu>
+to  which  support proposed by the newly formed FSSTND committee regarding cat
+directories was added.
+
+Since  then,  man-db's most innovative feature: the database cache scheme1 has
+been significantly developed. The basic idea was to reduce manual page  search
+times  to  a  minimum.  The  following piece of text is included from the man-
+db-2.2 distribution:
+
+    The theory: If you go to a library to take a book out, what do you do?
+
+    a)  Go  and  look  where it might be on a micro-fiche/terminal, take a
+    look where it is supposed to be on the shelf, and then go look at  the
+    new arrivals if it's not where it's supposed to be?
+
+    OR
+____________________
+   1 originally conceived after observing the actions of the Perl-based manual
+pager suite, man-pl written by Tom Christiansen <tchrist@convex.com>
+
+
+
+
+                                       11
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+    b)  Start  at  one end of the ground floor, look along every bookshelf
+    until you've completed that floor, then go up a level and start  again
+    until you've found what you're looking for?
+
+
+Since  then  the database iinnddeexx scheme has evolved greatly.  Every manual page
+and stray cat page on the system is registered  in  an  iinnddeexx  database  cache
+which stores various details about the file including the timestamp, the loca-
+tion and the whatis2 information.  This information is kept up to date by reg-
+ular  runs  of  mmaannddbb.   In  some configurations mmaann also looks for filesystem
+changes each time it is invoked and helps to keep the database cache  current,
+but this imposes a penalty on manual page search times.
+
+11..22..  TThhee mmaannuuaall ppaaggee ssyysstteemm
+
+The  simplest  manual  page  system  will have a single manual page hierarchy.
+This will typically be
+
+     _/_u_s_r_/_s_h_a_r_e_/_m_a_n
+
+beneath which will be several subdirectories of the form _m_a_n_<_s_e_c_> where  _<_s_e_c_>
+is 11, 22, 33, 44, 55, 66, 77 or 88.  These are referred to as _s_e_c_t_i_o_n_s of the manual.
+Others may exist and they are not restricted to single character names. eg.
+
+     _/_u_s_r_/_s_h_a_r_e_/_m_a_n_/_m_a_n_f_o_o
+
+is a valid section subdirectory.  Other common sections include 99, nn, ll, pp and
+oo.
+
+Within  these section subdirectories reside the manual pages themselves. Their
+filenames follow the pattern
+
+     _/_u_s_r_/_s_h_a_r_e_/_m_a_n_/_m_a_n_<_s_e_c_>_/_<_n_a_m_e_>_._<_s_e_c_>_<_e_x_t_>
+
+where in most cases _<_e_x_t_> is an empty string.  An example is manual page ccpp
+
+     _/_u_s_r_/_s_h_a_r_e_/_m_a_n_/_m_a_n_1_/_c_p_._1
+
+which resides in _s_e_c_t_i_o_n 11 and has no special _e_x_t_e_n_s_i_o_n.
+
+11..33..  SSeeccttiioonnss ooff tthhee mmaannuuaall
+
+The manual is split up into sections to ease access and to  cater  for  manual
+pages  that  share  the same name.  It is common for a program and function to
+share the same name.  kkiillll is a good example.  This is both  a  program  which
+can be used to send a process a signal and an operating system call with simi-
+lar functionality.  Their manual pages are  stored  under  sections  11  and  22
+respectively.   Thus,  sections  are  used  to separate out the program manual
+pages from the function manual pages and so on.  The  table  below  shows  the
+____________________
+   2 one line description of the manual page
+
+
+
+
+                                       22
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+_s_e_c_t_i_o_n numbers of the manual followed by the types of pages they contain.
+
+
+       +--------+------------------------------------------------------+
+       |Section |                   Section contents                   |
+       +--------+------------------------------------------------------+
+       |   1    | user executable programs or shell commands           |
+       |   2    | system calls (functions provided by the kernel)      |
+       |   3    | library calls (functions within system libraries)    |
+       |   4    | special files (usually found in _/_d_e_v)                |
+       |   5    | file formats and conventions eg. _/_e_t_c_/_p_a_s_s_w_d         |
+       |   6    | games                                                |
+       |   7    | macro packages and conventions eg. mmaann(7), ggrrooffff(7). |
+       |   8    | system administration commands                       |
+       |   9    | kernel routines [Non-standard]                       |
+       |   n    | new [obsolete]                                       |
+       |   l    | local [obsolete]                                     |
+       |   p    | public [obsolete]                                    |
+       |   o    | old [obsolete]                                       |
+       +--------+------------------------------------------------------+
+
+
+11..44..  TThhee ffoorrmmaatt ooff mmaannuuaall ppaaggeess
+
+The  format  in which manual pages are stored is NNRROOFFFF/TTRROOFFFF or more generally
+ROFF.  This is a typesetter style language3 which requires  formatting  before
+being viewed.  In fact some manual pages require pre-format processing to cor-
+rectly format tables or equations.
+
+If the page is to be viewed on screen in a text environment, NNRROOFFFF is used  as
+the  primary formatter. If the page is to be printed or displayed in a graphi-
+cal environment, TTRROOFFFF is used. Traditionally, TTRROOFFFF  formatted  files  for  a
+CC//AA//TT (Computer aided Typesetter) which is now obsolete.
+
+The GGNNUU ROFF (GGRROOFFFF4) suite of programs offer a choice of output types includ-
+ing  XX, ddvvii and ppoossttssccrriipptt.  When configuring man-db, the preference is to use
+GGRROOFFFF rather than TTRROOFFFF.
+
+11..55..  AArrgguummeennttss ttoo ccoonnffiigguurree
+
+To allow the configuration program, ccoonnffiigguurree, to be non-interactive,  it  can
+be  passed  various  options to alter the default settings.  Generic ccoonnffiigguurree
+options are discussed in _d_o_c_s_/_I_N_S_T_A_L_L.   Options  that  are  specific  to  the
+man-db package are described below.
+
+--enable-setuid[=ARG]
+     By  default,  mmaann will be installed as a setuid program to user man.  Use
+____________________
+   3 similar in some aspects to TTeeXX
+   4 Written by James Clark <jjc@jclark.com> and now maintained by Ted Harding
+<ted.harding@nessie.mcc.ac.uk> and Werner Lemberg <wl@gnu.org>
+
+
+
+
+                                       33
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+     this option with an argument to change the setuid owner.
+
+--disable-setuid
+     Use this option to install mmaann as a non-setuid program and to change  the
+     default  cat  and  database  files' access flags to allow users to modify
+     them.
+
+--enable-mandirs=OS
+     By default, man-db supports manual page directories  in  any  of  several
+     layouts  used by free and proprietary versions of UUNNIIXX.  However, in cer-
+     tain cases, this can cause man-db to find  the  wrong  page  by  mistake,
+     especially  when  the  names  of  some manual pages on the system contain
+     periods.  Use this option with an argument of GNU, HPUX,  IRIX,  Solaris,
+     or  BSD  (or more than one of these, separated by commas) to support only
+     the layouts typically used on each of those systems.  Note that man-db is
+     not currently capable of writing cat pages in the proper BSD layout.
+
+--with-device=DEVICE
+     Use this flag to alter the default output device used by NNRROOFFFF. DEVICE is
+     passed to NNRROOFFFF with the -T option.  ccoonnffiigguurree will test that NNRROOFFFF  will
+     run with the supplied device argument.
+
+--with-db=LIBRARY
+     configure  will  look for database interface libraries in the order gdbm,
+     Berkeley DB and finally ndbm and will #define appropriate variables rela-
+     tive to the first one found.  To override the built-in order on platforms
+     having a choice of interface library, use this option  to  specify  which
+     library to use.
+
+--enable-automatic-create
+     If  this  flag is used, mmaann will automatically create index databases for
+     users' private manual page hierarchies.
+
+--disable-automatic-update
+     Normally, mmaann will update entries in index databases if  it  finds  newly
+     installed  manual  pages (if the ----uuppddaattee flag is used) or delete entries
+     if manual pages are removed.  This flag suppresses this behaviour.
+
+--disable-cats
+     Normally, mmaann will automatically try to create cat files corresponding to
+     manual  files  when a manual page is read.  This flag suppresses this be-
+     haviour.
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                       44
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+22..  TThhee ssppeecciiffiiccss ooff SSeeccttiioonnss
+
+22..11..  PPaacckkaaggee ssppeecciiffiicc mmaannuuaall ppaaggee sseeccttiioonnss
+
+The use of package specific manual page sections is  discouraged  as  packages
+large  enough  to warrant their own section probably contain manual pages that
+span other sections.  An example might be package ffoooo that has its own section
+
+     _/_u_s_r_/_s_h_a_r_e_/_m_a_n_/_m_a_n_f_o_o
+
+which  contains  manual pages describing its programs, the library routines it
+offers and the format of several of  its  configuration  files.   These  pages
+would  normally be allocated to sections 11, 33 and 55 respectively and thus com-
+bining them all under section ffoooo is misleading.  Subtle problems  will  arise
+if  there  are  any  base  name-space clashes with standard manual pages, e.g.
+eexxiitt(3), eexxiitt(foo) and the order in which they should be shown.
+
+There are two standard solutions to this problem.
+
+ (1)   Create a separate manual page hierarchy for the package's manual  pages
+       such as
+
+           _/_u_s_r_/_l_o_c_a_l_/_p_a_c_k_a_g_e_s_/_f_o_o_/_m_a_n
+
+
+ (2)   Install  the  pages in their relevant sections, with a unique extension
+       appended to the filename such that
+
+           _/_u_s_r_/_s_h_a_r_e_/_m_a_n_/_m_a_n_f_o_o_/_e_x_i_t_._f_o_o
+
+       would instead be installed as
+
+           _/_u_s_r_/_s_h_a_r_e_/_m_a_n_/_m_a_n_1_/_e_x_i_t_._1_f_o_o
+
+
+Only (2) offers a complete solution  to  manual  page  ordering  problems  and
+allows users to access the desired page directly.
+
+22..22..  SSeelleeccttiinngg aa sseeccttiioonn ttyyppee
+
+22..22..11..  SSppeecciiffyyiinngg aa sseeccttiioonn
+
+This is done via use of the section argument to man
+     ____________
+     |_m_a_n__1__e_x_i_t_|_
+
+will  look  for _e_x_i_t_._1_* in section 11 of the manual.  If _e_x_i_t_._1 exists, it will
+be displayed in preference to _e_x_i_t_._1_f_o_o
+     _______________
+     |_m_a_n__1_f_o_o__e_x_i_t_|_
+
+will look for _e_x_i_t_._1_f_o_o_* in section 11 of the manual.  The asterisk (*)  repre-
+sents a wild-card of any type or length, including length zero.
+
+
+                                       55
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+For  an  argument to be interpreted as a section name rather than a page name,
+it must either begin with a digit, or be  included  in  the  standard  section
+list.   The default section list is defined in _i_n_c_l_u_d_e_/_m_a_n_c_o_n_f_i_g_._h to be 11, nn,
+ll, 88, 33, 22, 55, 44, 99, 66 and 77.  This should be modified in order and content to
+meet  the  local conventions.  It may be altered at run-time using the SSEECCTTIIOONN
+directive in the man-db configuration file.
+
+Every subdirectory section name in the entire system  must  be  in  the  list,
+including  sections found in imported manual page hierarchies.  It is not nec-
+essary to list sections with extensions unless a special  ordering  for  those
+extensions  is  desired.   The order is important because in normal operation,
+mmaann will only display the first manual page it finds  that  meets  the  search
+criteria.  Using  the  ----aallll argument will cause mmaann to attempt to display all
+manual pages that meet the criteria. See mmaann(1) for further information.
+
+Having an excess of sections listed will not slow mmaann down.
+
+22..22..22..  SSppeecciiffyyiinngg aann eexxtteennssiioonn
+
+If the section is unknown, but the package extension is, it is possible to use
+the extension argument
+     _________________
+     |_m_a_n__-_e__f_o_o__e_x_i_t_|_
+
+to search in all sections for manual pages named _e_x_i_t from package _f_o_o.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                       66
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+33..  FFiilleessyysstteemm ssttrruuccttuurree
+
+33..11..  MMaannuuaall ppaaggee hhiieerraarrcchhiieess
+
+It  is  often common for manual page systems to have more than one manual page
+hierarchy.  Indeed one of the systems I use has the following globally  acces-
+sible hierarchies
+
+     _/_u_s_r_/_m_a_n
+     _/_u_s_r_/_l_o_c_a_l_/_m_a_n
+     _/_u_s_r_/_l_o_c_a_l_/_t_e_x_/_m_a_n
+     _/_u_s_r_/_l_o_c_a_l_/_p_b_m_/_m_a_n
+     _/_u_s_r_/_X_1_1_R_6_/_m_a_n
+     _/_u_s_r_/_o_p_e_n_w_i_n_/_m_a_n
+     _/_u_s_r_/_l_o_c_a_l_/_p_a_c_k_a_g_e_s_/_p_v_m_/_m_a_n
+
+A  full  system $MMAANNPPAATTHH would be a colon separated list of these directories.
+The order is important, and is observed by man-db's  search  algorithms.   The
+order  is  very  much  related  to  the user's $PPAATTHH environment variable, and
+should be set on a per user basis, or not set  at  all.   If  a  user's  $PPAATTHH
+causes
+
+     _/_u_s_r_/_l_o_c_a_l_/_p_a_c_k_a_g_e_s_/_b_i_n_/_f_o_o_b_a_r
+
+to be executed in preference to
+
+     _/_u_s_r_/_b_i_n_/_f_o_o_b_a_r,
+
+it is essential that
+     ____________
+     |_m_a_n__f_o_o_b_a_r_|_
+
+displays the manual page located within
+
+     _/_u_s_r_/_l_o_c_a_l_/_p_a_c_k_a_g_e_s_/_m_a_n
+
+rather than within
+
+     _/_u_s_r_/_s_h_a_r_e_/_m_a_n
+
+To  ensure  correct order, the program mmaannppaatthh may be used to set the $MMAANNPPAATTHH
+environment variable.  See mmaannppaatthh(1) and mmaannppaatthh(5) for details.
+
+33..22..  SSeettttiinngg tthhee MMAANNPPAATTHH
+
+If using a Bourne style login shell such as bbaasshh, kksshh, or zzsshh, the commands
+
+     export MANPATH
+     MANPATH=`manpath -q`
+
+can be added to $$HHOOMMEE_/_._p_r_o_f_i_l_e
+
+
+
+
+                                       77
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+If using a C style login shell such as ccsshh or ttccsshh, the commands
+
+     setenv MANPATH `manpath -q`
+
+can be added to $$HHOOMMEE_/_._l_o_g_i_n
+
+N.B.  $PPAATTHH must be set prior to using mmaannppaatthh.  The setting  of  $MMAANNPPAATTHH  is
+actually  unnecessary  as  the man-db utilities will dynamically determine the
+manpath if $MMAANNPPAATTHH is unset.
+
+33..33..  DDeetteerrmmiinnaattiioonn ooff tthhee iinntteerrnnaall mmaannppaatthh
+
+All man-db utilities, mmaannppaatthh included, will use the user's $MMAANNPPAATTHH  environ-
+ment variable if set and not equal to "".  Otherwise the user's $PPAATTHH environ-
+ment variable is queried.  If this is unset or is set to  "",  the  determined
+manpath will simply be any
+
+     MMAANNDDAATTOORRYY__MMAANNPPAATTHH
+
+elements defined in the man-db config file.
+
+Assuming  that a $PPAATTHH exists, each path element it contains is scanned for in
+the config file.  If found, the corresponding manpath element is  appended  to
+the  internal manpath.  However, if the element is not mentioned in the config
+file, a man directory relative to  it  will  be  sought.   The  subdirectories
+_._._/_m_a_n,  _m_a_n,  _._._/_s_h_a_r_e_/_m_a_n,  or  _s_h_a_r_e_/_m_a_n relative to the path component are
+appended to the internal manpath if they exist.  Finally, the internal manpath
+is  stripped  of  duplicate paths before being processed by the NNLLSS and `Other
+OS' routines.  These may add to or modify the separate  path  elements  giving
+priority to NNLLSS manual pages or add OS-relative manpaths.
+
+33..44..  OOtthheerr OOSS''ss mmaannuuaall ppaaggeess
+
+It  is  common  to  have  collections of heterogeneous computer systems linked
+together in a network.  In some circumstances5 it is advantageous to  be  able
+to  access  the manual pages of these other systems directly from your system.
+This feature is known as alternate system support.  The accepted way to  setup
+this  support  is to NFS mount the respective systems' manual page hierarchies
+under the native manual page hierarchies.  An example:
+
+
+
+
+
+
+
+
+
+____________________
+   5 writing portable software instantly comes to mind
+
+
+
+
+
+                                       88
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+                      +--------+-----------------------+
+                      |System  | Manual page hierarchy |
+                      +--------+-----------------------+
+                      |<local> | /usr/share/man        |
+                      |newOS   | /usr/share/man/newOS  |
+                      |userix  | /usr/share/man/userix |
+                      |<local> | /usr/local/man        |
+                      |newOS   | /usr/local/man/newOS  |
+                      |userix  | /usr/local/man/userix |
+                      +--------+-----------------------+
+
+Rather than have multiple NFS mounts from a single machine, this may be accom-
+plished by NFS mounting
+
+     _<_o_t_h_e_r_-_s_y_s_>_:_/_u_s_r
+
+somewhere on the local system and using symbolic links within the manual hier-
+archies.  To access these _a_l_t_e_r_n_a_t_e _s_y_s_t_e_m_s using mmaann use the --mm or  ----ssyysstteemmss
+option, eg.
+     ___________________________________________
+     |_m_a_n__-_-_a_l_l__-_-_s_y_s_t_e_m_s__u_s_e_r_i_x_:_n_e_w_O_S__5__p_a_s_s_w_d_|_
+
+would  provide  manual  pages  showing the structure of _/_e_t_c_/_p_a_s_s_w_d on systems
+uusseerriixx and nneewwOOSS in that order.  A manual page would _n_o_t  be  displayed  about
+the local systems conventions.  Please read the relevant man-db utility's man-
+ual page for further and more specific information.
+
+33..55..  NNLLSS mmaannuuaall ppaaggeess
+
+NLS manual pages should be installed in NLS subdirectories of a standard  man-
+ual  page  hierarchy.   The  subdirectory names should be made up of language,
+territory, and character set components as necessary to specify the locale  of
+the manual page.
+
+The  character set component describes the encoding of the manual page itself,
+and not the encoding in use by the user; a manual  page  installed  under  the
+ffrr..UUTTFF--88  subdirectory  will be used in the ffrr__FFRR..IISSOO--88885599--11 locale as well as
+ffrr__FFRR..UUTTFF--88, and converted between encodings as necessary.   If  no  character
+set  is  specified  in  the  subdirectory  name, man-db will attempt to detect
+whether each page is encoded using UTF-8 or a legacy character set appropriate
+for  the  language.  Accordingly, the recommended scheme for installing manual
+pages is to encode them in UTF-8 (or, if that is not practical, in the  legacy
+character  set) and install them in directories _w_i_t_h_o_u_t a character set compo-
+nent in their names.
+
+The territory should normally be omitted unless it is  necessary  to  describe
+the  manual  page  text.   For example, Brazilian Portuguese is quite distinct
+from Portuguese and so should be installed under the pptt__BBRR subdirectory, but a
+single German manual page will typically suffice in Austria as well as in Ger-
+many and so should be installed under the ddee subdirectory.
+
+
+
+
+
+                                       99
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+The following table gives some examples.
+
+
+ +---------+-------------+-----------------+---------------------------------+
+ |Language | Territory   | Character Set   | Directory                       |
+ +---------+-------------+-----------------+---------------------------------+
+ |French   | any         | UTF-8 or        | /usr/share/man/fr               |
+ |         |             | ISO-8859-1      |                                 |
+ |French   | Canada      | ISO 8859-1      | /usr/share/man/fr_CA            |
+ |French   | any         | UTF-8           | /usr/share/man/fr.UTF-8         |
+ |German   | Germany     | UTF-8           | /usr/share/man/de_DE.UTF-8      |
+ |German   | Switzerland | ISO 8859-1      | /usr/share/man/de_CH.ISO-8859-1 |
+ |Japanese | Japan       | UTF-8 or EUC-JP | /usr/share/man/ja_JP            |
+ |Japanese | Japan       | EUC-JP          | /usr/share/man/ja_JP.EUC-JP     |
+ |Japanese | any         | UTF-8           | /usr/share/man/ja.UTF-8         |
+ +---------+-------------+-----------------+---------------------------------+
+
+On  systems  supporting  UTF-8,  it  is  recommended  that all manual pages be
+encoded using UTF-8 where possible, in order to simplify the task of editing a
+variety of pages without reconfiguring editors and terminals and the like.
+
+Each  of  these  directories  are  then interpreted as manual page hierarchies
+themselves and may contain the usual section subdirectories.   Access  to  NLS
+manual  pages  is  achieved via use of the sseettllooccaallee(3) function which queries
+user environment variables to determine the current locale.  Internally to the
+man-db  utilities,  this locale string is appended to each manpath element and
+the resultant NLS manpath element is searched before the standard manpath ele-
+ment.   In  this way, an NLS manual page that matches the search criteria will
+be shown before or in place of the standard American English page.
+
+If a user's $MMAANNPPAATTHH consists of or is determined as
+
+     _/_u_s_r_/_l_o_c_a_l_/_m_a_n_:_/_u_s_r_/_s_h_a_r_e_/_m_a_n_:_/_u_s_r_/_X_1_1_R_6_/_m_a_n
+
+and their locale is set to ddee__DDEE, the command
+     _________________________________
+     |_m_a_n__-_-_s_y_s_t_e_m_s__u_s_e_r_i_x_:_m_a_n__f_o_o_b_a_r_|_
+
+would produce the following internal man-db manpath elements
+
+     _/_u_s_r_/_l_o_c_a_l_/_m_a_n_/_u_s_e_r_i_x_/_d_e___D_E
+     _/_u_s_r_/_l_o_c_a_l_/_m_a_n_/_u_s_e_r_i_x_/_d_e
+     _/_u_s_r_/_l_o_c_a_l_/_m_a_n_/_u_s_e_r_i_x
+     _/_u_s_r_/_s_h_a_r_e_/_m_a_n_/_u_s_e_r_i_x_/_d_e___D_E
+     _/_u_s_r_/_s_h_a_r_e_/_m_a_n_/_u_s_e_r_i_x_/_d_e
+     _/_u_s_r_/_s_h_a_r_e_/_m_a_n_/_u_s_e_r_i_x
+     _/_u_s_r_/_X_1_1_R_6_/_m_a_n_/_u_s_e_r_i_x_/_d_e___D_E
+     _/_u_s_r_/_X_1_1_R_6_/_m_a_n_/_u_s_e_r_i_x_/_d_e
+     _/_u_s_r_/_X_1_1_R_6_/_m_a_n_/_u_s_e_r_i_x
+     _/_u_s_r_/_l_o_c_a_l_/_m_a_n_/_d_e___D_E
+     _/_u_s_r_/_l_o_c_a_l_/_m_a_n_/_d_e
+     _/_u_s_r_/_l_o_c_a_l_/_m_a_n
+
+
+
+                                      1100
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+     _/_u_s_r_/_s_h_a_r_e_/_m_a_n_/_d_e___D_E
+     _/_u_s_r_/_s_h_a_r_e_/_m_a_n_/_d_e
+     _/_u_s_r_/_s_h_a_r_e_/_m_a_n
+     _/_u_s_r_/_X_1_1_R_6_/_m_a_n_/_d_e___D_E
+     _/_u_s_r_/_X_1_1_R_6_/_m_a_n_/_d_e
+     _/_u_s_r_/_X_1_1_R_6_/_m_a_n
+
+ffoooobbaarr would be searched for in the order of manual page  hierarchies  listed.
+Additional  directories  corresponding  to  manual  pages encoded in different
+character sets would be used if present.
+
+33..55..11..  IISSOO 88885599--11 ((llaattiinn11)) mmaannuuaall ppaaggeess
+
+By default NNRROOFFFF will format manual pages into a form  suitable  for  a  type-
+writer  style device, e.g. a terminal screen. GGNNUU NNRROOFFFF is capable6 of format-
+ting ROFF into a form suitable for 8-bit latin1  capable  output  devices.  To
+enable output for such a device, give the option
+
+--with-device=DEVICE
+
+to ccoonnffiigguurree where DEVICE is the suitable and supported output format, in this
+case llaattiinn11.
+
+33..55..22..  DDiissppllaayyiinngg nnoonn--AASSCCIIII cchhaarraacctteerrss oonn aa LLiinnuuxx vviirrttuuaall tteerrmmiinnaall
+
+To view non-ASCII characters at the Linux console, you must have  one  of  the
+kbd7  and console-tools packages installed.  If your system does not come with
+suitable configuration already, then please see the documentation in  the  kbd
+or  console-tools package for details on how to configure the console for your
+locale.  On modern systems, the best choice is likely to be to use  the  UTF-8
+encoding  with  a font suitable for your language.  Make sure that your locale
+environment variables match the encoding displayed by the console.   For  dis-
+play  under the "X Window System", a suitable 8-bit-clean terminal emulator is
+required.
+
+33..55..33..  VViieewwiinngg AASSCCIIII ppaaggeess ffoorrmmaatttteedd ffoorr llaattiinn11 oouuttppuutt ddeevviiccee
+
+When formatting an ASCII manual page for a latin1  output  device,  GGNNUU  NNRROOFFFF
+will  take advantage of the extra characters available and will always produce
+a text page containing some latin1 (8-bit) symbols.  The table8  below,  taken
+from mmaann(1), illustrates the differences.
+
+
+
+____________________
+   6 see nnrrooffff(5) for the output device formats available with your NNRROOFFFF
+   7 written and maintained by Andries Brouwer <aeb@cwi.nl>.
+   8 The ISO 8859-1 and ASCII columns of this table will be identical if  this
+manual  was  formatted for an ASCII based typewriter display, i.e. using NNRROOFFFF
+in its native mode.
+
+
+
+
+
+                                      1111
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+              +--------------------+-------+------------+-------+
+              |Description         | Octal | ISO 8859-1 | ASCII |
+              +--------------------+-------+------------+-------+
+              |continuation hyphen |  255  |            |   -   |
+              |bullet (middle dot) |  267  |     +o      |   o   |
+              |acute accent        |  264  |     '      |   '   |
+              |multiplication sign |  327  |     x      |   x   |
+              +--------------------+-------+------------+-------+
+
+To display such symbols on a 7 bit terminal or terminal emulator, they must be
+translated back into standard ASCII.  The --77 option with mmaann will enable  this
+simple reverse translation.
+
+This  option  may  be  useful if your site has both 7 and 8-bit capable output
+devices and nroff is using the latin1 output device to format manual pages.
+
+33..66..  CCaatt ppaaggeess
+
+It has become standard practice to store the formatted manual pages on disk so
+that  subsequent  requests for the manual page do not have to involve the for-
+matting process.  These pre-formatted manual pages are  known  as  _c_a_t  pages.
+Although  cat pages require additional disk storage requirements, they provide
+a substantial speed increase and their use is recommended.
+
+The automatic support for storing and using cat pages is brought about by sim-
+ply creating suitable directories for them.
+
+33..77..  CCaatt ppaaggee hhiieerraarrcchhiieess
+
+Traditionally,  cat pages were stored under the same manual hierarchy as their
+source manual pages, in _c_a_t_<_s_e_c_> subdirectories rather  than  _m_a_n_<_s_e_c_>.   This
+situation is rather limiting in several situations:
+
+ +o When it is advantageous to mount _/_u_s_r as a read-only filesystem.  Cat pages
+   cannot be supported in this situation without use of symbolic links to var-
+   ious other areas of the filesystem.  This situation is a greater problem if
+   the media itself is read-only, such as CD-ROM.
+ +o When NFS mounting alternate OS's manual page  hierarchies.   The  alternate
+   system  may be under someone else's control and they may not want cat pages
+   stored on their system.  In fact, it is usually a good idea to  export  the
+   manual page filesystems read-only, or import them that way.  It is possible
+   to avoid the problems, this time with even more  symbolic  links  that  may
+   need periodic updating.
+ +o If there is a mixture of normal cat files and stray cats9, it is very  dif-
+   ficult  to  periodically  _t_r_i_m  the cat space disk usage by removing seldom
+   accessed cat files.
+
+To avoid all of these problems simultaneously, it was decided to support local
+cat page directory caches.
+____________________
+   9 cat files that have no source manual page, i.e. they cannot be recreated.
+
+
+
+
+                                      1122
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+33..88..  LLooccaall ccaatt ppaaggee ddiirreeccttoorryy ccaacchheess
+
+Any  location for cat page hierarchy may be specified in the man-db configura-
+tion file.  The location of the database cache  associated  with  each  manual
+page  hierarchy  will  always  be  at  the root of the cat page hierarchy.  By
+default, the cat page hierarchy shadows the manual page  hierarchy.   The  FFHHSS
+proposes  _/_v_a_r_/_c_a_c_h_e_/_m_a_n as the location for such directories, although man-db
+allows any directory hierarchy to be used.  The FFHHSS path  transformation  rule
+is as follows:
+
+     _/_u_s_r_/_<_h_i_e_r_a_r_c_h_y_>_/_s_h_a_r_e_/_m_a_n_/_<_l_o_c_a_l_e_>_/_m_a_n_<_s_e_c_>_/_p_a_g_e_._<_s_e_c_>_<_e_x_t_>
+
+should be formatted into the cat file
+
+     _/_v_a_r_/_c_a_c_h_e_/_m_a_n_/_<_h_i_e_r_a_r_c_h_y_>_/_<_l_o_c_a_l_e_>_/_c_a_t_<_s_e_c_>_/_p_a_g_e_._<_s_e_c_>_<_e_x_t_>
+
+where  the  _<_l_o_c_a_l_e_>  directory  component  may be missing and _<_e_x_t_> may be an
+empty string.
+
+The suggestion is that stray cats are located  in  the  traditional  hierarchy
+under  _/_u_s_r whereas re-creatable cat pages are stored under the local writable
+hierarchy _/_v_a_r_/_c_a_c_h_e_/_m_a_n_.  mmaann follows strict rules in determining which  file
+is displayed.
+
+As an example, the following route is taken if all three files exist.
+
+ (1)   Check relative modification time stamps of the manual file and the tra-
+       ditional cat file.  If the cat file is up to date (has  an  equal  time
+       stamp), display it.
+
+ (2)   The traditional cat file is out of date.  Check relative time stamps of
+       the manual file and the alternate cat file.  If the cat file is  up  to
+       date, display it.
+
+ (3)   The alternate cat file is out of date.  Format the manual file and dis-
+       play the result in the foreground, while  updating  the  alternate  cat
+       file in the background.
+
+When a cat file is created, its time stamp is set to that of the corresponding
+manual file.  Manual files are often stored in ttaarr archives, and  time  stamps
+may  be  preserved  when these archives are unpacked.  Simply checking whether
+the cat file is newer would sometimes cause mmaann to display an out-of-date  cat
+file in this case, when it should have reformatted the manual file instead.
+
+
+
+
+
+
+
+
+
+
+
+
+                                      1133
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+44..  CCoommpprreessssiioonn
+
+44..11..  CCoommpprreesssseedd mmaannuuaall ppaaggeess
+
+It  is possible to maintain a system of compressed manual pages.  This imposes
+a small overhead on the formatting process, but is nevertheless  usually  rea-
+sonable in order to avoid unnecessary consumption of disk space.
+
+Presently,  the compression extension/decompressor pairs must be known at com-
+pile time although any number may be defined and used.  The  following  struc-
+ture is predefined in man-db:
+
+
+                          +----------+--------------+
+                          |Extension | Decompressor |
+                          +----------+--------------+
+                          |gz        | gzip -dc     |
+                          |z         | gzip -dc     |
+                          |Z         | compress -dc |
+                          +----------+--------------+
+
+It  is a relatively easy operation to include further pairs in this structure.
+See _i_n_c_l_u_d_e_/_c_o_m_p___s_r_c_._h for details and an example.
+
+Support for compressed manual pages is compiled into the man-db  utilities  by
+default.   To  completely  disable this support, edit _c_o_n_f_i_g_._h and comment out
+the following line
+
+#define COMP_SRC 1
+
+This will enable a minor speed increase, but note that support for stray  cats
+with any compression extension other than the default will also be disabled.
+
+44..22..  CCoommpprreesssseedd ccaatt ppaaggeess
+
+man-db  compresses cat files by default.  During configuration, ccoonnffiigguurree will
+try to find ggzziipp and, if found, all cat files produced by  mmaann  will  be  com-
+pressed with
+
+     ggzziipp --77cc
+
+and have a ..ggzz extension appended.  If ggzziipp is not found,
+
+     ccoommpprreessss --cc
+
+is used as the compressor and the extension ..ZZ is appended.
+
+To  store  cat files in an uncompressed state and to disable compressed exten-
+sion processing completely, edit _c_o_n_f_i_g_._h and comment out the following line
+
+#define COMP_CAT 1
+
+
+
+
+                                      1144
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+44..22..11..  SSttrraayy ccaattss
+
+Normally, mmaann will only look for cat files with the default compression exten-
+sion.   The default compression extension is dependent on the default compres-
+sor and may be an empty string if the support for compressed cats is disabled.
+
+It is possible for a system to be supplied with stray cat files located in the
+traditional cat page hierarchy.  To make matters worse, they may have compres-
+sion extensions other than the default and reside on read-only media.  In such
+circumstances, stray cat files will be accepted with any compression extension
+that is also supported for manual pages.
+
+This special treatment of stray cat pages is removed if support for compressed
+manual pages is turned off or not available.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                      1155
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+55..  FFoorrmmaattttiinngg
+
+As already pointed out in the introduction, there are two  primary  formatters
+common to UUNNIIXX: NNRROOFFFF and TTRROOFFFF.
+
+In  the following sections, I will use the term TTRROOFFFF to describe the typeset-
+ter formatter and NNRROOFFFF to describe the typewriter formatter.  The  term  ROFF
+will be used to describe a generic formatter.
+
+55..11..  GGRROOFFFF
+
+If  using  the GGRROOFFFF package, there is a further choice, GGRROOFFFF itself.  Essen-
+tially, GGRROOFFFF forms a pipeline of processors including  TTRROOFFFF  and  an  output
+processor  which translates the ditroff produced by TTRROOFFFF into the appropriate
+output format.  The default output format, or device, for GGRROOFFFF is PostScript.
+Anything  else  must  be  specified  using the device argument.  To illustrate
+GGRROOFFFF, the command
+     _______________________
+     |_g_r_o_f_f__-_T_d_v_i__/_d_e_v_/_n_u_l_l_|_
+
+will form the following pipeline
+
+     troff -Tdvi /dev/null | grodvi
+
+If GGRROOFFFF is tied to mmaann's --TT option, it is still possible for mmaann  to  produce
+ditroff via use of the --ZZ option.
+
+In  GGRROOFFFF  1.09, NNRROOFFFF is bundled as a shell script that calls GGRROOFFFF, which in
+turn calls TTRROOFFFF with the default options --WWaallll  --mmttttyy--cchhaarr  --TTaasscciiii,  passing
+the result through ggrroottttyy before it finally reaches the screen.
+
+It  is  imperative  that  the  script  does not pass pre-processing options to
+GGRROOFFFF's command line as mmaann takes care of this separately.
+
+55..22..  DDeevviicceess
+
+Both NNRROOFFFF and GGRROOFFFF may allow output device selection.  As  mentioned  previ-
+ously, classic NNRROOFFFF produces output suitable for a typewriter device, classic
+TTRROOFFFF produces output suitable for a CC//AA//TT and GGRROOFFFF produces output  suitable
+for a PostScript interpreting device by default.
+
+55..33..  MMaaccrrooss
+
+There  are  several  ROFF macro sets in existence that are suitable for manual
+pages.  Unfortunately, they tend to be incompatible with each other.
+
+During configuration, ccoonnffiigguurree will attempt to determine a suitable macro set
+for  the local system's manual page collection.  It attempts to use NNRROOFFFF with
+the following three macro packages:
+
+
+
+
+
+
+                                      1166
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+          +--------------+--------------------------+---------------+
+          |macro package | macro filename           | nroff command |
+          +--------------+--------------------------+---------------+
+          |andoc         | tmac.andoc or andoc.tmac | nroff -mandoc |
+          |an            | tmac.an or an.tmac       | nroff -man    |
+          |doc           | tmac.doc or doc.tmac     | nroff -mdoc   |
+          +--------------+--------------------------+---------------+
+
+The first that succeeds is used.  The aannddoocc macro set is suitable  for  manual
+pages  written using either aann or ddoocc macro commands, but not a combination of
+both.
+
+55..44..  PPrree--ffoorrmmaatt pprroocceessssoorrss ((pprree--pprroocceessssoorrss))
+
+Manual pages may require pre-processing by any of the following
+
+
+                      +--------+----+------------------+
+                      |Program | ID | Pre-processes    |
+                      +--------+----+------------------+
+                      |eqn     | e  | equations        |
+                      |tbl     | t  | tables           |
+                      |grap    | g  | graphs           |
+                      |pic     | p  | pictures         |
+                      |refer   | r  | A bibliography   |
+                      |vgrind  | v  | program listings |
+                      +--------+----+------------------+
+
+It is possible to assign a default pre-processor list that  all  manual  pages
+will  be  passed  through prior to the primary formatter.  By default, this is
+empty.  To define a default list, edit _i_n_c_l_u_d_e_/_m_a_n_c_o_n_f_i_g_._h and un-comment  the
+following line
+
+/* #define DEFAULT_MANROFFSEQ   "t" */
+
+which  will enable ttbbll processing by default.  To change the list, replace the
+tt with a suitable string of processor ID's.
+
+Pre-process options may be provided at run time in various forms, but in  gen-
+eral the pre-processors required by each manual page is indicated in the first
+line of the manual page itself.  See mmaann(1) for details.
+
+If a manual page does not contain a pre-processor string in its first line, it
+will  be  scanned  for  well-known ROFF requests used to pass input to certain
+pre-processors.  Thus, the pre-processor string is often unnecessary for  cor-
+rect output, but should nevertheless be included for efficiency.
+
+55..55..  FFoorrmmaatt ssccrriippttss
+
+It is very likely that alternate systems manual pages may require non-standard
+macro packages or possibly even special pre-processors.  To tackle such  prob-
+lems, special format scripts may be created on a per manual hierarchy basis.
+
+
+
+                                      1177
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+If the file
+
+     _<_m_a_n_u_a_l___h_i_e_r_a_r_c_h_y_>_/_m_a_n_d_b___n_f_m_t
+
+exists and is executable, it is expected to be able to correctly format a man-
+ual page originating from _<_m_a_n_u_a_l___h_i_e_r_a_r_c_h_y_> to its standard output.  It  will
+be supplied with either two or three arguments:
+
+    +o manual page filename
+    +o pre-processor string
+    +o output device (optional)
+
+Similarly, if the option --TT_<_d_e_v_i_c_e_> or --tt was supplied to mmaann and the file
+
+     _<_m_a_n_u_a_l___h_i_e_r_a_r_c_h_y_>_/_m_a_n_d_b___t_f_m_t
+
+exists and is executable, it will be used in the same way.
+
+An   example   of   such   a  script,  supplied  by  Markus  Armbruster  <arm-
+bru@pond.sub.org>, who provided support for external formatter scripts, can be
+found as _t_o_o_l_s_/_m_a_n_d_b___f_m_t_-_s_c_r_i_p_t
+
+The  script can be used as both an NNRROOFFFF and TTRROOFFFF/GGRROOFFFF format script and can
+be installed as _m_a_n_d_b___n_f_m_t and hard linked to  _m_a_n_d_b___t_f_m_t  after  modification
+appropriate for your particular site.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                      1188
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+66..  TThhee iinnddeexx ddaattaabbaassee ccaacchheess
+
+As  mentioned  in the introduction, man-db uses database lookups to search for
+manual page locations and information.  When performing a manual  page  lookup
+or a basic wwhhaattiiss search, the databases are searched in
+
+     _k_e_y _-_> _c_o_n_t_e_n_t
+
+mode  and  are  as  fast  as the underlying databases can be.  When performing
+aapprrooppooss or special wwhhaattiiss searches, the databases are  searched  in  a  linear
+way,  which,  although  far more expensive than _k_e_y_e_d lookup, is no worse than
+traditional text based file searching.
+
+66..11..  iinnddeexx ddaattaabbaassee llooccaattiioonn
+
+The databases are always located at  the  root  of  the  cat  page  hierarchy,
+whether this is the same as the manual page hierarchy or not.  As file locking
+mechanisms are employed to ensure that concurrent processes do  not  update  a
+database  simultaneously, it is almost imperative that the databases reside on
+a local filesystem since file locking across NFS filesystems may  be  unavail-
+able  or  flaky.  To avoid such problems, mmaann can be compiled without database
+maintenance support.  See the section titled "Modes of operation" for details.
+
+66..11..11..  MMaannuuaall hhiieerraarrcchhiieess wwiitthh nnoo iinnddeexx ddaattaabbaassee
+
+It  is  possible for the man-db utilities to operate without aid from an index
+database.  Under such circumstances, search methods will use only  file  glob-
+bing  and  whatis  type  searches are performed on any traditional whatis text
+databases that may exist.  Only the traditional cat hierarchy is searched  for
+cat files.
+
+66..11..22..  UUsseerr mmaannuuaall ppaaggee hhiieerraarrcchhiieess
+
+A user may have any number of personal manual page hierarchies listed in their
+$MMAANNPPAATTHH.  By default, mmaann will maintain mmaannddbb created databases at  the  root
+of user manual page hierarchies.  The definition of a user manual hierarchy is
+that it does not have an entry in the man-db  configuration  file.   See  mmaann--
+ppaatthh(5) for details.
+
+66..22..  CCoonntteennttss ooff aann iinnddeexx ddaattaabbaassee
+
+There are four kinds of entry in an index database.
+
+ (1)   A  direct  entry regarding a particular manual page.  Manual pages that
+       are unique in terms of name use just a single entry in the database and
+       can be looked up by simply using the name as the key.
+
+ (2)   A  common name index entry that lists the extensions of all of the man-
+       ual pages sharing the common index entry name.  Manual pages that share
+       common  names but have differing extensions each have a single database
+       entry, but this time they are looked up with a key comprised  of  their
+       name  and  their  extension.  The entire set of common named pages also
+       has  an  common  name  index  entry  that  informs  of  the  extensions
+
+
+                                      1199
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+       available.
+
+ (3)   An  indirect  entry that has a pointer to the real entry.  Manual pages
+       that are whatis references to a particular page do not physically exist
+       so they have a pointer to the entry containing the location of the real
+       manual page.
+
+ (4)   Special identification entries.  There is one special key name,  "$ver-
+       sion$" that identifies the database storage scheme version.
+
+In  order  to  support  looking up manual pages in a case-insensitive fashion,
+keys are stored in lower case.  If the name of the page  was  not  already  in
+lower case, its true case is also stored in the common name index entry.
+
+In  the  following  entries,  the  character  "|" will be used to separate the
+fields. In reality a tab is used.  Direct and indirect entries takes the form:
+
+     _<_n_a_m_e_>   _-_>   _<_r_e_a_l_n_a_m_e_>_|_<_e_x_t_>_|_<_s_e_c_>_|_<_m_t_i_m_e_._s_e_c_>_|_<_m_t_i_m_e_._n_s_e_c_>_|_<_I_D_>_|_<_r_e_f_>_|
+     _<_f_i_l_t_e_r_>_|_<_c_o_m_p_>_|_<_w_h_a_t_i_s_>
+
+Common name index entries take the form:
+
+     _<_n_a_m_e_> _-_> _|_<_r_e_a_l_n_a_m_e_1_>_|_<_e_x_t_1_>_|_<_r_e_a_l_n_a_m_e_2_>_|_<_e_x_t_2_>_|_<_r_e_a_l_n_a_m_e_3_>_|_<_e_x_t_3_>_|  _._._.
+     _<_r_e_a_l_n_a_m_e_n_>_|_<_e_x_t_n_>
+
+and common name direct or indirect entries take the form:
+
+     _<_n_a_m_e_>_|_<_e_x_t_>   _-_>   _<_r_e_a_l_n_a_m_e_>_|_<_e_x_t_>_|_<_s_e_c_>_|_<_m_t_i_m_e_._s_e_c_>_|_<_m_t_i_m_e_._n_s_e_c_>_|_<_I_D_>_|
+     _<_r_e_f_>_|_<_f_i_l_t_e_r_>_|_<_c_o_m_p_>_|_<_w_h_a_t_i_s_>
+
+where in each case the filename being represented is formed as
+
+     _<_m_a_n_u_a_l___h_i_e_r_a_r_c_h_y_>_/_m_a_n_<_s_e_c_>_/_<_n_a_m_e_>_._<_e_x_t_>_._<_c_o_m_p_>
+
+in the case of a manual page, or
+
+     _<_c_a_t___h_i_e_r_a_r_c_h_y_>_/_c_a_t_<_s_e_c_>_/_<_n_a_m_e_>_._<_e_x_t_>_._<_c_o_m_p_>
+
+in the case of a stray cat.
+
+If any of the fields would be empty, a single "-"  is  stored  in  its  place.
+_<_c_o_m_p_>  represents the compression extension, _<_m_t_i_m_e_._s_e_c_> is an integer repre-
+senting the seconds part of the last modification time  of  the  manual  page,
+_<_m_t_i_m_e_._n_s_e_c_> is an integer representing the nanoseconds part of the last modi-
+fication time of the manual page, _<_r_e_f_> points to  the  entry  containing  the
+location  of  the  real page, _<_I_D_> is one of the following identification let-
+ters, and _<_f_i_l_t_e_r_> represents any preprocessors that are needed to display the
+page.
+
+
+
+
+
+
+
+                                      2200
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+  +---+------------+--------------------------------------------------------+
+  |ID | #define    | Description                                            |
+  +---+------------+--------------------------------------------------------+
+  |A  | ULT_MAN    | ultimate manual page, the full source nroff file       |
+  |B  | SO_MAN     | manual page containing a .so request to an ULT_MAN     |
+  |C  | WHATIS_MAN | virtual whatis referenced page pointing to an ULT_MAN  |
+  |D  | STRAY_CAT  | cat page with no source manual page                    |
+  |E  | WHATIS_CAT | virtual whatis referenced page pointing to a STRAY_CAT |
+  +---+------------+--------------------------------------------------------+
+
+The  _I_D  illustrates  the precedence.  Some types of manual page can be refer-
+enced by several means, e.g. .so requested and whatis  referred.   In  such  a
+case,  only one reference must be stored in the database, the precedence level
+decides which.
+
+66..22..11..  FFaavvoouurriinngg ssttrraayy ccaattss
+
+With the above rules of precedence, it is possible for a valid stray cat  page
+to be replaced by a whatis referred page sharing identical name-space.
+
+If  you  would  like  to  see  the  stray  cat  page  kkiillll(1)  instead  of the
+bbaasshh__bbuuiillttiinnss(1) page referenced by kkiillll(1), edit _i_n_c_l_u_d_e_/_m_a_n_c_o_n_f_i_g_._h and  un-
+comment the following line
+
+/* #define FAVOUR_STRAYCATS */
+
+66..22..22..  AAcccceessssddbb
+
+A  simple  program, aacccceessssddbb is included with man-db.  It will output the data
+contained within a man-db database in a human readable form.  By  default,  it
+will  _d_u_m_p  the  data  from _/_v_a_r_/_c_a_c_h_e_/_m_a_n_/_i_n_d_e_x_._<_d_b_-_t_y_p_e_>, where _<_d_b_-_t_y_p_e_> is
+dependent on the database library in use.
+
+Supplying an argument to  aacccceessssddbb  will  override  this  default.   Tabs  are
+replaced  in  the output by a tilde "~" in the _k_e_y field and a single space in
+the _c_o_n_t_e_n_t field.
+
+66..22..33..  EExxaammppllee ddaattaabbaassee
+
+As an example of both aacccceessssddbb and the database storage method, the output of
+     ___________________________
+     |_s_r_c_/_a_c_c_e_s_s_d_b__m_a_n_/_i_n_d_e_x_._b_t_|_
+
+after first running
+     _______________
+     |_s_r_c_/_m_a_n_d_b__m_a_n_|_
+
+from the top level build directory is included below.
+
+$version$ -> "2.5.0"
+accessdb -> "- 8 8 1410381979 324541691 A - - - dumps the content of a man-db database in a human readable format"
+apropos -> "- 1 1 1410381979 268541692 A - - - search the manual page names and descriptions"
+
+
+
+                                      2211
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+catman -> "- 8 8 1410381979 328541691 A - - - create or update the pre-formatted manual pages"
+lexgrog -> "- 1 1 1410381979 268541692 A - - - parse header information in man pages"
+man -> "- 1 1 1410381979 280541692 A - t - an interface to the on-line reference manuals"
+manconv -> "- 1 1 1410381979 272541692 A - - - convert manual page from one encoding to another"
+mandb -> "- 8 8 1410381979 324541691 A - t - create or update the manual page index caches"
+manpath -> " manpath 5 manpath 1"
+manpath~1 -> "- 1 1 1410381979 300541691 A - - - determine search path for manual pages"
+manpath~5 -> "- 5 5 1410381979 304541691 A - - - format of the /etc/manpath.config file"
+whatis -> "- 1 1 1410381979 300541691 A - - - display one-line manual page descriptions"
+zsoelim -> "- 1 1 1410381979 304541691 A - - - satisfy .so requests in roff input"
+
+66..33..  DDaattaabbaassee ttyyppeess
+
+man-db has support for various low level database libraries  commonly  in  use
+today.  The interfaces to the libraries are known as
+
+ +o ndbm (UUNNIIXX)
+ +o gdbm (GGNNUU)
+ +o btree (Berkeley DB)
+
+man-db currently does not hold more than one database open at any time, so
+
+ +o dbm (UUNNIIXX)
+
+support could be added in the future.
+
+66..44..  LLiimmiittaattiioonnss
+
+The general differences and limitations are best compared in a table.
+
+
++------+-------------+----------+-----------------+--------------+-----------+
+|      |             |   File   | Content memory  |  Concurrent  |           |
+|Name  |    Type     |          +---------+-------+              | Shareable |
+|      |             |   name   |  type   | limit |    access    |           |
++------+-------------+----------+---------+-------+--------------+-----------+
+|ndbm  | hash        | index10  | static  | 1Kb   | none         | no        |
+|gdbm  | hash        | index.db | dynamic | -     | file locking | no        |
+|btree | binary tree | index.bt | static  | -     | none         | yes       |
++------+-------------+----------+---------+-------+--------------+-----------+
+
+Those types that have no built in concurrent access strategy are provided with
+fflloocckk(2) based file locking by man-db.
+
+Berkeley  DB  initializes  its  databases very quickly, so bbttrreeee may have some
+performance advantages when doing mmaann searches.  However, it is  quite  heavy-
+weight  and  its  library  SONAME and on-disk formats have changed a number of
+times to provide features  considerably  beyond  what  man-db  needs,  so  the
+____________________
+   10  ndbm  databases  are physically represented by two files, _i_n_d_e_x_._d_i_r and
+_i_n_d_e_x_._p_a_g, but are referred to simply as _i_n_d_e_x by the interface routines.
+
+
+
+
+                                      2222
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+preferred  library interface is now ggddbbmm.  ccoonnffiigguurree will look for ggddbbmm, bbttrreeee
+and then finally nnddbbmm routines when configuring man-db.
+
+66..55..  SShhaarriinngg ddaattaabbaasseess iinn aa hheetteerrooggeenneeoouuss eennvviirroonnmmeenntt
+It may be necessary or  advantageous  to  share  databases  across  platforms,
+regardless of the potential file locking problems.
+
+An  example  would be a user having a personal manual page hierarchy in an NFS
+based home directory environment, whereby the home directory is  held  on  and
+mounted from a single machine in a heterogeneous network.
+
+In  this context, the database cache will have the same name and reside in the
+same place on all machines.  There are at least two ways  to  deal  with  this
+problem.
+
+ +o Hack  the  _i_n_c_l_u_d_e_/_m_a_n_c_o_n_f_i_g_._h  file  on  each platform to provide a unique
+   database name for each system.  No databases will be shared.
+ +o Install and use the Berkeley DB database interface library  on  each  plat-
+   form.   These databases can be shared across big-endian/little-endian plat-
+   forms although a database created on a big-endian platform  will  suffer  a
+   small access penalty when used by a litle-endian machine and vice-versa.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                      2233
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+77..  MMiisscceellllaanneeoouuss
+
+77..11..  MMooddeess ooff ooppeerraattiioonn
+
+The  man-db  utilities  can  operate in many different modes, allowing varying
+degrees of freedom, functionality and security.  No  mode  requires  that  the
+manual page hierarchies be writable.
+
+(1) Default mode
+     mmaann  is  setuid  to  the  user MAN_OWNER which is `man' by default and is
+     changeable via options to ccoonnffiigguurree.  mmaannddbb, if run by the  superuser  or
+     MAN_OWNER,   creates   globally   accessible  index  databases  owned  by
+     MAN_OWNER.  Once the databases are created, mmaann will  update  entries  in
+     them  if  it  finds newly installed manual pages (if the ----uuppddaattee flag is
+     used) or delete entries if manual pages are removed.  In this mode it  is
+     possible  for  a  malicious mmaann user to deliberately lock a database as a
+     writer, thus denying read access to other users.
+     If cat directories exist and have the correct permissions, mmaann will  take
+     care  of  producing  cat  files.   These will be owned by MAN_OWNER.  The
+     default permissions of both cat files and databases are 0644.
+
+(2) No man database updates
+     This mode also requires mmaann to be setuid, but is favoured where databases
+     must be shared in an environment unfriendly to kernel locking procedures,
+     eg. NFS.  It also prevents possible "denial of service" attacks by  mali-
+     cious  mmaann  users  as  mmaann  never opens the databases as a writer in this
+     mode.  To replace the functionality lost by disallowing mmaann write  access
+     to  the  databases,  mmaannddbb  should be rerun whenever new manual pages are
+     installed.  Otherwise, mmaann will not be able to use the database  to  find
+     and  display  the  newly  added  manual  pages,  and will have to use the
+     filesystem instead.  Each index database may be  owned  by  an  arbitrary
+     user  who  will  have subsequent write access to the database.  Cat files
+     are created in the same way as for mode (1) above.
+     To use the man-db  utilities  in  this  mode,  give  the  option  `--dis-
+     able-automatic-update' to ccoonnffiigguurree.
+
+(3) No man database updates or cat production
+     mmaann  is installed not setuid.  This mode of operation probably offers the
+     highest level of security but it requires higher  levels  of  maintenance
+     than other modes due to the restrictions imposed upon mmaann.  Each database
+     is owned by an arbitrary user as in mode (2).  Each cat hierarchy is also
+     owned  by  an  arbitrary  user  who is responsible for creating cat files
+     using ccaattmmaann whenever new manual files are installed.  mmaann will  be  com-
+     pletely passive in its action, i.e. no index databases will be written to
+     and no cat files are ever produced.
+     To use the man-db utilities in this  mode,  supply  the  options  `--dis-
+     able-setuid  --disable-automatic-update  --disable-cats' to ccoonnffiigguurree, or
+     build man-db as in mode (1) and install the binaries without  the  setuid
+     bit set.
+
+(4) Wide open
+     mmaann  is  installed  not setuid.  This mode is similar in operation to the
+     majority of vendor supplied, non setuid, cat file supporting manual pager
+
+
+                                      2244
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+     suites.   It is not recommended.  The databases are owned by an arbitrary
+     user who maintains them using mmaannddbb.  mmaann does not update the  databases.
+     Cat  files  are produced and stored in world writable cat directories and
+     have world write access themselves.
+     To use the man-db utilities in this  mode,  supply  the  options  `--dis-
+     able-setuid  --disable-automatic-update'  to ccoonnffiigguurree, edit _i_n_c_l_u_d_e_/_m_a_n_-
+     _c_o_n_f_i_g_._h and change the definition of CATMODE from 0644 to 0666.
+
+Other variations can also be used.  In fact it is possible for mmaann to actually
+create  index  databases,  usually the job of mmaannddbb, for users' private manual
+page hierarchies.  This  is  enabled  by  giving  the  option  `--enable-auto-
+matic-create' to ccoonnffiigguurree.
+
+In summary, _i_n_c_l_u_d_e_/_m_a_n_c_o_n_f_i_g_._h contains definitions for
+
+ +o CATMODE
+ +o DBMODE
+
+the  setuid  installation and operation of mmaann is modified by supplying either
+of the following options to ccoonnffiigguurree:
+
+ +o --enable-setuid=USER
+ +o --disable-setuid
+
+and other aspects of mmaann's behaviour are controlled by the  following  options
+to ccoonnffiigguurree:
+
+ +o --enable-automatic-create
+ +o --disable-automatic-update
+ +o --disable-cats
+
+77..22..  NNFFSS rroooott ssqquuaasshh
+
+If mmaann is installed setuid to an arbitrary user and is run by root, instead of
+gaining the effective user id of the setuid user, mmaann is run with both uid and
+euid  as  root.  This is neccesary due to infelicities with the PPOOSSIIXX setuid()
+function call:  All users except root may change to  and  from  the  effective
+(setuid) user, however once root has setuid(user), there is no way back.
+
+A side effect of this is that NNFFSS mounted cat hierarchies or databases will be
+unwritable if the following conditions exist:
+
+ +o man/catman/mandb is run by root
+ +o The NFS mount has the root squash flag set
+
+To get around this problem, the root user must first attain the ID of the  cat
+hierarchy or database owner before running mmaann//ccaattmmaann//mmaannddbb whenever the data-
+bases need updating or cat files are to be produced.
+
+77..33..  NNLLSS mmeessssaaggee ccaattaalloogguueess
+
+man-db has built in support for native language message catalogues.  That  is,
+it  can  issue  messages  in  the locale of the user's choice.  This will only
+
+
+                                      2255
+
+
+
+
+
+
+
+mmaann--ddbb                              vv22..77..55                    DDeecceemmbbeerr 22,, 22001155
+
+
+occur if the locale's translation has  been  written.   Before  undertaking  a
+translation,  please  contact  the Translation Project (http://translationpro-
+ject.org/) who are coordinating such activities.
+
+77..44..  CCrreeddiittss
+
+The authors would like to thank the following people for their  time,  effort,
+support, ideas and code which went into man-db:
+
+    Markus Armbruster <armbru@pond.sub.org>
+    Lionel Cons & colleages <cons@dxcern.cern.ch>
+    Carl Edman <cedman@princeton.edu>
+    Caleb Epstein <epstein_caleb@jpmorgan.com>
+    Lars Fenneberg <lf@gimli.comlink.de>
+    Zoltan Hidvegi <hzoli@cs.elte.hu>
+    Nils Magnus <magnus@unix-ag.uni-kl.de>
+    Daniel Quinlan <quinlan@yggdrasil.com>
+    Fabrizio Polacco <fpolacco@debian.org>
+    Gordon Sadler <gbsadler1@lcisp.com>
+    Colin Phipps <cph@cph.demon.co.uk>
+    Paul Slootman <paul@wurtel.net>
+    Jose Rodriguez <boriel@airtel.net>
+    Eirik Fuller <eirik@hackrat.com>
+    Matej Vela <vela@debian.org>
+    Clint Adams <schizo@debian.org>
+    Jeremy C. Reed <reed@reedmedia.net>
+    Erik Andersen <andersen@codepoet.org>
+    Giuseppe Sacco <eppesuig@debian.org>
+    David Weinehall <tao@debian.org>
+    Ralph Corderoy <ralph@inputplus.co.uk>
+    Yuri Kozlov <kozlov.y@gmail.com>
+    Henning Makholm <henning@makholm.net>
+    Lars Wirzenius <liw@iki.fi>
+    Nicolas Fran,cois <nicolas.francois@centraliens.net>
+    Ivan Shmakov <oneingray@gmail.com>
+    Peter Breitenlohner <peb@mppmu.mpg.de>
+    Robert Luberda <robert@debian.org>
+    Chusslove Illich <caslav.ilic@gmx.net>
+
+and all those translators listed in the mmaann//TTHHAANNKKSS file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                      2266
+
+
+
+
+
+
+
+
+
+
+                                   Glossary
+
+
+manual page
+     A  file  containing descriptions related to the use of a function or pro-
+     gram or the structure of a file.  The name of the file is formed from the
+     title of the manual page followed by a period followed by the name of the
+     section that it resides in, optionally followed  by  an  extension.   The
+     format of the file is NNRROOFFFF and may be compressed, having a suitable com-
+     pression extension appended.
+
+cat page
+     A formatted manual page suitable for viewing on a vt100-type terminal.
+
+stray cat page
+     A cat page that does not have a relative manual page on the system,  i.e.
+     only  the  cat page was supplied or the manual page was removed after the
+     cat page had been created.
+
+section
+     Each manual page or cat page hierarchy is  divided  into  sections,  each
+     section  having  its  own directory.  Manual page hierarchy section names
+     begin with `man' and cat page sections with `cat'.
+
+extension
+     A package may provide manual pages with filenames ending  in  a  package-
+     specific extension name.  This allows manual pages with the same title to
+     coexist in the same manual page hierarchy and section without sharing the
+     same  filename.   It  also provides a further mechanism for man to select
+     the correct manual page.
+
+manual page hierarchy
+     A directory tree divided into manual page  sections,  each  containing  a
+     collection of manual pages.
+
+cat page hierarchy
+     A  directory  tree divided into cat page sections, each containing a col-
+     lection of cat pages.
+
+traditional cat page hierarchy
+     The same location as the manual page hierarchy.
+
+alternate cat page hierarchy
+     A separate location to that of the traditional cat page hierarchy.
+
+traditional cat page
+     A cat page located in a traditional cat page hierarchy.
+
+alternate cat page
+     A cat page located in an alternate cat page hierarchy.
+
+
+
+
+
+                                       ii
+
+
+
+
+
+
+
+
+
+
+                                     Contents
+
+
+1.  Introduction ........................................................    1
+    1.1  man-db .........................................................    1
+         1.1.1  The concept .............................................    1
+    1.2  The manual page system .........................................    2
+    1.3  Sections of the manual .........................................    2
+    1.4  The format of manual pages .....................................    3
+    1.5  Arguments to configure .........................................    3
+
+2.  The specifics of Sections ...........................................    5
+    2.1  Package specific manual page sections ..........................    5
+    2.2  Selecting a section type .......................................    5
+         2.2.1  Specifying a section ....................................    5
+         2.2.2  Specifying an extension .................................    6
+
+3.  Filesystem structure ................................................    7
+    3.1  Manual page hierarchies ........................................    7
+    3.2  Setting the MANPATH ............................................    7
+    3.3  Determination of the internal manpath ..........................    8
+    3.4  Other OS's manual pages ........................................    8
+    3.5  NLS manual pages ...............................................    9
+         3.5.1  ISO 8859-1 (latin1) manual pages ........................   11
+         3.5.2  Displaying non-ASCII characters  on  a  Linux  virtual
+         terminal .......................................................   11
+         3.5.3  Viewing ASCII pages formatted for latin1 output device
+         ................................................................   11
+    3.6  Cat pages ......................................................   12
+    3.7  Cat page hierarchies ...........................................   12
+    3.8  Local cat page directory caches ................................   13
+
+4.  Compression .........................................................   14
+    4.1  Compressed manual pages ........................................   14
+    4.2  Compressed cat pages ...........................................   14
+         4.2.1  Stray cats ..............................................   15
+
+5.  Formatting ..........................................................   16
+    5.1  GGRROOFFFF ..........................................................   16
+    5.2  Devices ........................................................   16
+    5.3  Macros .........................................................   16
+    5.4  Pre-format processors (pre-processors) .........................   17
+    5.5  Format scripts .................................................   17
+
+6.  The index database caches ...........................................   19
+    6.1  index database location ........................................   19
+         6.1.1  Manual hierarchies with no index database ...............   19
+         6.1.2  User manual page hierarchies ............................   19
+    6.2  Contents of an index database ..................................   19
+         6.2.1  Favouring stray cats ....................................   21
+         6.2.2  Accessdb ................................................   21
+         6.2.3  Example database ........................................   21
+    6.3  Database types .................................................   22
+
+
+                                       ii
+
+
+
+
+
+
+
+
+
+
+    6.4  Limitations ....................................................   22
+    6.5  Sharing databases in a heterogeneous environment ...............   23
+
+7.  Miscellaneous .......................................................   24
+    7.1  Modes of operation .............................................   24
+    7.2  NFS root squash ................................................   25
+    7.3  NLS message catalogues .........................................   25
+    7.4  Credits ........................................................   26
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                      iiii
+
+
+

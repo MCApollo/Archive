@@ -1,0 +1,9 @@
+Package: com.mc.sqlite
+Name: sqlite
+Version: 3.2.4-2
+Section: Utility
+Architecture: iphoneos-arm
+Author: Dwayne Richard
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	The SQLite package is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine.

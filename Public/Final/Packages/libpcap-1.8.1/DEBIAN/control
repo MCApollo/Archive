@@ -1,0 +1,10 @@
+Package: com.mc.libpcap
+Name: libpcap
+Version: 1.8.1-2
+Section: Development
+Architecture: iphoneos-arm
+Description: Compiled for ARM64.
+	Libpcap, a portable C/C++ library for network traffic capture.
+	** Update: Switched to 1.8.1 from 1.4
+Author: tcpdump
+Maintainer: u/LULShotz

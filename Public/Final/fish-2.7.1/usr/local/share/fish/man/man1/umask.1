@@ -1,0 +1,48 @@
+.TH "umask" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBumask\fP -- set or get the file creation mode mask 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBumask\fP [OPTIONS] [MASK]
+.fi
+.PP
+.SS "Description"
+\fCumask\fP displays and manipulates the 'umask', or file creation mode mask, which is used to restrict the default access to files\&.
+.PP
+The umask may be expressed either as an octal number, which represents the rights that will be removed by default, or symbolically, which represents the only rights that will be granted by default\&.
+.PP
+Access rights are explained in the manual page for the \fCchmod\fP(1) program\&.
+.PP
+With no parameters, the current file creation mode mask is printed as an octal number\&.
+.PP
+.IP "\(bu" 2
+\fC-h\fP or \fC--help\fP prints this message\&.
+.IP "\(bu" 2
+\fC-S\fP or \fC--symbolic\fP prints the umask in symbolic form instead of octal form\&.
+.IP "\(bu" 2
+\fC-p\fP or \fC--as-command\fP outputs the umask in a form that may be reused as input
+.PP
+.PP
+If a numeric mask is specified as a parameter, the current shell's umask will be set to that value, and the rights specified by that mask will be removed from new files and directories by default\&.
+.PP
+If a symbolic mask is specified, the desired permission bits, and not the inverse, should be specified\&. A symbolic mask is a comma separated list of rights\&. Each right consists of three parts:
+.PP
+.IP "\(bu" 2
+The first part specifies to whom this set of right applies, and can be one of \fCu\fP, \fCg\fP, \fCo\fP or \fCa\fP, where \fCu\fP specifies the user who owns the file, \fCg\fP specifies the group owner of the file, \fCo\fP specific other users rights and \fCa\fP specifies all three should be changed\&.
+.IP "\(bu" 2
+The second part of a right specifies the mode, and can be one of \fC=\fP, \fC+\fP or \fC-\fP, where \fC=\fP specifies that the rights should be set to the new value, \fC+\fP specifies that the specified right should be added to those previously specified and \fC-\fP specifies that the specified rights should be removed from those previously specified\&.
+.IP "\(bu" 2
+The third part of a right specifies what rights should be changed and can be any combination of \fCr\fP, \fCw\fP and \fCx\fP, representing read, write and execute rights\&.
+.PP
+.PP
+If the first and second parts are skipped, they are assumed to be \fCa\fP and \fC=\fP, respectively\&. As an example, \fCr,u+w\fP means all users should have read access and the file owner should also have write access\&.
+.PP
+Note that symbolic masks currently do not work as intended\&.
+.SS "Example"
+\fCumask 177\fP or \fCumask u=rw\fP sets the file creation mask to read and write for the owner and no permissions at all for any other users\&. 

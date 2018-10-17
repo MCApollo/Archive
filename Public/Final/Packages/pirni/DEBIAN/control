@@ -1,0 +1,17 @@
+Package: com.mc.pirni
+Name: pirni
+Version: 1.1.1-4
+Section: Utility
+Depends: org.thebigboss.libnet, com.mc.libpcap
+Architecture: iphoneos-arm
+Author: Axel Moller (n1mda)
+Maintainer: u/LULShotz
+Description: Pirni is a packet sniffer for the iPhone written by Axel Moller (n1mda)
+	Includes pirni-derv in /usr/local/pirni-derv 
+	Scripts derv has two main scripts: b4.sh 
+	Initiates Pirni with router's IP address, packet filter, port, and filename.
+	derv.sh:
+	Reads Pirni's packet dump file in 'real time' and displays information gathered from the packets.
+	About:
+	Pirni dumps sniffed packets to a file. These packets can be later transferred to a computer and viewed using a packet-viewing program such as WireShark. This method, however, takes a lot of time and is very byzantine.
+	Sign BigBoss's libnet before use!

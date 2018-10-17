@@ -1,0 +1,219 @@
+.\" Man page for lexgrog
+.\"
+.\" Copyright (c) 2001 Colin Watson <cjwatson@debian.org>
+.\"
+.\" You may distribute under the terms of the GNU General Public
+.\" License as specified in the file COPYING that comes with the
+.\" man-db distribution.
+.pc
+.TH LEXGROG 1 "2015-11-06" "2.7.5" "Manual pager utils"
+.SH NAME
+lexgrog \- parse header information in man pages
+.SH SYNOPSIS
+.B lexgrog
+.RB [\| \-m \||\| -c \|]
+.RB [\| \-dfw?V \|]
+.RB [\| \-E
+.IR encoding \|]
+.I file
+\&.\|.\|.
+.SH DESCRIPTION
+.B lexgrog
+is an implementation of the traditional \(lqgroff guess\(rq utility in
+.BR lex .
+It reads the list of files on its command line as either man page source
+files or preformatted \(lqcat\(rq pages, and displays their name and
+description as used by
+.B apropos
+and
+.BR whatis ,
+the list of preprocessing filters required by the man page before it is
+passed to
+.B nroff
+or
+.BR troff ,
+or both.
+.PP
+If its input is badly formatted,
+.B lexgrog
+will print \(lqparse failed\(rq; this may be useful for external
+programs that need to check man pages for correctness.
+If one of
+.BR lexgrog 's
+input files is \(lq\-\(rq, it will read from standard input; if any input
+file is compressed, a decompressed version will be read automatically.
+.SH OPTIONS
+.TP
+.BR \-d ", " \-\-debug
+Print debugging information.
+.TP
+.BR \-m ", " \-\-man
+Parse input as man page source files.
+This is the default if neither
+.B \-\-man
+nor
+.B \-\-cat
+is given.
+.TP
+.BR \-c ", " \-\-cat
+Parse input as preformatted man pages (\(lqcat pages\(rq).
+.B \-\-man
+and
+.B \-\-cat
+may not be given simultaneously.
+.TP
+.BR \-w ", " \-\-whatis
+Display the name and description from the man page's header, as used by
+.B apropos
+and
+.BR whatis .
+This is the default if neither
+.B \-\-whatis
+nor
+.B \-\-filters
+is given.
+.TP
+.BR \-f ", " \-\-filters
+Display the list of filters needed to preprocess the man page before
+formatting with
+.B nroff
+or
+.BR troff .
+.TP
+\fB\-E\fP \fIencoding\fP, \fB\-\-encoding\fP \fIencoding\fP
+Override the guessed character set for the page to
+.IR encoding .
+.TP
+.BR \-? ", " \-\-help
+Print a help message and exit.
+.TP
+.BR \-\-usage
+Print a short usage message and exit.
+.TP
+.BR \-V ", " \-\-version
+Display version information.
+.SH "EXIT STATUS"
+.TP
+.B 0
+Successful program execution.
+.TP
+.B 1
+Usage error.
+.TP
+.B 2
+.B lexgrog
+failed to parse one or more of its input files.
+.SH EXAMPLES
+.nf
+  $ lexgrog man.1
+  man.1: "man \- an interface to the on-line reference manuals"
+  $ lexgrog \-fw man.1
+  man.1 (t): "man \- an interface to the on-line reference manuals"
+  $ lexgrog \-c whatis.cat1 
+  whatis.cat1: "whatis \- display manual page descriptions"
+  $ lexgrog broken.1
+  broken.1: parse failed
+.fi
+.SH WHATIS PARSING
+.B mandb
+(which uses the same code as
+.BR lexgrog )
+parses the
+.B NAME
+section at the top of each manual page looking for names and descriptions
+of the features documented in each.
+While the parser is quite tolerant, as it has to cope with a number of
+different forms that have historically been used, it may sometimes fail to
+extract the required information.
+.PP
+When using the traditional
+.I man
+macro set, a correct
+.B NAME
+section looks something like this:
+.PP
+.RS
+.ft CW
+.nf
+\&.SH NAME
+foo \e\- program to do something
+.fi
+.ft P
+.RE
+.PP
+Some manual pagers require the \(oq\e\-\(cq to be exactly as shown;
+.B mandb
+is more tolerant, but for compatibility with other systems it is
+nevertheless a good idea to retain the backslash.
+.PP
+On the left-hand side, there may be several names, separated by commas.
+Names containing whitespace will be ignored to avoid pathological behaviour
+on certain ill-formed
+.B NAME
+sections.
+The text on the right-hand side is free-form, and may be spread over
+multiple lines.
+If several features with different descriptions are being documented in the
+same manual page, the following form is therefore used:
+.PP
+.RS
+.ft CW
+.nf
+\&.SH NAME
+foo, bar \e\- programs to do something
+\&.br
+baz \e\- program to do nothing
+.fi
+.ft P
+.RE
+.PP
+(A macro which starts a new paragraph, like \f(CW.PP\fP, may be used instead
+of the break macro \f(CW.br\fP.)
+.PP
+When using the BSD-derived
+.I mdoc
+macro set, a correct
+.B NAME
+section looks something like this:
+.PP
+.RS
+.ft CW
+.nf
+\&.Sh NAME
+\&.Nm foo
+\&.Nd program to do something
+.fi
+.ft P
+.RE
+
+There are several common reasons why whatis parsing fails.
+Sometimes authors of manual pages replace \(oq.SH NAME\(cq with
+\(oq.SH MYPROGRAM\(cq, and then
+.B mandb
+cannot find the section from which to extract the information it needs.
+Sometimes authors include a NAME section, but place free-form text there
+rather than \(oqname \e\- description\(cq.
+However, any syntax resembling the above should be accepted.
+.SH "SEE ALSO"
+.IR apropos (1),
+.IR man (1),
+.IR whatis (1),
+.IR mandb (8)
+.SH NOTES
+.B lexgrog
+attempts to parse files containing .so requests, but will only be able
+to do so correctly if the files are properly installed in a manual page
+hierarchy.
+.SH AUTHOR
+The code used by
+.B lexgrog
+to scan man pages was written by:
+.PP
+.nf
+Wilf. (G.Wilford@ee.surrey.ac.uk).
+Fabrizio Polacco (fpolacco@debian.org).
+Colin Watson (cjwatson@debian.org).
+.fi
+.PP
+Colin Watson wrote the current incarnation of the command-line
+front-end, as well as this man page.

@@ -1,0 +1,20 @@
+.TH "cdh" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBcdh\fP -- change to a recently visited directory 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBcdh\fP [ directory ]
+.fi
+.PP
+.SS "Description"
+\fCcdh\fP with no arguments presents a list of recently visited directories\&. You can then select one of the entries by letter or number\&. You can also press [\fBtab\fP] to use the completion pager to select an item from the list\&. If you give it a single argument it is equivalent to \fCcd directory\fP\&.
+.PP
+Note that the \fCcd\fP command limits directory history to the 25 most recently visited directories\&. The history is stored in the \fC$dirprev\fP and \fC$dirnext\fP variables which this command manipulates\&. If you make those universal variables your \fCcd\fP history is shared among all fish instances\&.
+.SS "See Also"
+See also the \fC\fCprevd\fP\fP and \fC\fCpushd\fP\fP commands which also work with the recent \fCcd\fP history and are provided for compatibility with other shells\&. 

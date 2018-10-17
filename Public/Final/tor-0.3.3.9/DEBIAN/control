@@ -1,0 +1,25 @@
+Package: com.mc.tor
+Name: Tor
+Version: 3.3.9-3
+Section: Networking
+Architecture: iphoneos-arm
+Author: Tor Project
+Depends: lzma, openssl, com.mc.libevent-2.0.22, com.mc.zlib, grep, gawk, com.bingner.plutil
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Portal to the .onion network.
+	~
+	Repeat after me:
+	TOR IS ONLY SECURE IF CONFIGURED RIGHT.
+	It's up to you to configure Tor right.
+	~ 
+	Do NOT do something stupid and try to be a l33t hacker.
+	This should only be used in cases of firewall bypassing, not evil.
+	If you really need to bypass a firewall, look into ShadowSocks.
+	~
+	Update:
+	Stole WAS's LaunchDaemon and Setting's Panel.
+	Credits goes to them.
+	~
+	** Get Plutil from: http://repo.bigner.com/
+	** TODO: ShadowSocks-libev (Command line)?

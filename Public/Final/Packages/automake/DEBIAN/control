@@ -1,0 +1,11 @@
+Package: com.mc.automake
+Name: automake
+Version: 1.16.1-2
+Section: Utility
+Architecture: iphoneos-arm
+Author: GNU
+Depends: perl
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	automatically generate verbose makefiles
+	http://repo.bingner.com/ for perl

@@ -1,0 +1,9 @@
+Package: com.mc.libunistring
+Name: libunistring
+Version: 0.9.10
+Section: Development
+Architecture: iphoneos-arm
+Author: GNU
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	provides functions for manipulating Unicode strings and for manipulating C strings according to the Unicode standard.

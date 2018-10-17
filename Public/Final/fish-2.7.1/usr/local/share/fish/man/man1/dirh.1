@@ -1,0 +1,20 @@
+.TH "dirh" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBdirh\fP -- print directory history 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBdirh\fP
+.fi
+.PP
+.SS "Description"
+\fCdirh\fP prints the current directory history\&. The current position in the history is highlighted using the color defined in the \fCfish_color_history_current\fP environment variable\&.
+.PP
+\fCdirh\fP does not accept any parameters\&.
+.PP
+Note that the \fCcd\fP command limits directory history to the 25 most recently visited directories\&. The history is stored in the \fC$dirprev\fP and \fC$dirnext\fP variables\&. 

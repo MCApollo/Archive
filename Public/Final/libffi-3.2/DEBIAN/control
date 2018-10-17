@@ -1,0 +1,9 @@
+Package: com.mc.libffi
+Name: libffi
+Version: 3.2-6
+Section: Development
+Architecture: iphoneos-arm
+Author: Anthony Green
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	libffi is a foreign function interface library. It provides a C programming language interface for calling natively compiled functions given information about the target function at run time instead of compile time.

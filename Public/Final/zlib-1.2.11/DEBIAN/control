@@ -1,0 +1,18 @@
+Package: com.mc.zlib
+Name: ZLib
+Version: 1.2.11-8.1
+Section: Development
+Architecture: iphoneos-arm
+Description: Compiled for ARM64 
+	Compression Library.
+	`
+	I messed up badly and I'm sorry.
+	Hopefully the postinst fixes this.
+	What happen was that I symlinked files from /usr/local/lib to /usr/lib, 
+	I overwrote the cache and pointed zlib to a real file. (Breaking Apps)
+	And when you removed the package, 
+	dpkg would've removed the symlinks to the cache; (Removing wouldn't fix it)
+	Screwing anyone that installed this package.
+	Please install this as soon as possible, I'm sorry for screwing up so badly.
+Author: Jean-loup G./Mark A.
+Maintainer: u/LULShotz

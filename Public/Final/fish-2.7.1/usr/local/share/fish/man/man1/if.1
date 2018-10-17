@@ -1,0 +1,50 @@
+.TH "if" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBif\fP -- conditionally execute a command 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBif\fP CONDITION; COMMANDS_TRUE\&.\&.\&.;
+[\fBelse\fP \fBif\fP CONDITION2; COMMANDS_TRUE2\&.\&.\&.;]
+[\fBelse\fP; COMMANDS_FALSE\&.\&.\&.;]
+\fBend\fP
+.fi
+.PP
+.SS "Description"
+\fCif\fP will execute the command \fCCONDITION\fP\&. If the condition's exit status is 0, the commands \fCCOMMANDS_TRUE\fP will execute\&. If the exit status is not 0 and \fCelse\fP is given, \fCCOMMANDS_FALSE\fP will be executed\&.
+.PP
+You can use \fC\fCand\fP\fP or \fC\fCor\fP\fP in the condition\&. See the second example below\&.
+.PP
+The exit status of the last foreground command to exit can always be accessed using the \fC$status\fP variable\&.
+.SS "Example"
+The following code will print \fCfoo\&.txt exists\fP if the file foo\&.txt exists and is a regular file, otherwise it will print \fCbar\&.txt exists\fP if the file bar\&.txt exists and is a regular file, otherwise it will print \fCfoo\&.txt and bar\&.txt do not exist\fP\&.
+.PP
+.PP
+.nf
+
+\fBif\fP \fBtest\fP -f foo\&.txt
+    \fBecho\fP foo\&.txt exists
+\fBelse\fP \fBif\fP \fBtest\fP -f bar\&.txt
+    \fBecho\fP bar\&.txt exists
+\fBelse\fP
+    \fBecho\fP foo\&.txt and bar\&.txt do not exist
+\fBend\fP
+.fi
+.PP
+.PP
+The following code will print 'foo\&.txt exists and is readable' if foo\&.txt is a regular file and readable 
+.PP
+.nf
+
+\fBif\fP \fBtest\fP -f foo\&.txt
+   \fBand\fP \fBtest\fP -r foo\&.txt
+   \fBecho\fP 'foo\&.txt exists and is readable'
+\fBend\fP
+.fi
+.PP
+ 

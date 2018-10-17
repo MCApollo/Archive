@@ -1,0 +1,10 @@
+Package: com.mc.midnightcommander
+Name: midnight-commander
+Version: 4.8.21-2
+Section: Utility
+Architecture: iphoneos-arm
+Author: GNU
+Maintainer: u/LULShotz
+Depends: com.mc.libiconv, com.mc.libssh2, com.mc.glib, openssl, com.mc.pcre, com.mc.slang
+Description: Compiled for ARM64.
+	A visual file manager.

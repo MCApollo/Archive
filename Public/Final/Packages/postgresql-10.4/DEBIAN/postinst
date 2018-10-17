@@ -1,0 +1,108 @@
+#!/bin/bash
+dbhome="/usr/local/pgsql"
+dbhomedata="/var/postgres"
+dbdata="$dbhomedata/data"
+dbsocketdir="/var/pgsql_socket"
+dblogdir="/var/log/postgres"
+tmpdir="/var/tmp"
+fullname="PostgreSQL"
+user="postgres"
+group=$user
+home="$dbhome"
+uid="100"
+usercreated="no"
+root="root"
+wheel="wheel"
+launchdaemondir=/Library/LaunchDaemond
+preferenceloaderdir=/Library/PreferenceLoader/Preference
+libexecdir=/usr/local/libexec
+chown $root:$wheel $launchdaemondir/pgsql*
+chown $root:$wheel $preferenceloaderdir/pgsql*
+chown $root:$wheel $preferenceloaderdir/*postgres*
+chown $root:$wheel $libexecdir/pgsql*
+chown $root:$wheel $libexecdir/*pgsql*
+echo "Check/Create $user user"
+if id -u $user >/dev/null 2>&1; then
+        usercreated="yes"
+        echo "$user user exists"
+else
+        echo "User $user does not exist. Creating $user user"
+        while [ "$usercreated" == "no" -a "$uid" -lt 150 ]
+        do
+        echo "Check if uid $uid exist"
+        RESULT=$(awk -F: -v U="$uid" '$3==U {print "yes";exit}' /etc/master.passwd)
+        if [ "$RESULT" == "yes" ] ; then
+               uid=$[$uid+1]
+        else
+                echo "creating user $user on id $uid..."
+                gid=$uid
+                echo "$group:*:$gid:$user" >> /private/etc/group
+                echo "$user:*:$uid:$gid::0:0:$fullname:$home:/bin/sh" >> /private/etc/master.passwd
+                echo "$user:*:$uid:$gid:$fullname:$home:/bin/sh" >> /private/etc/passwd
+                usercreated="yes"
+                echo "User created."
+        fi
+        done
+fi
+if [ "$usercreated" == "yes" ] ; then
+        chown $user:$group $dbsocketdir
+        chown -R $user:$group $dbhome
+        chown $user:$group $dblogdir
+        chown $user:$group $tmpdir/postgresql.conf
+        chown $user:$group $tmpdir/pg_hba.conf
+        #chmod -R 755 $dbhome/bin
+        if ! [ -d "$dbdata" ] ; then
+                if ! [ -d "$dbhomedata" ] ; then
+                        mkdir $dbhomedata
+                        chown $user:$group $dbhomedata
+                fi
+                mkdir $dbdata
+                chown $user:$group $dbdata
+                su - $user -s /bin/sh -c "$dbhome/bin/initdb -E UTF8 -D $dbdata"
+                su - $user -s /bin/sh -c "mv -f $tmpdir/postgresql.conf $dbdata/."
+                su - $user -s /bin/sh -c "mv -f $tmpdir/pg_hba.conf $dbdata/."
+        
+        else
+                echo "$dbdata exit. Rename database dir and create new one."
+                mv -f $dbdata $dbdata.$(date +"%Y-%m-%d-%H.%M.%S.%N")
+                mkdir $dbdata
+                chown $user:$group $dbdata
+                su - $user -s /bin/sh -c "$dbhome/bin/initdb -E UTF8 -D $dbdata"
+                su - $user -s /bin/sh -c "mv -f $tmpdir/postgresql.conf $dbdata/."
+                su - $user -s /bin/sh -c "mv -f $tmpdir/pg_hba.conf $dbdata/."
+        fi
+        if [ -f /var/mobile/Library/Preferences/pgsql.plist ]; then
+                  rm /var/mobile/Library/Preferences/pgsql.plist
+        fi 
+        #Start PreferenceLauncher Daemons
+        launchctl load -w /Library/LaunchDaemons/pgsql.start.switch.plist 2>&1 | true
+        launchctl load -w /Library/LaunchDaemons/pgsql.stop.switch.plist 2>&1 | true
+else
+        if [ -f /Library/LaunchDaemons/pgsql.start.switch.plist ]; then
+                  rm /Library/LaunchDaemons/pgsql.start.switch.plist
+        fi
+        if [ -f /Library/LaunchDaemons/pgsql.stop.switch.plist ]; then
+                  rm /Library/LaunchDaemons/pgsql.stop.switch.plist
+        fi
+        if [ -f /Library/PreferenceLoader/Prefrences/pgsql.settings.plist ]; then
+                  rm /Library/PreferenceLoader/Prefrences/pgsql.settings.plist
+        fi
+        echo "Unable to create user $user exiting post install script."
+        echo "You Will have to configure package manually."
+        echo "For, add postgres user in files /etc/group /etc/master.passwd and /etc/passwd"
+        echo "Look at package description for further informations"
+fi
+echo "End off postinst script."
+
+declare -a cydia
+cydia=($CYDIA)
+if [[ ${CYDIA+@} ]]; then
+    eval "echo 'finish:restart' >&${cydia[0]}"
+else
+    echo ""
+    echo "Please kill or restart 'Preferences'."
+fi 
+
+
+exit 0
+

@@ -1,0 +1,11 @@
+Package: com.mc.autoconf
+Name: autoconf
+Version: 2.69-2
+Section: Utility
+Architecture: iphoneos-arm
+Author: GNU
+Depends: perl
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	contains programs for producing shell scripts that can automatically configure source code.
+	http://repo.bingner.com/ for perl

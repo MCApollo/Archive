@@ -1,0 +1,9 @@
+Package: com.mc.opus
+Name: libopus
+Version: 1.2.1
+Section: Development
+Architecture: iphoneos-arm
+Author: mozilla
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Opus audio decoder and encoder.

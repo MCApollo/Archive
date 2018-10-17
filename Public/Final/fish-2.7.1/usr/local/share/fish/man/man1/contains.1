@@ -1,0 +1,50 @@
+.TH "contains" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBcontains\fP -- test if a word is present in a list 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBcontains\fP [OPTIONS] KEY [VALUES\&.\&.\&.]
+.fi
+.PP
+.SS "Description"
+\fCcontains\fP tests whether the set \fCVALUES\fP contains the string \fCKEY\fP\&. If so, \fCcontains\fP exits with status 0; if not, it exits with status 1\&.
+.PP
+The following options are available:
+.PP
+.IP "\(bu" 2
+\fC-i\fP or \fC--index\fP print the word index
+.PP
+.PP
+Note that, like GNU tools, \fCcontains\fP interprets all arguments starting with a \fC-\fP as options to contains, until it reaches an argument that is \fC--\fP (two dashes)\&. See the examples below\&.
+.SS "Example"
+.PP
+.nf
+
+\fBfor\fP i \fBin\fP ~/bin /usr/local/bin
+    \fBif\fP \fBnot\fP \fBcontains\fP $i $PATH
+        \fBset\fP PATH $PATH $i
+    \fBend\fP
+\fBend\fP
+.fi
+.PP
+.PP
+The above code tests if \fC~/bin\fP and \fC/usr/local/bin\fP are in the path and adds them if not\&.
+.PP
+.PP
+.nf
+
+\fBfunction\fP hasargs
+    \fBif\fP \fBcontains\fP -- -q $argv
+        \fBecho\fP '$argv contains a -q option'
+    \fBend\fP
+\fBend\fP
+.fi
+.PP
+.PP
+The above code checks for \fC-q\fP in the argument list, using the \fC--\fP argument to demarcate options to \fCcontains\fP from the key to search for\&. 

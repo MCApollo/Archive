@@ -1,0 +1,11 @@
+Package: com.mc.berkeleydb
+Name: Berkeley DB (No Commands)
+Version: 6.2.32
+Section: Data Storage
+Architecture: iphoneos-arm
+Author: Oracle
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	The version of this on coolstar's repo didn't have '--enable-dbm' at compile time.
+	This is just a dependency, not a replacement. 
+	The bin folder has been moved to /usr/local/docs if you want to move it back.

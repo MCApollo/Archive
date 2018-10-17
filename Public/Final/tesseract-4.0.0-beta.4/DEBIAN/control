@@ -1,0 +1,13 @@
+Package: com.mc.tesseract
+Name: Tesseract
+Version: 4.0.0-2
+Section: Development
+Architecture: iphoneos-arm
+Author: Tesseract
+Depends: com.mc.leptonica
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Tesseract Open Source OCR Engine
+	`
+	** COMPILED WITH LIBC++, WHILE DEPENDENCIES WERE COMPILED WITH LIBSTDC++
+	** TODO: recompile dependencies w/ libc++.

@@ -1,0 +1,11 @@
+Package: com.mc.libssh
+Name: libssh
+Version: 0.7.5 
+Section: Utility
+Architecture: iphoneos-arm
+Author: Aris Adamantiadis
+Depends: com.mc.zlib
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	libssh is a library written in C implementing the SSH protocol. It can be used to implement client and server applications. It can scale to thousands of users.
+	This is a different package from libssh2

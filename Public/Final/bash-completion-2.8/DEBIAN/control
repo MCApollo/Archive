@@ -1,0 +1,11 @@
+Package: com.mc.bash-completion
+Name: Bash-Completion
+Version: 2.8-2
+Section: Terminal Support
+Architecture: iphoneos-arm
+Author: D. Paleino
+Maintainer: u/LULShotz
+Description: Requires Bash
+	Allow tab to help auto-complete command sequences.
+	Recommended for all terminal users.
+	** Relogin so /etc/profile is executed.

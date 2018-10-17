@@ -1,0 +1,12 @@
+Package: com.mc.mosh
+Name: Mosh
+Version: 1.3.2
+Section: Terminal Support
+Architecture: iphoneos-arm
+Author: Mobile-Shell
+Depends: ncurses, com.mc.zlib, com.mc.protobuf, perl
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Mosh is a remote terminal application that supports intermittent connectivity, allows roaming, and provides speculative local echo and line editing of user keystrokes.
+	** http://repo.bingner.com/ for perl
+	** Reports problems to me, I haven't tested everything. Give some inputs if a launchdaemon would be a good fit.

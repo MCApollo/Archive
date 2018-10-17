@@ -1,0 +1,33 @@
+.TH "break" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBbreak\fP -- stop the current inner loop 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+LOOP_CONSTRUCT; [COMMANDS\&.\&.\&.] \fBbreak\fP; [COMMANDS\&.\&.\&.] \fBend\fP
+.fi
+.PP
+.SS "Description"
+\fCbreak\fP halts a currently running loop, such as a \fCfor\fP loop or a \fCwhile\fP loop\&. It is usually added inside of a conditional block such as an \fCif\fP statement or a \fCswitch\fP statement\&.
+.PP
+There are no parameters for \fCbreak\fP\&.
+.SS "Example"
+The following code searches all \&.c files for 'smurf', and halts at the first occurrence\&.
+.PP
+.PP
+.nf
+
+\fBfor\fP i \fBin\fP *\&.c
+    \fBif\fP \fBgrep\fP smurf $i
+        \fBecho\fP Smurfs are present in $i
+        \fBbreak\fP
+    \fBend\fP
+\fBend\fP
+.fi
+.PP
+ 

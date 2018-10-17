@@ -1,0 +1,10 @@
+Package: com.mc.libvorbis
+Name: libvorbis
+Version: 1.3.5
+Section: Development
+Architecture: iphoneos-arm
+Author: xiph
+Depends: com.mc.libogg
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Vorbis audio encoder.

@@ -1,0 +1,9 @@
+Package: com.mc.readline
+Name: Readline
+Version: 7.0-2
+Section: Utility
+Architecture: iphoneos-arm
+Author: GNU
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	The GNU Readline library provides a set of functions for use by applications that allow users to edit command lines as they are typed in.

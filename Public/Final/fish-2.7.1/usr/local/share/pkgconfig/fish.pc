@@ -1,0 +1,10 @@
+prefix=/usr/local
+datadir=/usr/local/share
+completionsdir=/usr/local/share/fish/vendor_completions.d
+functionsdir=/usr/local/share/fish/vendor_functions.d
+confdir=/usr/local/share/fish/vendor_conf.d
+
+Name: fish
+Description: fish, the friendly interactive shell
+URL: https://fishshell.com/
+Version: 2.7.1

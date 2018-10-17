@@ -1,0 +1,9 @@
+Package: com.mc.cpio
+Name: cpio
+Version: 2.12-2
+Section: Utility
+Architecture: iphoneos-arm
+Author: GNU
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	GNU cpio copies files into or out of a cpio or tar archive. The archive can be another file on the disk, a magnetic tape, or a pipe.

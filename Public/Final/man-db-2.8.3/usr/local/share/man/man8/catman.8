@@ -1,0 +1,118 @@
+.\" Man page for catman
+.\"
+.\" Copyright (C), 1994, 1995, Graeme W. Wilford. (Wilf.)
+.\"
+.\" You may distribute under the terms of the GNU General Public
+.\" License as specified in the file COPYING that comes with the
+.\" man-db distribution.
+.\"
+.\" Sat Dec 10 14:17:29 GMT 1994  Wilf. (G.Wilford@ee.surrey.ac.uk) 
+.\" 
+.pc
+.TH CATMAN 8 "2018-04-05" "2.8.3" "Manual pager utils"
+.SH NAME
+catman \- create or update the pre-formatted manual pages
+.SH SYNOPSIS
+.B catman 
+.RB [\| \-d?V \|]
+.RB [\| \-M 
+.IR path \|] 
+.RB [\| \-C
+.IR file \|]
+.RI [\| section \|]
+\&.\|.\|.
+.SH DESCRIPTION
+.B catman
+is used to create an up to date set of pre-formatted manual pages known as
+cat pages. 
+Cat pages are generally much faster to display than the original
+manual pages, but require extra storage space.
+The decision to support cat pages is that of the local administrator, who
+must provide suitable directories to contain them.
+
+The options available to
+.B catman
+are the manual page hierarchies and sections to pre-format.
+The default hierarchies are those specified as system hierarchies in the
+man-db configuration file, and the default sections are either the
+colon-delimited contents of the environment variable
+.RB $ MANSECT
+or the standard set compiled into 
+.B man
+if 
+.RB $ MANSECT
+is undefined.
+Supplying
+.B catman
+with a set of whitespace-delimited section names will override both of
+the above.
+
+.B catman
+makes use of the
+.B index
+database cache associated with each hierarchy to determine which files 
+need to be formatted.
+.SH OPTIONS
+.TP
+.BR \-d ", " \-\-debug
+Print debugging information.
+.TP
+.BI \-M\  path \fR,\ \fB\-\-manpath= path
+Specify an alternate colon-delimited manual page hierarchy search path. 
+By default, this is all paths indicated as system hierarchies
+in the man-db configuration file.
+.TP
+.BI \-C\  file \fR,\ \fB\-\-config\-file= file
+Use this user configuration file rather than the default of
+.IR ~/.manpath .
+.TP
+.BR \-? ", " \-\-help
+Print a help message and exit.
+.TP
+.BR \-\-usage
+Print a short usage message and exit.
+.TP
+.BR \-V ", " \-\-version
+Display version information.
+.SH ENVIRONMENT
+.TP
+.B MANSECT
+If
+.RB $ MANSECT
+is set, its value is a colon-delimited list of sections and it is used to
+determine which manual sections to search and in what order.
+The default is "1 n l 8 3 0 2 5 4 9 6 7", unless overridden by the
+.B SECTION
+directive in
+.IR /usr/local/etc/man_db.conf .
+.TP
+.B MANPATH
+If
+.RB $ MANPATH
+is set, its value is interpreted as the colon-delimited manual page
+hierarchy search path to use.
+.SH FILES
+.TP
+.I /usr/local/etc/man_db.conf
+man-db configuration file.
+.TP
+.I /usr/man/index.(bt|db|dir|pag)
+A traditional global
+.I index
+database cache.
+.TP
+.I /var/catman/index.(bt|db|dir|pag)
+An alternate or FSSTND
+compliant global
+.I index
+database cache.
+.SH "SEE ALSO"
+.BR man (1),
+.BR manpath (5), 
+.BR mandb (8)
+.SH AUTHOR
+.nf
+Wilf. (G.Wilford@ee.surrey.ac.uk).
+Fabrizio Polacco (fpolacco@debian.org).
+Colin Watson (cjwatson@debian.org).
+.fi

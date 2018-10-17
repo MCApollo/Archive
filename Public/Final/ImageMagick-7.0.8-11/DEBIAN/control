@@ -1,0 +1,10 @@
+Package: com.mc.imagemagick
+Name: ImageMagick
+Version: 7.0.8-11-3
+Section: Utility
+Architecture: iphoneos-arm
+Author: ImageMagick
+Maintainer: u/LULShotz
+Depends: com.mc.tiff, com.mc.libjpeg, com.mc.libpng
+Description: Compiled for ARM64.
+	Tools and libraries to manipulate images in many formats.

@@ -1,0 +1,18 @@
+Package: com.mc.ettercap
+Name: Ettercap
+Version: 0.8.2-2
+Section: Networking
+Architecture: iphoneos-arm
+Author: ALoR & NaGA
+Depends: com.mc.libpcap, ncurses, openssl, com.mc.pcre, org.thebigboss.libnet, com.mc.zlib
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	 A suite for man in the middle attacks.
+	•
+	** Issue: L3 error, invaild argument. 
+		(TODO: Find a patch or disable the message)
+	•
+	** Update: Fixed linking issues. Ncurses interface has less seg faults.
+	•
+	** Build flags:
+	-DENABLE_CURSES=ON -DBUNDLED_LIBS=ON -DINSTALL_SYSCONFDIR=/etc -DENABLE_PLUGINS=ON -DENABLE_IPV6=ON -DENABLE_PDF_DOCS=OFF -DENABLE_GTK=OFF -DENABLE_LUA=OFF

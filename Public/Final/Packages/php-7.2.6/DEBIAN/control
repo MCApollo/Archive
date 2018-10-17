@@ -1,0 +1,12 @@
+Package: com.mc.php
+Name: PHP
+Version: 7.2.6
+Section: Scripting
+Architecture: iphoneos-arm
+Author: Rasmus Lerdorf
+Depends: com.mc.readline, com.mc.zlib, openssl, com.mc.pcre, com.mc.libiconv, com.mc.gettext, com.mc.libxml, com.mc.libxslt
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Overly popular HTML templating language
+	** Does not have curl & any sql support. Message me on reddit if this shouldn't be the case. 
+	** This is a non-tested package.

@@ -1,0 +1,78 @@
+.\" Man page for manconv
+.\"
+.\" Copyright (c) 2007, 2008 Colin Watson <cjwatson@debian.org>
+.\"
+.\" You may distribute under the terms of the GNU General Public
+.\" License as specified in the file COPYING that comes with the
+.\" man-db distribution.
+.pc
+.TH MANCONV 1 "2018-04-05" "2.8.3" "Manual pager utils"
+.SH NAME
+manconv \- convert manual page from one encoding to another
+.SH SYNOPSIS
+.B manconv
+.B \-f
+.IR from-code \|[: from-code \|.\|.\|.]
+.B \-t
+.I to-code
+.RB [\| \-dqhV \|]
+.RI [\| filename \|]
+.SH DESCRIPTION
+.B manconv
+converts a manual page from one encoding to another, like
+.BR iconv .
+Unlike
+.BR iconv ,
+it can try multiple possible input encodings in sequence.
+This is useful for manual pages installed in directories without an explicit
+encoding declaration, since they may be in UTF\-8 or in a legacy character
+set.
+.PP
+If an encoding declaration is found on the first line of the manual page,
+that declaration overrides any input encodings specified on
+.BR manconv 's
+command line.
+Encoding declarations have the following form:
+.PP
+.RS
+.nf
+\&\(aq\e" \-*\- coding: UTF\-8 \-*\-
+.fi
+.RE
+.PP
+or (if manual page preprocessors are also to be declared):
+.PP
+.RS
+.nf
+\&\(aq\e" t \-*\- coding: ISO\-8859\-1 \-*\-
+.fi
+.RE
+.SH OPTIONS
+.TP
+\fB\-f\fP \fIencodings\fP, \fB\-\-from\-code\fP \fIencodings\fP
+Try each of
+.I encodings
+(a colon-separated list) in sequence as the input encoding.
+.TP
+\fB\-t\fP \fIencoding\fP, \fB\-\-to\-code\fP \fIencoding\fP
+Convert the manual page to
+.IR encoding .
+.TP
+.BR \-q ", " \-\-quiet
+Do not issue error messages when the page cannot be converted.
+.TP
+.BR \-d ", " \-\-debug
+Print debugging information.
+.TP
+.BR \-h ", " \-\-help
+Print a help message and exit.
+.TP
+.BR \-V ", " \-\-version
+Display version information.
+.SH "SEE ALSO"
+.IR iconv (1),
+.IR man (1)
+.SH AUTHOR
+.nf
+Colin Watson (cjwatson@debian.org).
+.fi

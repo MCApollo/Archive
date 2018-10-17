@@ -1,0 +1,32 @@
+.TH "jobs" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBjobs\fP -- print currently running jobs 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBjobs\fP [OPTIONS] [PID]
+.fi
+.PP
+.SS "Description"
+\fCjobs\fP prints a list of the currently running \fCjobs\fP and their status\&.
+.PP
+jobs accepts the following switches:
+.PP
+.IP "\(bu" 2
+\fC-c\fP or \fC--command\fP prints the command name for each process in jobs\&.
+.IP "\(bu" 2
+\fC-g\fP or \fC--group\fP only prints the group ID of each job\&.
+.IP "\(bu" 2
+\fC-l\fP or \fC--last\fP prints only the last job to be started\&.
+.IP "\(bu" 2
+\fC-p\fP or \fC--pid\fP prints the process ID for each process in all jobs\&.
+.PP
+.PP
+On systems that supports this feature, jobs will print the CPU usage of each job since the last command was executed\&. The CPU usage is expressed as a percentage of full CPU activity\&. Note that on multiprocessor systems, the total activity may be more than 100%\&.
+.SS "Example"
+\fCjobs\fP outputs a summary of the current jobs\&. 

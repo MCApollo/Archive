@@ -1,0 +1,16 @@
+SocksPort 9050
+SocksListenAddress 127.0.0.1
+#SocksListenAddress 0.0.0.0
+SocksPolicy accept 127.0.0.1
+VirtualAddrNetwork 10.192.0.0/10
+AutomapHostsOnResolve 1 
+AutomapHostsSuffixes .exit,.onion
+RunAsDaemon 1
+
+### Speed Tweaks
+HardwareAccel 1
+LearnCircuitBuildTimeout 1
+NumEntryGuards 8
+SafeSocks 1
+LongLivedPorts 80,443
+NumCPUs 2

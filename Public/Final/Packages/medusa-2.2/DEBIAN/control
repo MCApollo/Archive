@@ -1,0 +1,10 @@
+Package: com.mc.medusa
+Name: Medusa
+Version: 2.2
+Section: Networking
+Architecture: iphoneos-arm
+Depends: openssl, com.mc.libssh
+Author: Joe Mondloch
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Medusa is a speedy, parallel, and modular, login brute-forcer.

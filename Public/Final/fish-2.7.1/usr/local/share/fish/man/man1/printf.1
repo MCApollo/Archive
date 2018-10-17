@@ -1,0 +1,99 @@
+.TH "printf" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBprintf\fP -- display text according to a format string 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBprintf\fP format [argument\&.\&.\&.]
+.fi
+.PP
+.SS "Description"
+printf formats the string FORMAT with ARGUMENT, and displays the result\&.
+.PP
+The string FORMAT should contain format specifiers, each of which are replaced with successive arguments according to the specifier\&. Specifiers are detailed below, and are taken from the C library function \fCprintf(3)\fP\&.
+.PP
+Unlike \fCecho\fP, \fCprintf\fP does not append a new line unless it is specified as part of the string\&.
+.PP
+Valid format specifiers are:
+.PP
+.IP "\(bu" 2
+\fC%d\fP: Argument will be used as decimal integer (signed or unsigned)
+.IP "\(bu" 2
+\fC%i\fP: Argument will be used as a signed integer
+.IP "\(bu" 2
+\fC%o\fP: An octal unsigned integer
+.IP "\(bu" 2
+\fC%u\fP: An unsigned decimal integer
+.IP "\(bu" 2
+\fC%x\fP or \fC%X\fP: An unsigned hexadecimal integer
+.IP "\(bu" 2
+\fC%f\fP, \fC%g\fP or \fC%G\fP: A floating-point number
+.IP "\(bu" 2
+\fC%e\fP or \fC%E\fP: A floating-point number in scientific (XXXeYY) notation
+.IP "\(bu" 2
+\fC%s\fP: A string
+.IP "\(bu" 2
+\fC%b\fP: As a string, interpreting backslash escapes, except that octal escapes are of the form \\0 or \\0ooo\&.
+.PP
+.PP
+\fC%%\fP signifies a literal '%'\&.
+.PP
+Note that conversion may fail, e\&.g\&. '102\&.234' will not losslessly convert to an integer, causing printf to print an error\&.
+.PP
+printf also knows a number of backslash escapes:
+.IP "\(bu" 2
+\fC\\"\fP double quote
+.IP "\(bu" 2
+\fC\\\\\fP backslash
+.IP "\(bu" 2
+\fC\\a\fP alert (bell)
+.IP "\(bu" 2
+\fC\\b\fP backspace
+.IP "\(bu" 2
+\fC\\c\fP produce no further output
+.IP "\(bu" 2
+\fC\\e\fP escape
+.IP "\(bu" 2
+\fC\\f\fP form feed
+.IP "\(bu" 2
+\fC\\n\fP new line
+.IP "\(bu" 2
+\fC\\r\fP carriage return
+.IP "\(bu" 2
+\fC\\t\fP horizontal tab
+.IP "\(bu" 2
+\fC\\v\fP vertical tab
+.IP "\(bu" 2
+\fC\\ooo\fP octal number (ooo is 1 to 3 digits)
+.IP "\(bu" 2
+\fC\\xhh\fP hexadecimal number (hhh is 1 to 2 digits)
+.IP "\(bu" 2
+\fC\\uhhhh\fP 16-bit Unicode character (hhhh is 4 digits)
+.IP "\(bu" 2
+\fC\\Uhhhhhhhh\fP 32-bit Unicode character (hhhhhhhh is 8 digits)
+.PP
+.PP
+The \fCformat\fP argument is re-used as many times as necessary to convert all of the given arguments\&. If a format specifier is not appropriate for the given argument, an error is printed\&. For example, `printf 'd' '102\&.234'` produces an error, as '102\&.234' cannot be formatted as an integer\&.
+.PP
+This file has been imported from the printf in GNU Coreutils version 6\&.9\&. If you would like to use a newer version of printf, for example the one shipped with your OS, try \fCcommand printf\fP\&.
+.SS "Example"
+.PP
+.nf
+
+\fBprintf\fP '%s\\t%s\\n' flounder fish
+.fi
+.PP
+ Will print 'flounder    fish' (separated with a tab character), followed by a newline character\&. This is useful for writing completions, as fish expects completion scripts to output the option followed by the description, separated with a tab character\&.
+.PP
+.PP
+.nf
+
+\fBprintf\fP '%s:%d' 'Number of bananas in my pocket' 42
+.fi
+.PP
+ Will print 'Number of bananas in my pocket: 42', \fIwithout\fP a newline\&. 

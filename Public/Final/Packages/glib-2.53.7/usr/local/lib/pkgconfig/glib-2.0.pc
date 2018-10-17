@@ -1,0 +1,16 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+glib_genmarshal=glib-genmarshal
+gobject_query=gobject-query
+glib_mkenums=glib-mkenums
+
+Name: GLib
+Description: C Utility Library
+Version: 2.53.7
+Requires.private: libpcre
+Libs: -L${libdir} -lglib-2.0 -lintl  -Wl,-framework -Wl,CoreFoundation
+Libs.private:   -lpcre -lintl  -Wl,-framework -Wl,CoreFoundation -liconv  
+Cflags: -I${includedir}/glib-2.0 -I${libdir}/glib-2.0/include 

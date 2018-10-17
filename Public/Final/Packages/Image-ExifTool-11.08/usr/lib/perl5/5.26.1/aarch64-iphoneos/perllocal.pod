@@ -1,0 +1,22 @@
+=head2 Sat Aug 11 01:19:17 2018: C<Module> L<Image::ExifTool|Image::ExifTool>
+
+=over 4
+
+=item *
+
+C<installed into: /usr/lib/perl5/site_perl/5.26.1>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 11.08>
+
+=item *
+
+C<EXE_FILES: exiftool>
+
+=back
+

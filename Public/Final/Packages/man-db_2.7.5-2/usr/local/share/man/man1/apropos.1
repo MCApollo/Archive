@@ -1,0 +1,267 @@
+.\" Man page for apropos
+.\"
+.\" Copyright (C), 1994, 1995, Graeme W. Wilford. (Wilf.)
+.\"
+.\" You may distribute under the terms of the GNU General Public
+.\" License as specified in the file COPYING that comes with the 
+.\" man-db distribution.
+.\"
+.\" Sat Oct 29 13:09:31 GMT 1994  Wilf. (G.Wilford@ee.surrey.ac.uk) 
+.\" 
+.pc
+.TH APROPOS 1 "2015-11-06" "2.7.5" "Manual pager utils"
+.SH NAME
+apropos \- search the manual page names and descriptions
+.SH SYNOPSIS
+.B apropos 
+.RB [\| \-dalv?V  \|]
+.RB [\| \-e \||\| \-w \||\| \-r\c
+\|]
+.RB [\| \-s
+.IR list \|]
+.RB [\| \-m
+.IR system \|[\|,.\|.\|.\|]\|]
+.RB [\| \-M
+.IR path \|]
+.RB [\| \-L
+.IR locale \|]
+.RB [\| \-C
+.IR file \|]
+.I keyword
+\&.\|.\|.
+.SH DESCRIPTION
+Each manual page has a short description available within it. 
+.B apropos
+searches the descriptions for instances of
+.IR keyword .
+
+.I keyword
+is usually a regular expression, as if 
+.RB ( \-r )
+was used, or
+may contain wildcards
+.RB ( \-w ),
+or match the exact keyword
+.RB ( \-e ).
+Using these options, it may be necessary to quote the
+.I keyword
+or escape (\\) the special characters to stop the shell from interpreting
+them.
+
+The standard matching rules allow matches to be made against the page name
+and word boundaries in the description.
+
+The database searched by
+.B apropos
+is updated by the
+.B mandb
+program.
+Depending on your installation, this may be run by a periodic cron job, or
+may need to be run manually after new manual pages have been installed.
+.SH OPTIONS
+.TP
+.BR \-d ", " \-\-debug
+Print debugging information.
+.TP
+.BR \-v ", " \-\-verbose
+Print verbose warning messages.
+.TP
+.BR \-r ", " \-\-regex
+Interpret each keyword as a regular expression.
+This is the default behaviour.
+Each keyword will be matched against the page names and the descriptions
+independently.
+It can match any part of either.
+The match is not limited to word boundaries.
+.TP
+.BR \-w ", " \-\-wildcard
+Interpret each keyword as a pattern containing shell style wildcards.
+Each keyword will be matched against the page names and the descriptions
+independently.
+If
+.B \-\-exact
+is also used,
+a match will only be found if an expanded keyword matches an entire
+description or page name.
+Otherwise the keyword is also allowed to match on word boundaries in the
+description.
+.TP
+.BR \-e ", " \-\-exact
+Each keyword will be exactly matched against the page names and the
+descriptions.
+.TP
+.BR \-a ", " \-\-and
+Only display items that match all the supplied keywords.
+The default is to display items that match any keyword.
+.TP
+.BR \-l ", " \-\-long
+Do not trim output to the terminal width.
+Normally, output will be truncated to the terminal width to avoid ugly
+results from poorly-written
+.B NAME
+sections.
+.TP
+\fB\-s\fP \fIlist\fP, \fB\-\-sections\fP \fIlist\fP, \fB\-\-section\fP \fIlist\fP
+Search only the given manual sections.
+.I list
+is a colon- or comma-separated list of sections.
+If an entry in
+.I list
+is a simple section, for example "3", then the displayed list of
+descriptions will include pages in sections "3", "3perl", "3x", and so on;
+while if an entry in
+.I list
+has an extension, for example "3perl", then the list will only include
+pages in that exact part of the manual section.
+.\"
+.\" Due to the rather silly limit of 6 args per request in some `native'
+.\" *roff compilers, we have do the following to get the two-line
+.\" hanging tag on one line. .PP to begin a new paragraph, then the
+.\" tag, then .RS (start relative indent), the text, finally .RE
+.\" (end relative indent).
+.\"
+.PP
+.B \-m 
+.I system\c 
+\|[\|,.\|.\|.\|]\|,
+.BI \-\-systems= system\c 
+\|[\|,.\|.\|.\|]
+.RS
+If this system has access to other operating system's manual page
+descriptions, they can be searched using this option. 
+To search NewOS's manual page descriptions, use the option
+.B \-m
+.BR NewOS .
+
+The 
+.I system
+specified can be a combination of comma-delimited operating system names.
+To include a search of the native operating system's 
+.B whatis
+descriptions, include the system name
+.B man 
+in the argument string.
+This option will override the
+.RB $ SYSTEM
+environment variable.
+.RE
+.TP
+.BI \-M\  path \fR,\ \fB\-\-manpath= path
+Specify an alternate set of colon-delimited manual page hierarchies to
+search.
+By default, 
+.B apropos
+uses the 
+.RB $ MANPATH
+environment variable, unless it is empty or unset, in which case it will 
+determine an appropriate manpath based on your 
+.RB $ PATH
+environment variable.
+This option overrides the contents of
+.RB $ MANPATH .
+.TP
+.BI \-L\  locale \fR,\ \fB\-\-locale= locale
+.B apropos
+will normally determine your current locale by a call to the C function
+.BR setlocale (3)
+which interrogates various environment variables, possibly including
+.RB $ LC_MESSAGES
+and
+.RB $ LANG .
+To temporarily override the determined value, use this option to supply a
+.I locale
+string directly to
+.BR apropos .
+Note that it will not take effect until the search for pages actually
+begins.
+Output such as the help message will always be displayed in the initially
+determined locale.
+.TP
+.BI \-C\  file \fR,\ \fB\-\-config\-file= file
+Use this user configuration file rather than the default of
+.IR ~/.manpath .
+.TP
+.BR \-? ", " \-\-help
+Print a help message and exit.
+.TP
+.BR \-\-usage
+Print a short usage message and exit.
+.TP
+.BR \-V ", " \-\-version
+Display version information.
+.SH "EXIT STATUS"
+.TP
+.B 0
+Successful program execution.
+.TP
+.B 1
+Usage, syntax or configuration file error.
+.TP
+.B 2
+Operational error.
+.TP
+.B 16
+Nothing was found that matched the criteria specified.
+.SH ENVIRONMENT
+.TP
+.B SYSTEM
+If
+.RB $ SYSTEM
+is set, it will have the same effect as if it had been specified as the
+argument to the 
+.B \-m
+option.
+.TP
+.B MANPATH
+If
+.RB $ MANPATH
+is set, its value is interpreted as the colon-delimited manual page
+hierarchy search path to use.
+.TP
+.B MANWIDTH
+If
+.RB $ MANWIDTH
+is set, its value is used as the terminal width (see the
+.B \-\-long
+option).
+If it is not set, the terminal width will be calculated using the value of
+.RB $ COLUMNS ,
+an
+.BR ioctl (2)
+if available, or falling back to 80 characters if all else fails.
+.TP
+.B POSIXLY_CORRECT
+If 
+.RB $ POSIXLY_CORRECT
+is set, even to a null value, the default 
+.B apropos 
+search will be as an extended regex 
+.RB ( \-r ).
+Nowadays, this is the default behaviour anyway.
+.SH FILES
+.TP
+.I /usr/share/man/index.(bt|db|dir|pag)
+A traditional global
+.I index
+database cache.
+.TP
+.I /var/cache/man/index.(bt|db|dir|pag)
+An FHS
+compliant global
+.I index
+database cache.
+.TP
+.I /usr/share/man/\|.\|.\|.\|/whatis
+A traditional 
+.B whatis
+text database.
+.SH "SEE ALSO"
+.BR man (1),
+.BR whatis (1),
+.BR mandb (8)
+.SH AUTHOR
+.nf
+Wilf. (G.Wilford@ee.surrey.ac.uk).
+Fabrizio Polacco (fpolacco@debian.org).
+Colin Watson (cjwatson@debian.org).
+.fi

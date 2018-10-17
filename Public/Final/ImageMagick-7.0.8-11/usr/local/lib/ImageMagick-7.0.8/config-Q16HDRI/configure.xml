@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuremap [
+  <!ELEMENT configuremap (configure)+>
+  <!ATTLIST configuremap xmlns CDATA #FIXED ''>
+  <!ELEMENT configure EMPTY>
+  <!ATTLIST configure xmlns CDATA #FIXED '' name NMTOKEN #REQUIRED
+    value CDATA #REQUIRED>
+]>
+<!--
+  ImageMagick build configuration.
+-->
+<configuremap>
+  <configure name="CC" value="aarch64-apple-darwin17-gcc"/>
+  <configure name="CFLAGS" value=" -I/home/cade/toolchain/SDK/usr/include/libpng16    -g -O2 -Wall -fexceptions -D_FORTIFY_SOURCE=0 -pthread -DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16"/>
+  <configure name="CODER_PATH" value="/usr/local/lib/ImageMagick-7.0.8/modules-Q16HDRI/coders"/>
+  <configure name="CONFIGURE_PATH" value="/usr/local/etc/ImageMagick-7/"/>
+  <configure name="CONFIGURE" value="./configure  '--host=aarch64-apple-darwin17' '--build=x86_64-unknown-linux-gnu' '--with-sysroot=/home/cade/toolchain/SDK/usr/' 'PKG_CONFIG_PATH=/home/cade/toolchain/SDK/usr/lib/pkgconfig' '--disable-largefile' '--with-perl=no' '--with-fontconfig=no' '--with-x=no' 'build_alias=x86_64-unknown-linux-gnu' 'host_alias=aarch64-apple-darwin17'"/>
+  <configure name="COPYRIGHT" value="Copyright (C) 1999-2018 ImageMagick Studio LLC"/>
+  <configure name="CPPFLAGS" value="-I/usr/local/include/ImageMagick-7"/>
+  <configure name="CXXFLAGS" value="-g -O2 -pthread"/>
+  <configure name="CXX" value="aarch64-apple-darwin17-g++"/>
+  <configure name="DEFS" value="-DHAVE_CONFIG_H"/>
+  <configure name="DELEGATES" value="bzlib mpeg jng jpeg png ps tiff xml zlib"/>
+  <configure name="DISTCHECK_CONFIG_FLAGS" value=" --disable-deprecated  --with-quantum-depth=16  --with-jemalloc=no  --with-umem=no  --with-autotrace=no  --with-fontconfig=no  --with-gslib=no  --with-fontpath=  --with-rsvg=no  --with-perl=no "/>
+  <configure name="DOCUMENTATION_PATH" value="/usr/local/share/doc/ImageMagick-7"/>
+  <configure name="EXEC-PREFIX" value="/usr/local"/>
+  <configure name="EXECUTABLE_PATH" value="/usr/local/bin"/>
+  <configure name="FEATURES" value="DPC HDRI Cipher"/>
+  <configure name="FILTER_PATH" value="/usr/local/lib/ImageMagick-7.0.8/modules-Q16HDRI/filters"/>
+  <configure name="GIT_REVISION" value="14730" />
+  <configure name="HOST" value="aarch64-apple-darwin17"/>
+  <configure name="INCLUDE_PATH" value="/usr/local/include/ImageMagick-7"/>
+  <configure name="LDFLAGS" value="-L/usr/local/lib "/>
+  <configure name="LIBRARY_PATH" value="/usr/local/lib/ImageMagick-7.0.8"/>
+  <configure name="LIBS" value="   -ltiff   -ljpeg   -L/home/cade/toolchain/SDK/usr/lib -lpng16 -lz                 -lbz2      -lxml2  -lz    -lm     "/>
+  <configure name="LIB_VERSION_NUMBER" value="7,0,8,11"/>
+  <configure name="LIB_VERSION" value="0x708"/>
+  <configure name="NAME" value="ImageMagick"/>
+  <configure name="PCFLAGS" value="-DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16"/>
+  <configure name="PREFIX" value="/usr/local"/>
+  <configure name="QuantumDepth" value="16"/>
+  <configure name="RELEASE_DATE" value="2018-09-21"/>
+  <configure name="SHAREARCH_PATH" value="/usr/local/lib/ImageMagick-7.0.8/config-Q16HDRI"/>
+  <configure name="SHARE_PATH" value="/usr/local/share/ImageMagick-7"/>
+  <configure name="TARGET_CPU" value="aarch64"/>
+  <configure name="TARGET_OS" value="darwin17"/>
+  <configure name="TARGET_VENDOR" value="apple"/>
+  <configure name="VERSION" value="7.0.8"/>
+  <configure name="WEBSITE" value="http://www.imagemagick.org"/>
+</configuremap>

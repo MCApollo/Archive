@@ -1,0 +1,47 @@
+.\" Man page for accessdb
+.\"
+.\" Copyright (c) 1998 Fabrizio Polacco <fpolacco@debian.org
+.\"
+.\" You may distribute under the terms of the GNU General Public
+.\" License as specified in the file COPYING that comes with the
+.\" man-db distribution.
+.\"
+.\" Tue, 24 Feb 1998 18:18:36 +0200
+.\" 
+.pc
+.TH ACCESSDB 8 "2018-04-05" "2.8.3" "Manual pager utils"
+.SH NAME
+accessdb \- dumps the content of a man-db database in a human readable
+format
+.SH SYNOPSIS
+.B /usr/sbin/accessdb 
+.RB [\| \-d?V \|]
+.RI [ <index-file> ]
+.SH DESCRIPTION
+.B accessdb 
+will output the data contained within a man-db database in a
+human readable form.
+By default, it will dump the data from
+.B /var/cache/man/index.<db-type>,
+where <db-type> is dependent on the database library in use.
+
+Supplying an argument to accessdb will override this default.
+.SH OPTIONS
+.TP
+.BR \-d ", " \-\-debug
+Print debugging information.
+.TP
+.BR \-? ", " \-\-help
+Print a help message and exit.
+.TP
+.BR \-\-usage
+Print a short usage message and exit.
+.TP
+.BR \-V ", " \-\-version
+Display version information.
+.SH AUTHOR
+.nf
+Wilf. (G.Wilford@ee.surrey.ac.uk).
+Fabrizio Polacco (fpolacco@debian.org).
+Colin Watson (cjwatson@debian.org).
+.fi

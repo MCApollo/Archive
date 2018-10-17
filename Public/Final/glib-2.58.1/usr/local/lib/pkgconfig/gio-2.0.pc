@@ -1,0 +1,21 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+datadir=${prefix}/share
+schemasdir=${datadir}/glib-2.0/schemas
+bindir=${exec_prefix}/bin
+giomoduledir=${libdir}/gio/modules
+glib_compile_schemas=${bindir}/glib-compile-schemas
+glib_compile_resources=${bindir}/glib-compile-resources
+gdbus_codegen=${bindir}/gdbus-codegen
+
+Name: GIO
+Description: glib I/O library
+Version: 2.58.1
+Requires: glib-2.0 gobject-2.0
+Requires.private: gmodule-no-export-2.0
+Libs: -L${libdir} -lgio-2.0
+Libs.private: -L/home/cade/toolchain/SDK/usr/lib -lz -lresolv     
+Cflags:

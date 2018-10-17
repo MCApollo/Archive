@@ -1,0 +1,5 @@
+#!/bin/sh
+
+launchctl load -w /Library/LaunchDaemons/com.mc.tor.plist
+
+exit 0

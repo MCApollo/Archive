@@ -1,0 +1,10 @@
+Package: com.mc.pkg-config
+Name: PKG-Config
+Version: 0.29.2-2
+Section: Utility
+Architecture: iphoneos-arm
+Depends: com.mc.glib
+Author: James Henstridge
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Pkg-config is a helper tool used when compiling applications and libraries. It helps you insert the correct compiler options on the command line.

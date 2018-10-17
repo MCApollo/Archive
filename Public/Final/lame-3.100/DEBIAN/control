@@ -1,0 +1,10 @@
+Package: com.mc.lame
+Name: libmp3lame
+Version: 3.100
+Section: Development
+Architecture: iphoneos-arm
+Author: lame
+Depends: ncurses, com.mc.libiconv
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	MP3 audio encoder.

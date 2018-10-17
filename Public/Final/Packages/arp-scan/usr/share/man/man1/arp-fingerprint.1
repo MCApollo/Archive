@@ -1,0 +1,130 @@
+.\" Copyright (C) Roy Hills, NTA Monitor Ltd.
+.\"
+.\" Copying and distribution of this file, with or without modification,
+.\" are permitted in any medium without royalty provided the copyright
+.\" notice and this notice are preserved.
+.\"
+.TH ARP-FINGERPRINT 1 "August 20, 2016"
+.\" Please adjust this date whenever revising the man page.
+.SH NAME
+arp-fingerprint \- Fingerprint a system using ARP
+.SH SYNOPSIS
+.B arp-fingerprint
+.RI [ options ]
+.I target
+.PP
+The target should be specified as a single IP address or hostname.  You cannot specify multiple targets, IP networks or ranges.
+.PP
+If you use an IP address for the target, you can use the
+.B -o
+option to pass the
+.B --numeric
+option to
+.BR arp-scan ,
+which will prevent it from attempting DNS lookups.  This can speed up the
+fingerprinting process, especially on systems with a slow or faulty DNS
+configuration.
+.SH DESCRIPTION
+.B arp-fingerprint
+fingerprints the specified target host using the ARP protocol.
+.PP
+It sends various different types of ARP request to the target, and records
+which types it responds to. From this, it constructs a fingerprint string
+consisting of "1" where the target responded and "0" where it did not.
+An example of a fingerprint string is
+.IR 01000100000 .
+This fingerprint string is then used to lookup the likely target operating system.
+.PP
+Many of the fingerprint strings are shared by several operating systems, so
+there is not always a one-to-one mapping between fingerprint strings and
+operating systems. Also the fact that a system's fingerprint matches a certain
+operating system (or list of operating systems) does not necessarily mean that
+the system being fingerprinted is that operating system, although it is quite
+likely. This is because the list of operating systems is not exhaustive; it is
+just what I have discovered to date, and there are bound to be operating
+systems that are not listed.
+.PP
+The ARP fingerprint of a system is generally a function of that system's
+kernel (although it is possible for the ARP function to be implemented in
+user space, it almost never is).
+.PP
+Sometimes, an operating system can give different fingerprints depending
+on the configuration.  An example is Linux, which will respond to a non-local
+source IP address if that IP is routed through the interface being tested.
+This is both good and bad: on one hand it makes the fingerprinting task more
+complex; but on the other, it can allow some aspects of the system configuration
+to be determined.
+.PP
+Sometimes the fact that two different operating systems share a common ARP
+fingerprint string points to a re-use of networking code. One example of
+this is Windows NT and FreeBSD.
+.PP
+.B arp-fingerprint
+uses
+.B arp-scan
+to send the ARP requests and receive the replies.
+.PP
+There are other methods that can be used to fingerprint a system using
+.B arp-scan
+which can be used in addition to
+.BR arp-fingerprint .
+These additional methods are not included in
+.B arp-fingerprint
+either because they are likely to cause disruption to the target system, or
+because they require knowledge of the target's configuration that may not
+always be available.
+.PP
+.B arp-fingerprint
+is still being developed, and the results should not be relied on. As most
+of the ARP requests that it sends are non-standard, it is possible that it
+may disrupt some systems, so caution is advised.
+.PP
+If you find a system that
+.B arp-fingerprint
+reports as
+.IR UNKNOWN ,
+and you know what operating system it is running, could you please send
+details of the operating system and fingerprint to
+.I arp-scan@nta-monitor.com
+so I can include it in future versions. Please include the exact version
+of the operating system if you know it, as fingerprints sometimes change
+between versions.
+.SH OPTIONS
+.TP
+.B -h
+Display a brief usage message and exit.
+.TP
+.B -v
+Display verbose progress messages.
+.TP
+.B -o <option-string>
+Pass specified options to arp-scan. You need to enclose the options
+string in quotes if it contains spaces. e.g.
+-o "-I eth1".  The commonly used options are --interface (-I) and --numeric
+(-N).
+.TP
+.B -l
+Fingerprint all hosts on the local network. You do not need to specify any
+target hosts if this option is given.
+.SH EXAMPLES
+.nf
+$ arp-fingerprint 192.168.0.1
+192.168.0.1   01000100000     Linux 2.2, 2.4, 2.6
+.fi
+.PP
+.nf
+$ arp-fingerprint -o "-N -I eth1" 192.168.0.202
+192.168.0.202 11110100000     FreeBSD 5.3, Win98, WinME, NT4, 2000, XP, 2003
+.fi
+.SH NOTES
+.B arp-fingerprint
+is implemented in Perl, so you need to have the Perl interpreter installed on
+your system to use it.
+.SH AUTHOR
+Roy Hills <Roy.Hills@nta-monitor.com>
+.SH "SEE ALSO"
+.TP
+.BR arp-scan (1)
+.PP
+.I http://www.nta-monitor.com/wiki/
+The arp-scan wiki page.

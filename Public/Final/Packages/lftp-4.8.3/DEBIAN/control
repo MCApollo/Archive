@@ -1,0 +1,10 @@
+Package: com.mc.lftp
+Name: lftp
+Version: 4.8.3-4
+Section: Utility
+Depends: com.mc.readline, com.mc.zlib, ncurses, openssl
+Architecture: iphoneos-arm
+Author: Alexander Lukyanov
+Maintainer: u/LULShotz
+Description: Compiled for ARM64
+	lftp is a command-line program client for several file transfer protocols.	

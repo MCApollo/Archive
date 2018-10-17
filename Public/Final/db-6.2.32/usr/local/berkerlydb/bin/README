@@ -1,0 +1,4 @@
+MCApollo - BerkDB
+
+This is a dependency, if you want to move these to /usr/local/bin/
+That's fine, just note that they're were never tested.

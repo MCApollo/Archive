@@ -1,0 +1,46 @@
+.TH "emit" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBemit\fP -- Emit a generic event 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBemit\fP EVENT_NAME [ARGUMENTS\&.\&.\&.]
+.fi
+.PP
+.SS "Description"
+\fCemit\fP emits, or fires, an event\&. Events are delivered to, or caught by, special functions called event handlers\&. The arguments are passed to the event handlers as function arguments\&.
+.SS "Example"
+The following code first defines an event handler for the generic event named 'test_event', and then emits an event of that type\&.
+.PP
+.PP
+.nf
+
+\fBfunction\fP event_test --on-event test_event
+    \fBecho\fP event test: $argv
+\fBend\fP
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBemit\fP test_event something
+.fi
+.PP
+.PP
+.PP
+.nf
+.fi
+.PP
+.SS "Notes"
+.PP
+.nf
+
+Note that events are only sent to the current fish process as there is no way to send events from one fish process to another\&.
+.fi
+.PP
+ 

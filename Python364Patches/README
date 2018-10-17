@@ -1,0 +1,19 @@
+See the edits of Final.diff
+
+Patch Final.diff and use setup.diff (as a example) to compile modules. 
+Run autoconf
+
+./configure --host=aarch64-apple-darwin17 --build=<YOUR-HOST-OS-TRIPLE> <ARGS>
+/* A config file from python has the configure args for the electra compile I did. /*
+
+After running the configure script with the Final2.patch:
+Edit ./config.status and make sure you don't have -undefined dynamic_lookup in any of your flags (or something along those lines.
+Run ./config.status
+/* I tried to patch it out, but got lazy when the changes failed the first time. /*
+
+Other files are just aids I used (and otherwise have no use).
+
+This is just a simple build, no changes to the code (.h, .c, etc.) were made.
+I had to edit _scproxy out of a python script for pip, iOS doesn't support it.
+HEY! I think removing MACOSX_DEPLOYMENT_TARGET from getting set, will fix pip.
+

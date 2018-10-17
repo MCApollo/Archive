@@ -1,0 +1,9 @@
+Package: com.mc.p0f
+Name: p0f
+Version: 3.0-3
+Section: Utility
+Architecture: iphoneos-arm
+Author: Michal Zalewski
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Passive fingerprinter.

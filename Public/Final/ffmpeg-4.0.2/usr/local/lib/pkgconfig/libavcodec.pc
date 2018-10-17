@@ -1,0 +1,14 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=/usr/local/lib
+includedir=/usr/local/include
+
+Name: libavcodec
+Description: FFmpeg codec library
+Version: 58.18.100
+Requires: 
+Requires.private: libswresample >= 3.1.100, libavutil >= 56.14.100
+Conflicts:
+Libs: -L${libdir}  -lavcodec 
+Libs.private: -L/home/cade/toolchain/SDK/usr/lib -lvpx -lm -L/home/cade/toolchain/SDK/usr/lib -lvpx -lm -L/home/cade/toolchain/SDK/usr/lib -lvpx -lm -L/home/cade/toolchain/SDK/usr/lib -lvpx -lm -liconv -lm -llzma -lz -framework AudioToolbox -L/home/cade/toolchain/SDK/usr/lib -lfdk-aac -lmp3lame -lm -L/home/cade/toolchain/SDK/usr/lib -lopus -L/home/cade/toolchain/SDK/usr/lib -lvorbis -L/home/cade/toolchain/SDK/usr/lib -lvorbisenc -L/home/cade/toolchain/SDK/usr/lib -lx265 -pthread -framework VideoToolbox -framework CoreFoundation -framework CoreMedia -framework CoreVideo
+Cflags: -I${includedir}

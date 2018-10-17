@@ -1,0 +1,74 @@
+.TH "ulimit" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBulimit\fP -- set or get resource usage limits 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBulimit\fP [OPTIONS] [LIMIT]
+.fi
+.PP
+.SS "Description"
+\fCulimit\fP builtin sets or outputs the resource usage limits of the shell and any processes spawned by it\&. If a new limit value is omitted, the current value of the limit of the resource is printed; otherwise, the specified limit is set to the new value\&.
+.PP
+Use one of the following switches to specify which resource limit to set or report:
+.PP
+.IP "\(bu" 2
+\fC-c\fP or \fC--core-size\fP: the maximum size of core files created\&. By setting this limit to zero, core dumps can be disabled\&.
+.IP "\(bu" 2
+\fC-d\fP or \fC--data-size\fP: the maximum size of a process' data segment\&.
+.IP "\(bu" 2
+\fC-f\fP or \fC--file-size\fP: the maximum size of files created by the shell\&.
+.IP "\(bu" 2
+\fC-l\fP or \fC--lock-size\fP: the maximum size that may be locked into memory\&.
+.IP "\(bu" 2
+\fC-m\fP or \fC--resident-set-size\fP: the maximum resident set size\&.
+.IP "\(bu" 2
+\fC-n\fP or \fC--file-descriptor-count\fP: the maximum number of open file descriptors (most systems do not allow this value to be set)\&.
+.IP "\(bu" 2
+\fC-s\fP or \fC--stack-size\fP: the maximum stack size\&.
+.IP "\(bu" 2
+\fC-t\fP or \fC--cpu-time\fP: the maximum amount of CPU time in seconds\&.
+.IP "\(bu" 2
+\fC-u\fP or \fC--process-count\fP: the maximum number of processes available to a single user\&.
+.IP "\(bu" 2
+\fC-v\fP or \fC--virtual-memory-size\fP The maximum amount of virtual memory available to the shell\&.
+.PP
+.PP
+Note that not all these limits are available in all operating systems\&.
+.PP
+The value of limit can be a number in the unit specified for the resource or one of the special values \fChard\fP, \fCsoft\fP, or \fCunlimited\fP, which stand for the current hard limit, the current soft limit, and no limit, respectively\&.
+.PP
+If limit is given, it is the new value of the specified resource\&. If no option is given, then \fC-f\fP is assumed\&. Values are in kilobytes, except for \fC-t\fP, which is in seconds and \fC-n\fP and \fC-u\fP, which are unscaled values\&. The return status is 0 unless an invalid option or argument is supplied, or an error occurs while setting a new limit\&.
+.PP
+\fCulimit\fP also accepts the following switches that determine what type of limit to set:
+.PP
+.IP "\(bu" 2
+\fC-H\fP or \fC--hard\fP sets hard resource limit
+.IP "\(bu" 2
+\fC-S\fP or \fC--soft\fP sets soft resource limit
+.PP
+.PP
+A hard limit can only be decreased\&. Once it is set it cannot be increased; a soft limit may be increased up to the value of the hard limit\&. If neither -H nor -S is specified, both the soft and hard limits are updated when assigning a new limit value, and the soft limit is used when reporting the current value\&.
+.PP
+The following additional options are also understood by \fCulimit\fP:
+.PP
+.IP "\(bu" 2
+\fC-a\fP or \fC--all\fP prints all current limits
+.PP
+.PP
+The \fCfish\fP implementation of \fCulimit\fP should behave identically to the implementation in bash, except for these differences:
+.PP
+.IP "\(bu" 2
+Fish \fCulimit\fP supports GNU-style long options for all switches
+.IP "\(bu" 2
+Fish \fCulimit\fP does not support the \fC-p\fP option for getting the pipe size\&. The bash implementation consists of a compile-time check that empirically guesses this number by writing to a pipe and waiting for SIGPIPE\&. Fish does not do this because it this method of determining pipe size is unreliable\&. Depending on bash version, there may also be further additional limits to set in bash that do not exist in fish\&.
+.IP "\(bu" 2
+Fish \fCulimit\fP does not support getting or setting multiple limits in one command, except reporting all values using the -a switch
+.PP
+.SS "Example"
+\fCulimit -Hs 64\fP sets the hard stack size limit to 64 kB\&. 

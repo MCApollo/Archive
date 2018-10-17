@@ -1,0 +1,14 @@
+Package: com.mc.pipes
+Name: Pipes.sh
+Version: 1.3.0
+Section: Utility
+Architecture: iphoneos-arm
+Author: Matthew Simpson
+Maintainer: u/LULShotz
+Description: Animated pipes terminal screensaver 
+	Controls
+	P/O : Increase/decrease probability of straight pipes
+	F/D : Increase/decrease frame rate
+	B   : Toggle bold effect
+	C   : Toggle no colors
+	K   : Toggle keeping pipe color and type when crossing edges

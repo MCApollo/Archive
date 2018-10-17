@@ -1,0 +1,32 @@
+.TH "fish_right_prompt" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBfish_right_prompt\fP -- define the appearance of the right-side command line prompt 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBfunction\fP fish_right_prompt
+    \&.\&.\&.
+\fBend\fP
+.fi
+.PP
+.SS "Description"
+\fCfish_right_prompt\fP is similar to \fCfish_prompt\fP, except that it appears on the right side of the terminal window\&.
+.PP
+Multiple lines are not supported in \fCfish_right_prompt\fP\&.
+.SS "Example"
+A simple right prompt:
+.PP
+.PP
+.nf
+
+\fBfunction\fP fish_right_prompt -d 'Write out the right prompt'
+    \fBdate\fP '+%m/%d/%y'
+\fBend\fP
+.fi
+.PP
+ 

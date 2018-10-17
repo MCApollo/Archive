@@ -1,0 +1,8 @@
+Package: com.mc.libpcap
+Name: libpcap
+Version: 1.4.0-3
+Section: Utility
+Architecture: iphoneos-arm
+Description: Libpcap, a portable C/C++ library for network traffic capture. 
+Author: libpcap
+Maintainer: u/LULShotz

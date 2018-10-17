@@ -1,0 +1,12 @@
+Package: com.mc.snort
+Name: Snort
+Version: 2.9.11.1-5
+Section: Networking
+Architecture: iphoneos-arm
+Author: snort
+Depends: com.mc.libpcap, com.mc.libuuid, openssl, lzma, com.mc.libdnet, com.mc.zlib, nghttp2, com.mc.daq, com.mc.pcre, curl
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Snort is an open-source, free and lightweight network intrusion detection system (NIDS) software.
+	.
+	** https://www.upcloud.com/support/installing-snort-on-ubuntu/

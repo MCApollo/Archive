@@ -1,0 +1,11 @@
+Package: com.mc.image-exiftool
+Name: ExifTool
+Version: 11.08
+Section: Utility
+Architecture: iphoneos-arm
+Author: Phil Harvey
+Depends: perl
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Read, Write and Edit Meta Information!
+	** http://repo.bingner.com/ for perl.

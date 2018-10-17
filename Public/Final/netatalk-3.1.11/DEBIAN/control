@@ -1,0 +1,12 @@
+Package: com.mc.netatalk
+Name: netatalk
+Version: 3.1.11
+Section: Networking
+Architecture: iphoneos-arm
+Author: Apollo J. 
+Depends: berkeleydb, gcrypt, openssl, findutils
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	AFP File Server
+Homepage: http://netatalk.sourceforge.net/
+

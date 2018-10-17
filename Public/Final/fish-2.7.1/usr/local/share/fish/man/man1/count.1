@@ -1,0 +1,36 @@
+.TH "count" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBcount\fP -- count the number of elements of an array 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBcount\fP $VARIABLE
+.fi
+.PP
+.SS "Description"
+\fCcount\fP prints the number of arguments that were passed to it\&. This is usually used to find out how many elements an environment variable array contains\&.
+.PP
+\fCcount\fP does not accept any options, including \fC-h\fP or \fC--help\fP\&.
+.PP
+\fCcount\fP exits with a non-zero exit status if no arguments were passed to it, and with zero if at least one argument was passed\&.
+.SS "Example"
+.PP
+.nf
+
+\fBcount\fP $PATH
+  Returns the number of directories in the users PATH variable\&.
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBcount\fP *\&.txt
+  Returns the number of files in the current working directory ending with the suffix '\&.txt'\&.
+.fi
+.PP
+ 

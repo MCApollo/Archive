@@ -1,0 +1,38 @@
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>title</key>
+  <string>Tor Settings</string>
+  <key>entry</key>
+  <dict>
+    <key>cell</key>
+    <string>PSLinkCell</string>
+    <key>label</key>
+    <string>Tor Settings</string>
+    <key>icon</key>
+    <string>TorSettings.png</string>
+  </dict>
+  <key>items</key>
+  <array>
+    <dict>
+                        <key>cell</key>
+                        <string>PSSwitchCell</string>
+                        <key>default</key>
+                        <false/>
+                        <key>defaults</key>
+                        <string>com.mc.tor</string>
+                        <key>key</key>
+                        <string>torEnabled</string>
+                        <key>label</key>
+                        <string>Enable</string>
+    </dict>
+    <dict>
+      <key>cell</key>
+      <string>PSGroupCell</string>
+      <key>footerText</key>
+      <string>Compiled by MCApollo, I stole WAS's solution for launchdaemon, start up script, and settings panel.
+Credits go to them: (Tor Switch (c) 2013 Wizardry and Steamworks.)</string>
+    </dict>
+  </array>
+</dict>
+</plist>

@@ -1,0 +1,16 @@
+# What happen?
+# These symlinks point to the zlib in cache.
+# When I put symlinks in /usr/lib/ to real files
+# It broke Apps that used zlib.
+# Thanks Sam Bingner for helping me. Even if no one is going to read this.
+
+echo "I messed up. Im sorry about that."
+echo "Hopefully, this postinst will fix that."
+
+ln -s libz.1.dylib /usr/lib/libz.dylib &>/dev/null
+ln -s libz.1.dylib /usr/lib/libz.1.2.11.dylib &>/dev/null
+ln -s libz.1.dylib /usr/lib/libz.1.1.3.dylib &>/dev/null
+ln -s libz.1.dylib /usr/lib/libz.1.2.5.dylib &>/dev/null
+ln -s libz.1.dylib /usr/lib/libz.1.2.6.dylib &>/dev/null
+
+exit 0 

@@ -1,0 +1,9 @@
+Package: com.mc.m4
+Name: M4
+Version: 1.4.18 
+Section: Scripting
+Architecture: iphoneos-arm
+Author: GNU
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	arcane macro processing engine

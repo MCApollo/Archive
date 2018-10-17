@@ -1,0 +1,43 @@
+.TH "type" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBtype\fP -- indicate how a command would be interpreted 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBtype\fP [OPTIONS] NAME [NAME \&.\&.\&.]
+.fi
+.PP
+.SS "Description"
+With no options, \fCtype\fP indicates how each \fCNAME\fP would be interpreted if used as a command name\&.
+.PP
+The following options are available:
+.PP
+.IP "\(bu" 2
+\fC-a\fP or \fC--all\fP prints all of possible definitions of the specified names\&.
+.IP "\(bu" 2
+\fC-f\fP or \fC--no-functions\fP suppresses function and builtin lookup\&.
+.IP "\(bu" 2
+\fC-t\fP or \fC--type\fP prints \fCfunction\fP, \fCbuiltin\fP, or \fCfile\fP if \fCNAME\fP is a shell function, builtin, or disk file, respectively\&.
+.IP "\(bu" 2
+\fC-p\fP or \fC--path\fP returns the name of the disk file that would be executed, or nothing if \fCtype -t name\fP would not return \fCfile\fP\&.
+.IP "\(bu" 2
+\fC-P\fP or \fC--force-path\fP returns the name of the disk file that would be executed, or nothing if no file with the specified name could be found in the \fC$PATH\fP\&.
+.IP "\(bu" 2
+\fC-q\fP or \fC--quiet\fP suppresses all output; this is useful when testing the exit status\&.
+.PP
+.PP
+The \fC-q\fP, \fC-p\fP, \fC-t\fP and \fC-P\fP flags (and their long flag aliases) are mutually exclusive\&. Only one can be specified at a time\&.
+.SS "Example"
+.PP
+.nf
+
+> \fBtype\fP fg
+fg is a builtin
+.fi
+.PP
+ 

@@ -1,0 +1,9 @@
+Package: com.mc.slang
+Name: slang
+Version: 2.3.2
+Section: Utility
+Architecture: iphoneos-arm
+Author: jedsoft
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Provides facilities required by interactive applications such as display/screen management, keyboard input, keymaps, and so on.

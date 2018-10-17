@@ -1,0 +1,30 @@
+.TH "else" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBelse\fP -- execute command if a condition is not met 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBif\fP CONDITION; COMMANDS_TRUE\&.\&.\&.; [\fBelse\fP; COMMANDS_FALSE\&.\&.\&.;] \fBend\fP
+.fi
+.PP
+.SS "Description"
+\fCif\fP will execute the command \fCCONDITION\fP\&. If the condition's exit status is 0, the commands \fCCOMMANDS_TRUE\fP will execute\&. If it is not 0 and \fCelse\fP is given, \fCCOMMANDS_FALSE\fP will be executed\&.
+.SS "Example"
+The following code tests whether a file \fCfoo\&.txt\fP exists as a regular file\&.
+.PP
+.PP
+.nf
+
+\fBif\fP \fBtest\fP -f foo\&.txt
+    \fBecho\fP foo\&.txt exists
+\fBelse\fP
+    \fBecho\fP foo\&.txt does not exist
+\fBend\fP
+.fi
+.PP
+ 

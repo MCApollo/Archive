@@ -1,0 +1,17 @@
+Package: org.thebigboss.man-db
+Conflicts: man-db
+Replaces: man-db
+Depends: firmware (>= 4.0), org.thebigboss.libpipeline, org.thebigboss.groff-base
+Name: man-db
+Version: 2.7.5-3
+Architecture: iphoneos-arm
+Description: standard Unix documentation system
+Depiction: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=mandbDp
+Homepage: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=mandbDp
+Installed-Size: 3516
+Maintainer: BigBoss <bigboss@thebigboss.org>
+Author: idotce <idotce@gmail.com>
+Sponsor: thebigboss.org <http://thebigboss.org>
+Section: Development
+dev: idotce
+Tag: purpose::console, role::developer

@@ -1,0 +1,228 @@
+'\" t
+.\" Man page for mandb
+.\"
+.\" Copyright (C), 1994, 1995, Graeme W. Wilford. (Wilf.)
+.\"
+.\" You may distribute under the terms of the GNU General Public
+.\" License as specified in the file COPYING that comes with the
+.\" man-db distribution.
+.\" 
+.\" Tue Apr 26 12:56:44 BST 1994  Wilf. (G.Wilford@ee.surrey.ac.uk) 
+.\"
+.pc
+.TH MANDB 8 "2018-04-05" "2.8.3" "Manual pager utils"
+.SH NAME
+mandb \- create or update the manual page index caches
+.SH SYNOPSIS
+.B mandb  
+.RB [\| \-dqsucpt?V \|]
+.RB [\| \-C
+.IR file \|]
+.RI [\| manpath \|]
+.br
+.B mandb
+.RB [\| \-dqsut \|]
+.RB [\| \-C
+.IR file \|]
+.B \-f
+.IR filename \ .\|.\|.
+.SH DESCRIPTION
+.B mandb
+is used to initialise or manually update
+.B index 
+database caches that are usually maintained by 
+.BR man .
+The caches contain information relevant to the current state of the manual
+page system and the information stored within them is used by the man-db 
+utilities to enhance their speed and functionality.
+
+When creating or updating an
+.BR index ,
+.B mandb
+will warn of bad ROFF .so requests, bogus manual page filenames and 
+manual pages from which the 
+.B whatis 
+cannot be parsed.
+
+Supplying 
+.B mandb 
+with an optional colon-delimited path will override the internal system
+manual page hierarchy search path, determined from information found within 
+the man-db configuration file.
+.SH "DATABASE CACHES"
+.B mandb
+can be compiled with support for any one of the following database types.
+
+.TS
+tab (@);
+l lw(20m) l l.
+Name@Type@Async@Filename
+_
+Berkeley db@T{
+Binary tree
+T}@Yes@\fIindex.bt\fR
+GNU gdbm@T{
+Hashed
+T}@Yes@\fIindex.db\fR
+UNIX ndbm@T{
+Hashed
+T}@No@\fIindex.(dir|pag)\fR
+.TE
+
+Those database types that support asynchronous updates provide enhanced
+speed at the cost of possible corruption in the event of unusual
+termination.
+In an unusual case where this has occurred, it may be necessary to rerun
+.B mandb 
+with the 
+.B \-c
+option to re-create the databases from scratch. 
+.SH OPTIONS
+.TP
+.BR \-d ", " \-\-debug
+Print debugging information.
+.TP
+.BR \-q ", " \-\-quiet
+Produce no warnings.
+.TP
+.BR \-s ", " \-\-no-straycats
+Do not spend time looking for or adding information to the databases
+regarding stray cats.
+.TP
+.BR \-p ", " \-\-no-purge
+Do not spend time checking for deleted manual pages and purging them from
+the databases.
+.TP
+.BR \-c ", " \-\-create
+By default, 
+.B mandb
+will try to update any previously created databases.
+If a database does not exist, it will create it.
+This option forces 
+.B mandb
+to delete previous databases and re-create them from scratch, and implies
+.B \-\-no-purge.
+This may be necessary if a database becomes corrupt or if a new database
+storage scheme is introduced in the future.
+.TP
+.BR \-u ", " \-\-user-db
+Create user databases only, even with write permissions necessary to create
+system databases.
+.TP
+.BR \-t ", " \-\-test
+Perform correctness checks on manual pages in the hierarchy search path.
+With this option,
+.B mandb
+will not alter existing databases.
+.TP
+.BR \-f ", " \-\-filename
+Update only the entries for the given filename.
+This option is not for general use; it is used internally by
+.B man
+when it has been compiled with the
+.B MAN_DB_UPDATES
+option and finds that a page is out of date.
+It implies
+.B \-p
+and disables
+.B \-c
+and
+.BR \-s .
+.TP
+.BI \-C\  file \fR,\ \fB\-\-config\-file= file
+Use this user configuration file rather than the default of
+.IR ~/.manpath .
+.TP
+.BR \-? ", " \-\-help
+Show the usage message, then exit.
+.TP
+.BR \-\-usage
+Print a short usage message and exit.
+.TP
+.BR \-V ", " \-\-version
+Show the version, then exit.
+.SH "EXIT STATUS"
+.TP
+.B 0
+Successful program execution.
+.TP
+.B 1
+Usage, syntax, or configuration file error.
+.TP
+.B 2
+Operational error.
+.TP
+.B 3
+A child process failed.
+.SH DIAGNOSTICS
+The following warning messages can be emitted during database building.
+.TP 
+.B <filename>: whatis parse for page(sec) failed
+An attempt to extract whatis line(s) from the given <filename> failed.
+This is usually due to a poorly written manual page, but if many such
+messages are emitted it is likely that the system contains non-standard
+manual pages which are incompatible with the man-db whatis parser.
+See the
+.B WHATIS PARSING
+section in
+.BR lexgrog (1)
+for more information.
+.TP
+.B <filename>: is a dangling symlink
+<filename> does not exist but is referenced by a symbolic link. 
+Further diagnostics are usually emitted to identify the <filename> of the
+offending link. 
+.TP
+.B <filename>: bad symlink or ROFF `.so' request
+<filename> is either a symbolic link to, or contains a ROFF include
+request to, a non existent file.
+.TP
+.B <filename>: ignoring bogus filename
+The <filename> may or may not be a valid manual page but its name is
+invalid.
+This is usually due to a manual page with sectional extension <x> being put
+in manual page section <y>. 
+.TP
+.B <filename_mask>: competing extensions
+The wildcard <filename_mask> is not unique.
+This is usually caused by the existence of both a compressed and
+uncompressed version of the same manual page.
+All but the most recent are ignored.
+.SH FILES
+.TP
+.I /usr/local/etc/man_db.conf
+man-db configuration file.
+.TP
+.I /var/cache/man/index.(bt|db|dir|pag)
+An FHS compliant global
+.I index
+database cache.
+.PP
+Older locations for the database cache included:
+.TP
+.I /usr/man/index.(bt|db|dir|pag)
+A traditional global
+.I index
+database cache.
+.TP
+.I /var/catman/index.(bt|db|dir|pag)
+An alternate or FSSTND
+compliant global
+.I index
+database cache.
+.SH "SEE ALSO"
+.BR lexgrog (1),
+.BR man (1),
+.BR manpath (5),
+.BR catman (8)
+.PP
+The
+.B "WHATIS PARSING"
+section formerly in this manual page is now part of
+.BR lexgrog (1).
+.SH AUTHOR
+.nf
+Wilf. (G.Wilford@ee.surrey.ac.uk).
+Fabrizio Polacco (fpolacco@debian.org).
+Colin Watson (cjwatson@debian.org).
+.fi

@@ -1,0 +1,36 @@
+#!/bin/bash 
+
+if [ -f /Library/LaunchDaemons/pgsql.start.switch.plist ]; then
+        launchctl unload -w /Library/LaunchDaemons/pgsql.start.switch.plist 2>&1 | true
+fi
+if [ -f /Library/LaunchDaemons/pgsql.stop.switch.plist ]; then
+        launchctl unload -w /Library/LaunchDaemons/pgsql.stop.switch.plist 2>&1 | true
+fi
+
+PIDFILE="/var/postgres/data/postmaster.pid"
+
+POSTGRES=`ps -ax | grep '[p]ostgres' | grep 'local' | awk '{ print $1 }'`
+
+if [ "$POSTGRES" != "" ]; then
+        kill -s TERM $POSTGRES
+fi
+if [ -f "$PIDFILE" ]; then
+        rm "$PIDFILE"
+fi
+
+if [ $1 != upgrade ]; then
+        if [ -f /Library/LaunchDaemons/pgsql.start.switch.plist ]; then
+                rm /Library/LaunchDaemons/pgsql.start.switch.plist
+        fi
+        if [ -f /Library/LaunchDaemons/pgsql.stop.switch.plist ]; then
+                rm /Library/LaunchDaemons/pgsql.stop.switch.plist
+        fi
+        if [ -f /var/mobile/Library/Preferences/pgsql.plist ]; then
+                rm /var/mobile/Library/Preferences/pgsql.plist
+        fi
+        now=$(date +"%s")
+        dirName="data.$now"
+        mv /var/postgres/data /var/postgres/$dirName
+fi
+
+exit 0

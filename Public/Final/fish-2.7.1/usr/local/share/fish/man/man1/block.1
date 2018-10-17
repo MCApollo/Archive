@@ -1,0 +1,63 @@
+.TH "block" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBblock\fP -- temporarily block delivery of events 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBblock\fP [OPTIONS\&.\&.\&.]
+.fi
+.PP
+.SS "Description"
+\fCblock\fP prevents events triggered by \fCfish\fP or the \fC\fCemit\fP\fP command from being delivered and acted upon while the block is in place\&.
+.PP
+In functions, \fCblock\fP can be useful while performing work that should not be interrupted by the shell\&.
+.PP
+The block can be removed\&. Any events which triggered while the block was in place will then be delivered\&.
+.PP
+Event blocks should not be confused with code blocks, which are created with \fCbegin\fP, \fCif\fP, \fCwhile\fP or \fCfor\fP
+.PP
+The following parameters are available:
+.PP
+.IP "\(bu" 2
+\fC-l\fP or \fC--local\fP Release the block automatically at the end of the current innermost code block scope
+.IP "\(bu" 2
+\fC-g\fP or \fC--global\fP Never automatically release the lock
+.IP "\(bu" 2
+\fC-e\fP or \fC--erase\fP Release global block
+.PP
+.SS "Example"
+.PP
+.nf
+
+  Create a function that listens for events
+\fBfunction\fP --on-event foo foo; \fBecho\fP 'foo fired'; \fBend\fP
+.fi
+.PP
+.PP
+.PP
+.nf
+  Block the delivery of events
+\fBblock\fP -g
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBemit\fP foo
+  No output will be produced
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBblock\fP -e
+  'foo fired' will now be printed
+.fi
+.PP
+.SS "Notes"
+Note that events are only received from the current fish process as there is no way to send events from one fish process to another\&. 

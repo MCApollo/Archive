@@ -1,0 +1,20 @@
+.TH "open" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBopen\fP -- open file in its default application 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBopen\fP FILES\&.\&.\&.
+.fi
+.PP
+.SS "Description"
+\fCopen\fP opens a file in its default application, using the appropriate tool for the operating system\&. On GNU/Linux, this requires the common but optional \fCxdg-open\fP utility, from the \fCxdg-utils\fP package\&.
+.PP
+Note that this function will not be used if a command by this name exists (which is the case on macOS or Haiku)\&.
+.SS "Example"
+\fCopen *\&.txt\fP opens all the text files in the current directory using your system's default text editor\&. 

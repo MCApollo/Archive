@@ -1,0 +1,37 @@
+.TH "fish_indent" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBfish_indent\fP -- indenter and prettifier 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBfish_indent\fP [OPTIONS]
+.fi
+.PP
+.SS "Description"
+\fCfish_indent\fP is used to indent a piece of fish code\&. \fCfish_indent\fP reads commands from standard input and outputs them to standard output or a specified file\&.
+.PP
+The following options are available:
+.PP
+.IP "\(bu" 2
+\fC-w\fP or \fC--write\fP indents a specified file and immediately writes to that file\&.
+.IP "\(bu" 2
+\fC-i\fP or \fC--no-indent\fP do not indent commands; only reformat to one job per line\&.
+.IP "\(bu" 2
+\fC-v\fP or \fC--version\fP displays the current fish version and then exits\&.
+.IP "\(bu" 2
+\fC--ansi\fP colorizes the output using ANSI escape sequences, appropriate for the current $TERM, using the colors defined in the environment (such as \fC$fish_color_command\fP)\&.
+.IP "\(bu" 2
+\fC--html\fP outputs HTML, which supports syntax highlighting if the appropriate CSS is defined\&. The CSS class names are the same as the variable names, such as \fCfish_color_command\fP\&.
+.IP "\(bu" 2
+\fC-d\fP or \fC--debug-level=DEBUG_LEVEL\fP enables debug output and specifies a verbosity level (like \fCfish -d\fP)\&. Defaults to 0\&.
+.IP "\(bu" 2
+\fC-D\fP or \fC--debug-stack-frames=DEBUG_LEVEL\fP specify how many stack frames to display when debug messages are written\&. The default is zero\&. A value of 3 or 4 is usually sufficient to gain insight into how a given debug call was reached but you can specify a value up to 128\&.
+.IP "\(bu" 2
+\fC--dump-parse-tree\fP dumps information about the parsed statements to stderr\&. This is likely to be of interest only to people working on the fish source code\&. 
+.PP
+

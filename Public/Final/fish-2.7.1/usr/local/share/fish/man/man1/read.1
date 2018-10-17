@@ -1,0 +1,79 @@
+.TH "read" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBread\fP -- read line of input into variables 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBread\fP [OPTIONS] [VARIABLES\&.\&.\&.]
+.fi
+.PP
+.SS "Description"
+\fCread\fP reads from standard input and stores the result in one or more shell variables\&. By default, one line (terminated by a newline) is read into each variable\&. Alternatively, a null character or a maximum number of characters can be used to terminate the input\&. Unlike other shells, there is no default variable (such as \fCREPLY\fP) for storing the result\&.
+.PP
+The following options are available:
+.PP
+.IP "\(bu" 2
+\fC-c CMD\fP or \fC--command=CMD\fP sets the initial string in the interactive mode command buffer to \fCCMD\fP\&.
+.IP "\(bu" 2
+\fC-g\fP or \fC--global\fP makes the variables global\&.
+.IP "\(bu" 2
+\fC-i\fP or \fC--silent\fP makes the characters typed obfuscated\&. This is useful for reading things like passwords or other sensitive information\&. Note that in bash the short flag is \fC-s\fP\&. We can't use that due to the existing use as an alias for \fC--shell\fP\&.
+.IP "\(bu" 2
+\fC-l\fP or \fC--local\fP makes the variables local\&.
+.IP "\(bu" 2
+\fC-n NCHARS\fP or \fC--nchars=NCHARS\fP makes \fCread\fP return after reading NCHARS characters or the end of the line, whichever comes first\&.
+.IP "\(bu" 2
+\fC-p PROMPT_CMD\fP or \fC--prompt=PROMPT_CMD\fP uses the output of the shell command \fCPROMPT_CMD\fP as the prompt for the interactive mode\&. The default prompt command is \fCset_color green; echo read; set_color normal; echo '> '\fP\&.
+.IP "\(bu" 2
+\fC-P PROMPT_STR\fP or \fC--prompt-str=PROMPT_STR\fP uses the string as the prompt for the interactive mode\&. It is equivalent to \fCecho PROMPT_STR\fP and is provided solely to avoid the need to frame the prompt as a command\&. All special characters in the string are automatically escaped before being passed to the \fCecho\fP command\&.
+.IP "\(bu" 2
+\fC-R RIGHT_PROMPT_CMD\fP or \fC--right-prompt=RIGHT_PROMPT_CMD\fP uses the output of the shell command \fCRIGHT_PROMPT_CMD\fP as the right prompt for the interactive mode\&. There is no default right prompt command\&.
+.IP "\(bu" 2
+\fC-s\fP or \fC--shell\fP enables syntax highlighting, tab completions and command termination suitable for entering shellscript code in the interactive mode\&.
+.IP "\(bu" 2
+\fC-u\fP or \fC--unexport\fP prevents the variables from being exported to child processes (default behaviour)\&.
+.IP "\(bu" 2
+\fC-U\fP or \fC--universal\fP causes the specified shell variable to be made universal\&.
+.IP "\(bu" 2
+\fC-x\fP or \fC--export\fP exports the variables to child processes\&.
+.IP "\(bu" 2
+\fC-a\fP or \fC--array\fP stores the result as an array in a single variable\&.
+.IP "\(bu" 2
+\fC-z\fP or \fC--null\fP marks the end of the line with the NUL character, instead of newline\&. This also disables interactive mode\&.
+.PP
+.PP
+\fCread\fP reads a single line of input from stdin, breaks it into tokens based on the \fCIFS\fP shell variable, and then assigns one token to each variable specified in \fCVARIABLES\fP\&. If there are more tokens than variables, the complete remainder is assigned to the last variable\&. As a special case, if \fCIFS\fP is set to the empty string, each character of the input is considered a separate token\&.
+.PP
+If \fC-a\fP or \fC--array\fP is provided, only one variable name is allowed and the tokens are stored as an array in this variable\&.
+.PP
+See the documentation for \fCset\fP for more details on the scoping rules for variables\&.
+.PP
+When \fCread\fP reaches the end-of-file (EOF) instead of the terminator, the exit status is set to 1\&. Otherwise, it is set to 0\&.
+.PP
+In order to protect the shell from consuming too many system resources, \fCread\fP will only consume a maximum of 10 MiB (1048576 bytes); if the terminator is not reached before this limit then VARIABLE is set to empty and the exit status is set to 122\&. This limit can be altered with the \fCFISH_READ_BYTE_LIMIT\fP variable\&. If set to 0 (zero), the limit is removed\&.
+.SS "Using another read history file"
+The \fCread\fP command supported the \fC-m\fP and \fC--mode-name\fP flags in fish versions prior to 2\&.7\&.0 to specify an alternative read history file\&. Those flags are now deprecated and ignored\&. Instead, set the \fCfish_history\fP variable to specify a history session ID\&. That will affect both the \fCread\fP history file and the fish command history file\&. You can set it to an empty string to specify that no history should be read or written\&. This is useful for presentations where you do not want possibly private or sensitive history to be exposed to the audience but do want history relevant to the presentation to be available\&.
+.SS "Example"
+The following code stores the value 'hello' in the shell variable \fC$foo\fP\&.
+.PP
+.PP
+.nf
+
+\fBecho\fP hello|\fBread\fP foo
+.fi
+.PP
+.PP
+.PP
+.nf
+  This is a neat way to handle command output by-line:
+\fBprintf\fP '%s\\n' line1 line2 line3 line4 | \fBwhile\fP read -l foo
+                  \fBecho\fP 'This is another line: $foo'
+              \fBend\fP
+.fi
+.PP
+ 

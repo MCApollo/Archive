@@ -1,0 +1,5 @@
+#!/bin/sh
+ln -sf /usr/lib/libgcrypt.20.dylib /usr/local/lib/libgcrypt.11.dylib
+echo "Fixing a conflict in libgcrypt versions..."
+echo "ln -sf /usr/lib/libgcrypt.20.dylib /usr/local/lib/libgcrypt.11.dylib"
+echo "T H I C C - H Y D R A"

@@ -1,0 +1,45 @@
+.TH "isatty" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBisatty\fP -- test if a file descriptor is a tty\&. 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBisatty\fP [FILE DESCRIPTOR]
+.fi
+.PP
+.SS "Description"
+\fCisatty\fP tests if a file descriptor is a tty\&.
+.PP
+\fCFILE DESCRIPTOR\fP may be either the number of a file descriptor, or one of the strings \fCstdin\fP, \fCstdout\fP, or \fCstderr\fP\&.
+.PP
+If the specified file descriptor is a tty, the exit status of the command is zero\&. Otherwise, the exit status is non-zero\&. No messages are printed to standard error\&.
+.SS "Examples"
+From an interactive shell, the commands below exit with a return value of zero:
+.PP
+.PP
+.nf
+
+\fBisatty\fP
+\fBisatty\fP stdout
+\fBisatty\fP 2
+\fBecho\fP | \fBisatty\fP 1
+.fi
+.PP
+.PP
+And these will exit non-zero:
+.PP
+.PP
+.nf
+
+\fBecho\fP | \fBisatty\fP
+\fBisatty\fP 9
+\fBisatty\fP stdout > file
+\fBisatty\fP 2 2> file
+.fi
+.PP
+ 

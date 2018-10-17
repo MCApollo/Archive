@@ -1,0 +1,9 @@
+Package: com.mc.gettext
+Name: Gettext
+Version: 0.19.8.1-4
+Section: Utility
+Architecture: iphoneos-arm
+Author: GNU
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Gettext is an internationalization and localization system commonly used for writing multilingual programs 

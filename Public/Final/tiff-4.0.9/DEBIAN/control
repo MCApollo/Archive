@@ -1,0 +1,10 @@
+Package: com.mc.tiff
+Name: tiff
+Version: 4.0.9
+Section: Development
+Architecture: iphoneos-arm
+Author: simplesystem
+Depends: lzma, com.mc.zlib, com.mc.libjpeg
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	library for reading and writing TIFF, a small collection of tools for doing simple manipulations of TIFF images, and documentation on the library and tools. 

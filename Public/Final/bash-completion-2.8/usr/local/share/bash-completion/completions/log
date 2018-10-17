@@ -1,0 +1,788 @@
+Only in .: 2to3
+Only in .: 7z
+Only in .: 7za
+Files ./a2x and /usr/share/bash-completion/completions/a2x differ
+Files ./abook and /usr/share/bash-completion/completions/abook differ
+Files ./aclocal and /usr/share/bash-completion/completions/aclocal differ
+Only in .: aclocal-1.10
+Files ./aclocal-1.11 and /usr/share/bash-completion/completions/aclocal-1.11 differ
+Only in .: aclocal-1.12
+Only in .: aclocal-1.13
+Only in .: aclocal-1.14
+Only in .: aclocal-1.15
+Files ./acpi and /usr/share/bash-completion/completions/acpi differ
+Only in .: adb
+Files ./add_members and /usr/share/bash-completion/completions/add_members differ
+Only in /usr/share/bash-completion/completions/: addpart
+Files ./alias and /usr/share/bash-completion/completions/alias differ
+Files ./alpine and /usr/share/bash-completion/completions/alpine differ
+Files ./alternatives and /usr/share/bash-completion/completions/alternatives differ
+Files ./animate and /usr/share/bash-completion/completions/animate differ
+Files ./ant and /usr/share/bash-completion/completions/ant differ
+Files ./apache2ctl and /usr/share/bash-completion/completions/apache2ctl differ
+Only in .: appdata-validate
+Files ./apropos and /usr/share/bash-completion/completions/apropos differ
+Files ./apt and /usr/share/bash-completion/completions/apt differ
+Files ./apt-build and /usr/share/bash-completion/completions/apt-build differ
+Files ./apt-cache and /usr/share/bash-completion/completions/apt-cache differ
+Files ./apt-get and /usr/share/bash-completion/completions/apt-get differ
+Files ./aptitude and /usr/share/bash-completion/completions/aptitude differ
+Only in .: aptitude-curses
+Files ./arch and /usr/share/bash-completion/completions/arch differ
+Files ./arm-koji and /usr/share/bash-completion/completions/arm-koji differ
+Files ./arping and /usr/share/bash-completion/completions/arping differ
+Files ./arpspoof and /usr/share/bash-completion/completions/arpspoof differ
+Files ./asciidoc and /usr/share/bash-completion/completions/asciidoc differ
+Files ./asciidoc.py and /usr/share/bash-completion/completions/asciidoc.py differ
+Files ./aspell and /usr/share/bash-completion/completions/aspell differ
+Files ./autoconf and /usr/share/bash-completion/completions/autoconf differ
+Files ./autoheader and /usr/share/bash-completion/completions/autoheader differ
+Files ./automake and /usr/share/bash-completion/completions/automake differ
+Only in .: automake-1.10
+Files ./automake-1.11 and /usr/share/bash-completion/completions/automake-1.11 differ
+Only in .: automake-1.12
+Only in .: automake-1.13
+Only in .: automake-1.14
+Only in .: automake-1.15
+Files ./autoreconf and /usr/share/bash-completion/completions/autoreconf differ
+Files ./autorpm and /usr/share/bash-completion/completions/autorpm differ
+Files ./autoscan and /usr/share/bash-completion/completions/autoscan differ
+Files ./autossh and /usr/share/bash-completion/completions/autossh differ
+Files ./autoupdate and /usr/share/bash-completion/completions/autoupdate differ
+Files ./avctrl and /usr/share/bash-completion/completions/avctrl differ
+Files ./badblocks and /usr/share/bash-completion/completions/badblocks differ
+Only in .: bind
+Files ./bk and /usr/share/bash-completion/completions/bk differ
+Only in /usr/share/bash-completion/completions/: blkdiscard
+Only in /usr/share/bash-completion/completions/: blkid
+Only in /usr/share/bash-completion/completions/: blockdev
+Only in /usr/share/bash-completion/completions/: bootctl
+Files ./brctl and /usr/share/bash-completion/completions/brctl differ
+Files ./btdownloadcurses.py and /usr/share/bash-completion/completions/btdownloadcurses.py differ
+Files ./btdownloadgui.py and /usr/share/bash-completion/completions/btdownloadgui.py differ
+Files ./btdownloadheadless.py and /usr/share/bash-completion/completions/btdownloadheadless.py differ
+Only in .: bts
+Only in /usr/share/bash-completion/completions/: busctl
+Files ./bzip2 and /usr/share/bash-completion/completions/bzip2 differ
+Files ./c++ and /usr/share/bash-completion/completions/c++ differ
+Only in /usr/share/bash-completion/completions/: cal
+Only in .: _cal
+Files ./cancel and /usr/share/bash-completion/completions/cancel differ
+Files ./cardctl and /usr/share/bash-completion/completions/cardctl differ
+Files ./cc and /usr/share/bash-completion/completions/cc differ
+Files ./ccache and /usr/share/bash-completion/completions/ccache differ
+Only in .: ccze
+Files ./cdrecord and /usr/share/bash-completion/completions/cdrecord differ
+Files ./cfagent and /usr/share/bash-completion/completions/cfagent differ
+Only in /usr/share/bash-completion/completions/: cfdisk
+Files ./cfrun and /usr/share/bash-completion/completions/cfrun differ
+Files ./chage and /usr/share/bash-completion/completions/chage differ
+Files ./change_pw and /usr/share/bash-completion/completions/change_pw differ
+Only in /usr/share/bash-completion/completions/: chcpu
+Files ./check_db and /usr/share/bash-completion/completions/check_db differ
+Files ./check_perms and /usr/share/bash-completion/completions/check_perms differ
+Only in .: checksec
+Only in .: _chfn
+Files ./chgrp and /usr/share/bash-completion/completions/chgrp differ
+Files ./chkconfig and /usr/share/bash-completion/completions/chkconfig differ
+Files ./chown and /usr/share/bash-completion/completions/chown differ
+Files ./chpasswd and /usr/share/bash-completion/completions/chpasswd differ
+Files ./chronyc and /usr/share/bash-completion/completions/chronyc differ
+Files ./chrpath and /usr/share/bash-completion/completions/chrpath differ
+Only in /usr/share/bash-completion/completions/: chrt
+Only in /usr/share/bash-completion/completions/: chsh
+Only in .: _chsh
+Files ./ci and /usr/share/bash-completion/completions/ci differ
+Files ./ciptool and /usr/share/bash-completion/completions/ciptool differ
+Files ./civclient and /usr/share/bash-completion/completions/civclient differ
+Files ./civserver and /usr/share/bash-completion/completions/civserver differ
+Files ./cksfv and /usr/share/bash-completion/completions/cksfv differ
+Files ./cleanarch and /usr/share/bash-completion/completions/cleanarch differ
+Files ./clisp and /usr/share/bash-completion/completions/clisp differ
+Files ./clone_member and /usr/share/bash-completion/completions/clone_member differ
+Files ./clzip and /usr/share/bash-completion/completions/clzip differ
+Only in /usr/share/bash-completion/completions/: cmake
+Files ./co and /usr/share/bash-completion/completions/co differ
+Only in /usr/share/bash-completion/completions/: col
+Only in /usr/share/bash-completion/completions/: colcrt
+Files ./colormake and /usr/share/bash-completion/completions/colormake differ
+Only in /usr/share/bash-completion/completions/: colrm
+Only in /usr/share/bash-completion/completions/: column
+Files ./compare and /usr/share/bash-completion/completions/compare differ
+Files ./compgen and /usr/share/bash-completion/completions/compgen differ
+Files ./complete and /usr/share/bash-completion/completions/complete differ
+Files ./composite and /usr/share/bash-completion/completions/composite differ
+Files ./config_list and /usr/share/bash-completion/completions/config_list differ
+Files ./configure and /usr/share/bash-completion/completions/configure differ
+Files ./conjure and /usr/share/bash-completion/completions/conjure differ
+Files ./convert and /usr/share/bash-completion/completions/convert differ
+Files ./cowsay and /usr/share/bash-completion/completions/cowsay differ
+Files ./cowthink and /usr/share/bash-completion/completions/cowthink differ
+Only in /usr/share/bash-completion/completions/: cpack
+Files ./cpan2dist and /usr/share/bash-completion/completions/cpan2dist differ
+Files ./cpio and /usr/share/bash-completion/completions/cpio differ
+Files ./cppcheck and /usr/share/bash-completion/completions/cppcheck differ
+Files ./createdb and /usr/share/bash-completion/completions/createdb differ
+Only in .: createuser
+Files ./crontab and /usr/share/bash-completion/completions/crontab differ
+Files ./cryptsetup and /usr/share/bash-completion/completions/cryptsetup differ
+Only in /usr/share/bash-completion/completions/: ctest
+Only in /usr/share/bash-completion/completions/: ctrlaltdel
+Files ./curl and /usr/share/bash-completion/completions/curl differ
+Files ./cvs and /usr/share/bash-completion/completions/cvs differ
+Files ./cvsps and /usr/share/bash-completion/completions/cvsps differ
+Files ./dcop and /usr/share/bash-completion/completions/dcop differ
+Files ./dd and /usr/share/bash-completion/completions/dd differ
+Only in /usr/share/bash-completion/completions/: debconf
+Only in /usr/share/bash-completion/completions/: debconf-show
+Files ./declare and /usr/share/bash-completion/completions/declare differ
+Only in .: deja-dup
+Only in /usr/share/bash-completion/completions/: delpart
+Files ./desktop-file-validate and /usr/share/bash-completion/completions/desktop-file-validate differ
+Files ./dfutool and /usr/share/bash-completion/completions/dfutool differ
+Files ./dhclient and /usr/share/bash-completion/completions/dhclient differ
+Files ./dict and /usr/share/bash-completion/completions/dict differ
+Files ./display and /usr/share/bash-completion/completions/display differ
+Only in /usr/share/bash-completion/completions/: dmesg
+Only in .: _dmesg
+Files ./dnsspoof and /usr/share/bash-completion/completions/dnsspoof differ
+Files ./dot and /usr/share/bash-completion/completions/dot differ
+Files ./dpkg and /usr/share/bash-completion/completions/dpkg differ
+Files ./dpkg-deb and /usr/share/bash-completion/completions/dpkg-deb differ
+Files ./dpkg-query and /usr/share/bash-completion/completions/dpkg-query differ
+Files ./dpkg-reconfigure and /usr/share/bash-completion/completions/dpkg-reconfigure differ
+Files ./dpkg-source and /usr/share/bash-completion/completions/dpkg-source differ
+Files ./dropdb and /usr/share/bash-completion/completions/dropdb differ
+Only in .: dropuser
+Files ./dselect and /usr/share/bash-completion/completions/dselect differ
+Files ./dsniff and /usr/share/bash-completion/completions/dsniff differ
+Files ./dumpdb and /usr/share/bash-completion/completions/dumpdb differ
+Files ./dumpe2fs and /usr/share/bash-completion/completions/dumpe2fs differ
+Files ./e2freefrag and /usr/share/bash-completion/completions/e2freefrag differ
+Files ./e2label and /usr/share/bash-completion/completions/e2label differ
+Only in .: ebtables
+Files ./edquota and /usr/share/bash-completion/completions/edquota differ
+Only in /usr/share/bash-completion/completions/: eject
+Only in .: _eject
+Files ./eog and /usr/share/bash-completion/completions/eog differ
+Files ./ether-wake and /usr/share/bash-completion/completions/ether-wake differ
+Files ./evince and /usr/share/bash-completion/completions/evince differ
+Files ./explodepkg and /usr/share/bash-completion/completions/explodepkg differ
+Files ./export and /usr/share/bash-completion/completions/export differ
+Only in .: f77
+Only in .: f95
+Files ./faillog and /usr/share/bash-completion/completions/faillog differ
+Only in /usr/share/bash-completion/completions/: fallocate
+Files ./fbgs and /usr/share/bash-completion/completions/fbgs differ
+Files ./fbi and /usr/share/bash-completion/completions/fbi differ
+Only in /usr/share/bash-completion/completions/: fdformat
+Only in /usr/share/bash-completion/completions/: fdisk
+Files ./feh and /usr/share/bash-completion/completions/feh differ
+Files ./file and /usr/share/bash-completion/completions/file differ
+Files ./filebucket and /usr/share/bash-completion/completions/filebucket differ
+Files ./filefrag and /usr/share/bash-completion/completions/filefrag differ
+Files ./file-roller and /usr/share/bash-completion/completions/file-roller differ
+Files ./filesnarf and /usr/share/bash-completion/completions/filesnarf differ
+Files ./find and /usr/share/bash-completion/completions/find differ
+Only in /usr/share/bash-completion/completions/: findfs
+Files ./find_member and /usr/share/bash-completion/completions/find_member differ
+Only in /usr/share/bash-completion/completions/: findmnt
+Only in .: flake8
+Only in /usr/share/bash-completion/completions/: flock
+Only in .: freebsd-update
+Files ./freeciv-gtk2 and /usr/share/bash-completion/completions/freeciv-gtk2 differ
+Files ./freeciv-sdl and /usr/share/bash-completion/completions/freeciv-sdl differ
+Files ./freeciv-server and /usr/share/bash-completion/completions/freeciv-server differ
+Files ./freeciv-xaw and /usr/share/bash-completion/completions/freeciv-xaw differ
+Only in /usr/share/bash-completion/completions/: fsck
+Only in /usr/share/bash-completion/completions/: fsck.cramfs
+Only in /usr/share/bash-completion/completions/: fsck.minix
+Only in /usr/share/bash-completion/completions/: fsfreeze
+Only in /usr/share/bash-completion/completions/: fstrim
+Files ./function and /usr/share/bash-completion/completions/function differ
+Files ./fusermount and /usr/share/bash-completion/completions/fusermount differ
+Files ./g++ and /usr/share/bash-completion/completions/g++ differ
+Files ./g4 and /usr/share/bash-completion/completions/g4 differ
+Files ./g77 and /usr/share/bash-completion/completions/g77 differ
+Only in .: g95
+Files ./gcc and /usr/share/bash-completion/completions/gcc differ
+Files ./gcj and /usr/share/bash-completion/completions/gcj differ
+Files ./gcl and /usr/share/bash-completion/completions/gcl differ
+Files ./gdb and /usr/share/bash-completion/completions/gdb differ
+Files ./genaliases and /usr/share/bash-completion/completions/genaliases differ
+Files ./gendiff and /usr/share/bash-completion/completions/gendiff differ
+Files ./genisoimage and /usr/share/bash-completion/completions/genisoimage differ
+Only in .: geoiplookup
+Only in .: geoiplookup6
+Only in .: getconf
+Files ./getent and /usr/share/bash-completion/completions/getent differ
+Only in /usr/share/bash-completion/completions/: getopt
+Only in .: gfortran
+Only in /usr/share/bash-completion/completions/: git
+Only in /usr/share/bash-completion/completions/: gitk
+Files ./gkrellm and /usr/share/bash-completion/completions/gkrellm differ
+Files ./gkrellm2 and /usr/share/bash-completion/completions/gkrellm2 differ
+Only in .: gm
+Files ./gmake and /usr/share/bash-completion/completions/gmake differ
+Files ./gmplayer and /usr/share/bash-completion/completions/gmplayer differ
+Files ./gnatmake and /usr/share/bash-completion/completions/gnatmake differ
+Only in .: gnokii
+Files ./gnome-mplayer and /usr/share/bash-completion/completions/gnome-mplayer differ
+Files ./gnumake and /usr/share/bash-completion/completions/gnumake differ
+Files ./gpasswd and /usr/share/bash-completion/completions/gpasswd differ
+Files ./gpc and /usr/share/bash-completion/completions/gpc differ
+Files ./gpg and /usr/share/bash-completion/completions/gpg differ
+Files ./gpg2 and /usr/share/bash-completion/completions/gpg2 differ
+Files ./gphoto2 and /usr/share/bash-completion/completions/gphoto2 differ
+Files ./gprof and /usr/share/bash-completion/completions/gprof differ
+Files ./groupadd and /usr/share/bash-completion/completions/groupadd differ
+Files ./groupdel and /usr/share/bash-completion/completions/groupdel differ
+Files ./groupmems and /usr/share/bash-completion/completions/groupmems differ
+Files ./groupmod and /usr/share/bash-completion/completions/groupmod differ
+Files ./growisofs and /usr/share/bash-completion/completions/growisofs differ
+Files ./grpck and /usr/share/bash-completion/completions/grpck differ
+Files ./gzip and /usr/share/bash-completion/completions/gzip differ
+Files ./hciattach and /usr/share/bash-completion/completions/hciattach differ
+Files ./hciconfig and /usr/share/bash-completion/completions/hciconfig differ
+Files ./hcitool and /usr/share/bash-completion/completions/hcitool differ
+Files ./hd and /usr/share/bash-completion/completions/hd differ
+Files ./hddtemp and /usr/share/bash-completion/completions/hddtemp differ
+Only in /usr/share/bash-completion/completions/: hexdump
+Only in .: _hexdump
+Files ./hid2hci and /usr/share/bash-completion/completions/hid2hci differ
+Files ./host and /usr/share/bash-completion/completions/host differ
+Only in .: hostname
+Only in /usr/share/bash-completion/completions/: hostnamectl
+Files ./hping and /usr/share/bash-completion/completions/hping differ
+Files ./hping2 and /usr/share/bash-completion/completions/hping2 differ
+Files ./hping3 and /usr/share/bash-completion/completions/hping3 differ
+Files ./htop and /usr/share/bash-completion/completions/htop differ
+Files ./htpasswd and /usr/share/bash-completion/completions/htpasswd differ
+Only in /usr/share/bash-completion/completions/: hwclock
+Only in .: _hwclock
+Files ./iconv and /usr/share/bash-completion/completions/iconv differ
+Files ./id and /usr/share/bash-completion/completions/id differ
+Files ./identify and /usr/share/bash-completion/completions/identify differ
+Files ./idn and /usr/share/bash-completion/completions/idn differ
+Files ./ifdown and /usr/share/bash-completion/completions/ifdown differ
+Files ./ifstatus and /usr/share/bash-completion/completions/ifstatus differ
+Files ./iftop and /usr/share/bash-completion/completions/iftop differ
+Files ./ifup and /usr/share/bash-completion/completions/ifup differ
+Files ./import and /usr/share/bash-completion/completions/import differ
+Files ./info and /usr/share/bash-completion/completions/info differ
+Only in /usr/share/bash-completion/completions/: initramfs-tools
+Files ./inject and /usr/share/bash-completion/completions/inject differ
+Files ./insmod and /usr/share/bash-completion/completions/insmod differ
+Files ./insmod.static and /usr/share/bash-completion/completions/insmod.static differ
+Files ./installpkg and /usr/share/bash-completion/completions/installpkg differ
+Files ./interdiff and /usr/share/bash-completion/completions/interdiff differ
+Files ./invoke-rc.d and /usr/share/bash-completion/completions/invoke-rc.d differ
+Only in /usr/share/bash-completion/completions/: ionice
+Only in .: _ionice
+Files ./ip and /usr/share/bash-completion/completions/ip differ
+Only in /usr/share/bash-completion/completions/: ipcmk
+Only in /usr/share/bash-completion/completions/: ipcrm
+Only in /usr/share/bash-completion/completions/: ipcs
+Files ./iperf and /usr/share/bash-completion/completions/iperf differ
+Files ./ipmitool and /usr/share/bash-completion/completions/ipmitool differ
+Files ./ipsec and /usr/share/bash-completion/completions/ipsec differ
+Files ./iptables and /usr/share/bash-completion/completions/iptables differ
+Files ./ipv6calc and /usr/share/bash-completion/completions/ipv6calc differ
+Files ./iscsiadm and /usr/share/bash-completion/completions/iscsiadm differ
+Only in /usr/share/bash-completion/completions/: isosize
+Files ./isql and /usr/share/bash-completion/completions/isql differ
+Files ./iwconfig and /usr/share/bash-completion/completions/iwconfig differ
+Files ./iwlist and /usr/share/bash-completion/completions/iwlist differ
+Files ./iwpriv and /usr/share/bash-completion/completions/iwpriv differ
+Files ./iwspy and /usr/share/bash-completion/completions/iwspy differ
+Files ./jar and /usr/share/bash-completion/completions/jar differ
+Files ./jarsigner and /usr/share/bash-completion/completions/jarsigner differ
+Files ./java and /usr/share/bash-completion/completions/java differ
+Files ./javac and /usr/share/bash-completion/completions/javac differ
+Files ./javadoc and /usr/share/bash-completion/completions/javadoc differ
+Files ./javaws and /usr/share/bash-completion/completions/javaws differ
+Only in /usr/share/bash-completion/completions/: journalctl
+Only in .: jpegoptim
+Files ./jps and /usr/share/bash-completion/completions/jps differ
+Only in .: jshint
+Files ./k3b and /usr/share/bash-completion/completions/k3b differ
+Files ./kcov and /usr/share/bash-completion/completions/kcov differ
+Files ./kill and /usr/share/bash-completion/completions/kill differ
+Files ./killall and /usr/share/bash-completion/completions/killall differ
+Files ./kldload and /usr/share/bash-completion/completions/kldload differ
+Files ./kldunload and /usr/share/bash-completion/completions/kldunload differ
+Only in /usr/share/bash-completion/completions/: kmod
+Files ./koji and /usr/share/bash-completion/completions/koji differ
+Files ./kplayer and /usr/share/bash-completion/completions/kplayer differ
+Files ./ktutil and /usr/share/bash-completion/completions/ktutil differ
+Files ./l2ping and /usr/share/bash-completion/completions/l2ping differ
+Files ./larch and /usr/share/bash-completion/completions/larch differ
+Only in /usr/share/bash-completion/completions/: last
+Files ./lastlog and /usr/share/bash-completion/completions/lastlog differ
+Files ./lbzip2 and /usr/share/bash-completion/completions/lbzip2 differ
+Files ./ldapadd and /usr/share/bash-completion/completions/ldapadd differ
+Files ./ldapcompare and /usr/share/bash-completion/completions/ldapcompare differ
+Files ./ldapdelete and /usr/share/bash-completion/completions/ldapdelete differ
+Files ./ldapmodify and /usr/share/bash-completion/completions/ldapmodify differ
+Files ./ldapmodrdn and /usr/share/bash-completion/completions/ldapmodrdn differ
+Files ./ldappasswd and /usr/share/bash-completion/completions/ldappasswd differ
+Files ./ldapsearch and /usr/share/bash-completion/completions/ldapsearch differ
+Files ./ldapvi and /usr/share/bash-completion/completions/ldapvi differ
+Files ./ldapwhoami and /usr/share/bash-completion/completions/ldapwhoami differ
+Only in /usr/share/bash-completion/completions/: ldattach
+Files ./lftp and /usr/share/bash-completion/completions/lftp differ
+Files ./lftpget and /usr/share/bash-completion/completions/lftpget differ
+Files ./lilo and /usr/share/bash-completion/completions/lilo differ
+Files ./links and /usr/share/bash-completion/completions/links differ
+Files ./lintian and /usr/share/bash-completion/completions/lintian differ
+Files ./lintian-info and /usr/share/bash-completion/completions/lintian-info differ
+Files ./lisp and /usr/share/bash-completion/completions/lisp differ
+Files ./list_admins and /usr/share/bash-completion/completions/list_admins differ
+Files ./list_lists and /usr/share/bash-completion/completions/list_lists differ
+Files ./list_members and /usr/share/bash-completion/completions/list_members differ
+Files ./list_owners and /usr/share/bash-completion/completions/list_owners differ
+Only in /usr/share/bash-completion/completions/: localectl
+Only in .: log
+Only in /usr/share/bash-completion/completions/: logger
+Only in /usr/share/bash-completion/completions/: loginctl
+Only in /usr/share/bash-completion/completions/: look
+Only in .: _look
+Only in /usr/share/bash-completion/completions/: losetup
+Files ./lpq and /usr/share/bash-completion/completions/lpq differ
+Files ./lpr and /usr/share/bash-completion/completions/lpr differ
+Files ./lrzip and /usr/share/bash-completion/completions/lrzip differ
+Only in /usr/share/bash-completion/completions/: lsblk
+Only in /usr/share/bash-completion/completions/: lscpu
+Only in /usr/share/bash-completion/completions/: lsipc
+Only in /usr/share/bash-completion/completions/: lslocks
+Files ./lsof and /usr/share/bash-completion/completions/lsof differ
+Only in .: lsscsi
+Only in .: lsusb
+Files ./lua and /usr/share/bash-completion/completions/lua differ
+Files ./luac and /usr/share/bash-completion/completions/luac differ
+Files ./luseradd and /usr/share/bash-completion/completions/luseradd differ
+Files ./luserdel and /usr/share/bash-completion/completions/luserdel differ
+Files ./lusermod and /usr/share/bash-completion/completions/lusermod differ
+Files ./lvchange and /usr/share/bash-completion/completions/lvchange differ
+Files ./lvcreate and /usr/share/bash-completion/completions/lvcreate differ
+Files ./lvdisplay and /usr/share/bash-completion/completions/lvdisplay differ
+Files ./lvextend and /usr/share/bash-completion/completions/lvextend differ
+Files ./lvm and /usr/share/bash-completion/completions/lvm differ
+Files ./lvmdiskscan and /usr/share/bash-completion/completions/lvmdiskscan differ
+Files ./lvreduce and /usr/share/bash-completion/completions/lvreduce differ
+Files ./lvremove and /usr/share/bash-completion/completions/lvremove differ
+Files ./lvrename and /usr/share/bash-completion/completions/lvrename differ
+Files ./lvresize and /usr/share/bash-completion/completions/lvresize differ
+Files ./lvs and /usr/share/bash-completion/completions/lvs differ
+Files ./lvscan and /usr/share/bash-completion/completions/lvscan differ
+Only in /usr/share/bash-completion/completions/: lxc
+Only in .: lz4
+Only in .: lz4c
+Files ./lzip and /usr/share/bash-completion/completions/lzip differ
+Files ./lzma and /usr/share/bash-completion/completions/lzma differ
+Files ./lzop and /usr/share/bash-completion/completions/lzop differ
+Files ./macof and /usr/share/bash-completion/completions/macof differ
+Files ./mailmanctl and /usr/share/bash-completion/completions/mailmanctl differ
+Files ./mailsnarf and /usr/share/bash-completion/completions/mailsnarf differ
+Files ./make and /usr/share/bash-completion/completions/make differ
+Files ./makepkg and /usr/share/bash-completion/completions/makepkg differ
+Files ./man and /usr/share/bash-completion/completions/man differ
+Files ./mc and /usr/share/bash-completion/completions/mc differ
+Only in /usr/share/bash-completion/completions/: mcookie
+Files ./mcrypt and /usr/share/bash-completion/completions/mcrypt differ
+Files ./mdadm and /usr/share/bash-completion/completions/mdadm differ
+Files ./mdecrypt and /usr/share/bash-completion/completions/mdecrypt differ
+Files ./mdtool and /usr/share/bash-completion/completions/mdtool differ
+Files ./medusa and /usr/share/bash-completion/completions/medusa differ
+Files ./mencoder and /usr/share/bash-completion/completions/mencoder differ
+Only in /usr/share/bash-completion/completions/: mesg
+Only in .: micropython
+Files ./mii-diag and /usr/share/bash-completion/completions/mii-diag differ
+Files ./mii-tool and /usr/share/bash-completion/completions/mii-tool differ
+Files ./minicom and /usr/share/bash-completion/completions/minicom differ
+Only in /usr/share/bash-completion/completions/: mkfs
+Only in /usr/share/bash-completion/completions/: mkfs.bfs
+Only in /usr/share/bash-completion/completions/: mkfs.cramfs
+Only in /usr/share/bash-completion/completions/: mkfs.minix
+Files ./mkinitrd and /usr/share/bash-completion/completions/mkinitrd differ
+Files ./mkisofs and /usr/share/bash-completion/completions/mkisofs differ
+Only in /usr/share/bash-completion/completions/: mkswap
+Files ./mktemp and /usr/share/bash-completion/completions/mktemp differ
+Files ./mmsitepass and /usr/share/bash-completion/completions/mmsitepass differ
+Only in .: _mock
+Files ./modinfo and /usr/share/bash-completion/completions/modinfo differ
+Files ./modprobe and /usr/share/bash-completion/completions/modprobe differ
+Only in .: _modules
+Files ./mogrify and /usr/share/bash-completion/completions/mogrify differ
+Files ./monodevelop and /usr/share/bash-completion/completions/monodevelop differ
+Files ./montage and /usr/share/bash-completion/completions/montage differ
+Only in /usr/share/bash-completion/completions/: more
+Files ./mount and /usr/share/bash-completion/completions/mount differ
+Files ./mount.linux and /usr/share/bash-completion/completions/mount.linux differ
+Only in /usr/share/bash-completion/completions/: mountpoint
+Files ./mplayer and /usr/share/bash-completion/completions/mplayer differ
+Files ./mplayer2 and /usr/share/bash-completion/completions/mplayer2 differ
+Only in .: mr
+Files ./msgsnarf and /usr/share/bash-completion/completions/msgsnarf differ
+Files ./msynctool and /usr/share/bash-completion/completions/msynctool differ
+Files ./mtx and /usr/share/bash-completion/completions/mtx differ
+Files ./munindoc and /usr/share/bash-completion/completions/munindoc differ
+Files ./munin-node-configure and /usr/share/bash-completion/completions/munin-node-configure differ
+Files ./munin-run and /usr/share/bash-completion/completions/munin-run differ
+Files ./munin-update and /usr/share/bash-completion/completions/munin-update differ
+Files ./mussh and /usr/share/bash-completion/completions/mussh differ
+Files ./mutt and /usr/share/bash-completion/completions/mutt differ
+Files ./muttng and /usr/share/bash-completion/completions/muttng differ
+Files ./mysql and /usr/share/bash-completion/completions/mysql differ
+Files ./mysqladmin and /usr/share/bash-completion/completions/mysqladmin differ
+Only in /usr/share/bash-completion/completions/: namei
+Files ./nc and /usr/share/bash-completion/completions/nc differ
+Files ./ncal and /usr/share/bash-completion/completions/ncal differ
+Files ./ncftp and /usr/share/bash-completion/completions/ncftp differ
+Files ./nethogs and /usr/share/bash-completion/completions/nethogs differ
+Only in /usr/share/bash-completion/completions/: networkctl
+Only in /usr/share/bash-completion/completions/: newgrp
+Only in .: _newgrp
+Files ./newlist and /usr/share/bash-completion/completions/newlist differ
+Files ./newusers and /usr/share/bash-completion/completions/newusers differ
+Files ./ngrep and /usr/share/bash-completion/completions/ngrep differ
+Files ./nmap and /usr/share/bash-completion/completions/nmap differ
+Only in .: _nmcli
+Only in .: nproc
+Only in /usr/share/bash-completion/completions/: nsenter
+Files ./nslookup and /usr/share/bash-completion/completions/nslookup differ
+Files ./ntpdate and /usr/share/bash-completion/completions/ntpdate differ
+Only in .: oggdec
+Files ./openssl and /usr/share/bash-completion/completions/openssl differ
+Files ./opera and /usr/share/bash-completion/completions/opera differ
+Only in .: optipng
+Files ./p4 and /usr/share/bash-completion/completions/p4 differ
+Files ./pack200 and /usr/share/bash-completion/completions/pack200 differ
+Only in /usr/share/bash-completion/completions/: partx
+Files ./passwd and /usr/share/bash-completion/completions/passwd differ
+Files ./patch and /usr/share/bash-completion/completions/patch differ
+Files ./pbzip2 and /usr/share/bash-completion/completions/pbzip2 differ
+Files ./pccardctl and /usr/share/bash-completion/completions/pccardctl differ
+Only in .: pdftotext
+Files ./pdlzip and /usr/share/bash-completion/completions/pdlzip differ
+Files ./perl and /usr/share/bash-completion/completions/perl differ
+Files ./perldoc and /usr/share/bash-completion/completions/perldoc differ
+Only in .: perltidy
+Only in /usr/share/bash-completion/completions/: pg
+Files ./pgrep and /usr/share/bash-completion/completions/pgrep differ
+Files ./phing and /usr/share/bash-completion/completions/phing differ
+Files ./pidof and /usr/share/bash-completion/completions/pidof differ
+Files ./pigz and /usr/share/bash-completion/completions/pigz differ
+Files ./pine and /usr/share/bash-completion/completions/pine differ
+Files ./pinfo and /usr/share/bash-completion/completions/pinfo differ
+Files ./ping and /usr/share/bash-completion/completions/ping differ
+Files ./ping6 and /usr/share/bash-completion/completions/ping6 differ
+Only in /usr/share/bash-completion/completions/: pivot_root
+Files ./pkgadd and /usr/share/bash-completion/completions/pkgadd differ
+Files ./pkg-config and /usr/share/bash-completion/completions/pkg-config differ
+Files ./pkg_deinstall and /usr/share/bash-completion/completions/pkg_deinstall differ
+Files ./pkg_delete and /usr/share/bash-completion/completions/pkg_delete differ
+Files ./pkg-get and /usr/share/bash-completion/completions/pkg-get differ
+Files ./pkg_info and /usr/share/bash-completion/completions/pkg_info differ
+Files ./pkgrm and /usr/share/bash-completion/completions/pkgrm differ
+Files ./pkgtool and /usr/share/bash-completion/completions/pkgtool differ
+Files ./pkgutil and /usr/share/bash-completion/completions/pkgutil differ
+Files ./pkill and /usr/share/bash-completion/completions/pkill differ
+Files ./plague-client and /usr/share/bash-completion/completions/plague-client differ
+Files ./plzip and /usr/share/bash-completion/completions/plzip differ
+Files ./pmake and /usr/share/bash-completion/completions/pmake differ
+Files ./pm-hibernate and /usr/share/bash-completion/completions/pm-hibernate differ
+Files ./pm-is-supported and /usr/share/bash-completion/completions/pm-is-supported differ
+Files ./pm-powersave and /usr/share/bash-completion/completions/pm-powersave differ
+Files ./pm-suspend and /usr/share/bash-completion/completions/pm-suspend differ
+Files ./pm-suspend-hybrid and /usr/share/bash-completion/completions/pm-suspend-hybrid differ
+Only in .: pngfix
+Only in /usr/share/bash-completion/completions/: pon
+Files ./portinstall and /usr/share/bash-completion/completions/portinstall differ
+Only in .: portsnap
+Files ./portupgrade and /usr/share/bash-completion/completions/portupgrade differ
+Files ./postalias and /usr/share/bash-completion/completions/postalias differ
+Files ./postcat and /usr/share/bash-completion/completions/postcat differ
+Files ./postconf and /usr/share/bash-completion/completions/postconf differ
+Files ./postfix and /usr/share/bash-completion/completions/postfix differ
+Files ./postmap and /usr/share/bash-completion/completions/postmap differ
+Files ./postsuper and /usr/share/bash-completion/completions/postsuper differ
+Files ./povray and /usr/share/bash-completion/completions/povray differ
+Files ./ppc-koji and /usr/share/bash-completion/completions/ppc-koji differ
+Files ./prelink and /usr/share/bash-completion/completions/prelink differ
+Only in /usr/share/bash-completion/completions/: prlimit
+Files ./protoc and /usr/share/bash-completion/completions/protoc differ
+Files ./psql and /usr/share/bash-completion/completions/psql differ
+Files ./puppet and /usr/share/bash-completion/completions/puppet differ
+Files ./puppetca and /usr/share/bash-completion/completions/puppetca differ
+Files ./puppetd and /usr/share/bash-completion/completions/puppetd differ
+Files ./puppetdoc and /usr/share/bash-completion/completions/puppetdoc differ
+Files ./puppetmasterd and /usr/share/bash-completion/completions/puppetmasterd differ
+Files ./puppetqd and /usr/share/bash-completion/completions/puppetqd differ
+Files ./puppetrun and /usr/share/bash-completion/completions/puppetrun differ
+Only in .: pv
+Files ./pvchange and /usr/share/bash-completion/completions/pvchange differ
+Files ./pvcreate and /usr/share/bash-completion/completions/pvcreate differ
+Files ./pvdisplay and /usr/share/bash-completion/completions/pvdisplay differ
+Files ./pvmove and /usr/share/bash-completion/completions/pvmove differ
+Files ./pvremove and /usr/share/bash-completion/completions/pvremove differ
+Files ./pvs and /usr/share/bash-completion/completions/pvs differ
+Files ./pvscan and /usr/share/bash-completion/completions/pvscan differ
+Files ./pwck and /usr/share/bash-completion/completions/pwck differ
+Files ./pwd and /usr/share/bash-completion/completions/pwd differ
+Files ./pwdx and /usr/share/bash-completion/completions/pwdx differ
+Files ./pwgen and /usr/share/bash-completion/completions/pwgen differ
+Files ./pxz and /usr/share/bash-completion/completions/pxz differ
+Only in .: pycodestyle
+Files ./pydoc and /usr/share/bash-completion/completions/pydoc differ
+Files ./pydoc3 and /usr/share/bash-completion/completions/pydoc3 differ
+Only in .: pyflakes
+Files ./pylint and /usr/share/bash-completion/completions/pylint differ
+Only in .: pylint-2
+Only in .: pylint-3
+Only in .: pypy
+Only in .: pypy3
+Only in .: py.test
+Only in .: py.test-2
+Only in .: py.test-3
+Files ./python and /usr/share/bash-completion/completions/python differ
+Files ./python2 and /usr/share/bash-completion/completions/python2 differ
+Files ./python3 and /usr/share/bash-completion/completions/python3 differ
+Only in .: pyvenv
+Only in .: pyvenv-3.4
+Only in .: pyvenv-3.5
+Files ./qdbus and /usr/share/bash-completion/completions/qdbus differ
+Files ./qemu and /usr/share/bash-completion/completions/qemu differ
+Only in .: qemu-kvm
+Only in .: qemu-system-i386
+Only in .: qemu-system-x86_64
+Files ./qrunner and /usr/share/bash-completion/completions/qrunner differ
+Files ./querybts and /usr/share/bash-completion/completions/querybts differ
+Files ./quota and /usr/share/bash-completion/completions/quota differ
+Files ./quotacheck and /usr/share/bash-completion/completions/quotacheck differ
+Files ./quotaoff and /usr/share/bash-completion/completions/quotaoff differ
+Files ./quotaon and /usr/share/bash-completion/completions/quotaon differ
+Only in .: radvdump
+Files ./ralsh and /usr/share/bash-completion/completions/ralsh differ
+Only in /usr/share/bash-completion/completions/: raw
+Files ./rcs and /usr/share/bash-completion/completions/rcs differ
+Files ./rcsdiff and /usr/share/bash-completion/completions/rcsdiff differ
+Files ./rdesktop and /usr/share/bash-completion/completions/rdesktop differ
+Files ./rdict and /usr/share/bash-completion/completions/rdict differ
+Only in /usr/share/bash-completion/completions/: readprofile
+Files ./remove_members and /usr/share/bash-completion/completions/remove_members differ
+Files ./removepkg and /usr/share/bash-completion/completions/removepkg differ
+Only in /usr/share/bash-completion/completions/: rename
+Only in /usr/share/bash-completion/completions/: renice
+Only in .: _renice
+Only in .: _repomanage
+Files ./reportbug and /usr/share/bash-completion/completions/reportbug differ
+Files ./repquota and /usr/share/bash-completion/completions/repquota differ
+Only in /usr/share/bash-completion/completions/: reptyr
+Only in .: _reptyr
+Only in /usr/share/bash-completion/completions/: resizepart
+Files ./resolvconf and /usr/share/bash-completion/completions/resolvconf differ
+Only in /usr/share/bash-completion/completions/: rev
+Files ./rfcomm and /usr/share/bash-completion/completions/rfcomm differ
+Only in /usr/share/bash-completion/completions/: rfkill
+Only in .: _rfkill
+Files ./ri and /usr/share/bash-completion/completions/ri differ
+Files ./rlog and /usr/share/bash-completion/completions/rlog differ
+Files ./rmlist and /usr/share/bash-completion/completions/rmlist differ
+Files ./rmmod and /usr/share/bash-completion/completions/rmmod differ
+Files ./route and /usr/share/bash-completion/completions/route differ
+Files ./rpcdebug and /usr/share/bash-completion/completions/rpcdebug differ
+Files ./rpm and /usr/share/bash-completion/completions/rpm differ
+Files ./rpm2targz and /usr/share/bash-completion/completions/rpm2targz differ
+Files ./rpm2tgz and /usr/share/bash-completion/completions/rpm2tgz differ
+Files ./rpm2txz and /usr/share/bash-completion/completions/rpm2txz differ
+Files ./rpmbuild and /usr/share/bash-completion/completions/rpmbuild differ
+Files ./rpmbuild-md5 and /usr/share/bash-completion/completions/rpmbuild-md5 differ
+Files ./rpmcheck and /usr/share/bash-completion/completions/rpmcheck differ
+Files ./rrdtool and /usr/share/bash-completion/completions/rrdtool differ
+Files ./rsync and /usr/share/bash-completion/completions/rsync differ
+Only in /usr/share/bash-completion/completions/: rtcwake
+Only in .: _rtcwake
+Only in /usr/share/bash-completion/completions/: runuser
+Only in .: _runuser
+Files ./s390-koji and /usr/share/bash-completion/completions/s390-koji differ
+Files ./sbcl and /usr/share/bash-completion/completions/sbcl differ
+Files ./sbcl-mt and /usr/share/bash-completion/completions/sbcl-mt differ
+Files ./sbopkg and /usr/share/bash-completion/completions/sbopkg differ
+Files ./scp and /usr/share/bash-completion/completions/scp differ
+Files ./screen and /usr/share/bash-completion/completions/screen differ
+Only in /usr/share/bash-completion/completions/: script
+Only in /usr/share/bash-completion/completions/: scriptreplay
+Files ./sdptool and /usr/share/bash-completion/completions/sdptool differ
+Only in /usr/share/bash-completion/completions/: setarch
+Files ./setquota and /usr/share/bash-completion/completions/setquota differ
+Only in /usr/share/bash-completion/completions/: setsid
+Only in /usr/share/bash-completion/completions/: setterm
+Only in /usr/share/bash-completion/completions/: sfdisk
+Files ./sftp and /usr/share/bash-completion/completions/sftp differ
+Files ./sh and /usr/share/bash-completion/completions/sh differ
+Only in .: sidedoor
+Files ./sitecopy and /usr/share/bash-completion/completions/sitecopy differ
+Files ./slackpkg and /usr/share/bash-completion/completions/slackpkg differ
+Files ./slapt-get and /usr/share/bash-completion/completions/slapt-get differ
+Files ./slapt-src and /usr/share/bash-completion/completions/slapt-src differ
+Files ./slogin and /usr/share/bash-completion/completions/slogin differ
+Files ./smartctl and /usr/share/bash-completion/completions/smartctl differ
+Files ./smbcacls and /usr/share/bash-completion/completions/smbcacls differ
+Files ./smbclient and /usr/share/bash-completion/completions/smbclient differ
+Files ./smbcquotas and /usr/share/bash-completion/completions/smbcquotas differ
+Files ./smbget and /usr/share/bash-completion/completions/smbget differ
+Files ./smbpasswd and /usr/share/bash-completion/completions/smbpasswd differ
+Files ./smbtar and /usr/share/bash-completion/completions/smbtar differ
+Files ./smbtree and /usr/share/bash-completion/completions/smbtree differ
+Files ./snownews and /usr/share/bash-completion/completions/snownews differ
+Files ./sparc-koji and /usr/share/bash-completion/completions/sparc-koji differ
+Files ./spovray and /usr/share/bash-completion/completions/spovray differ
+Files ./sqlite3 and /usr/share/bash-completion/completions/sqlite3 differ
+Files ./ss and /usr/share/bash-completion/completions/ss differ
+Files ./ssh and /usr/share/bash-completion/completions/ssh differ
+Files ./ssh-add and /usr/share/bash-completion/completions/ssh-add differ
+Files ./ssh-copy-id and /usr/share/bash-completion/completions/ssh-copy-id differ
+Files ./sshfs and /usr/share/bash-completion/completions/sshfs differ
+Only in .: ssh-keygen
+Files ./sshmitm and /usr/share/bash-completion/completions/sshmitm differ
+Files ./sshow and /usr/share/bash-completion/completions/sshow differ
+Files ./strace and /usr/share/bash-completion/completions/strace differ
+Files ./stream and /usr/share/bash-completion/completions/stream differ
+Files ./strings and /usr/share/bash-completion/completions/strings differ
+Only in /usr/share/bash-completion/completions/: su
+Only in .: _su
+Files ./sudo and /usr/share/bash-completion/completions/sudo differ
+Files ./sudoedit and /usr/share/bash-completion/completions/sudoedit differ
+Files ./svcadm and /usr/share/bash-completion/completions/svcadm differ
+Files ./svk and /usr/share/bash-completion/completions/svk differ
+Only in /usr/share/bash-completion/completions/: svn
+Only in .: _svn
+Only in /usr/share/bash-completion/completions/: svnadmin
+Only in .: _svnadmin
+Only in /usr/share/bash-completion/completions/: svndumpfilter
+Only in /usr/share/bash-completion/completions/: svnlook
+Only in .: _svnlook
+Only in /usr/share/bash-completion/completions/: svnversion
+Only in /usr/share/bash-completion/completions/: swaplabel
+Only in /usr/share/bash-completion/completions/: swapon
+Only in .: synclient
+Files ./sync_members and /usr/share/bash-completion/completions/sync_members differ
+Files ./sysbench and /usr/share/bash-completion/completions/sysbench differ
+Files ./sysctl and /usr/share/bash-completion/completions/sysctl differ
+Only in /usr/share/bash-completion/completions/: systemctl
+Only in /usr/share/bash-completion/completions/: systemd-analyze
+Only in /usr/share/bash-completion/completions/: systemd-cat
+Only in /usr/share/bash-completion/completions/: systemd-cgls
+Only in /usr/share/bash-completion/completions/: systemd-cgtop
+Only in /usr/share/bash-completion/completions/: systemd-delta
+Only in /usr/share/bash-completion/completions/: systemd-detect-virt
+Only in /usr/share/bash-completion/completions/: systemd-path
+Only in /usr/share/bash-completion/completions/: systemd-run
+Only in /usr/share/bash-completion/completions/: tailf
+Files ./tar and /usr/share/bash-completion/completions/tar differ
+Only in /usr/share/bash-completion/completions/: taskset
+Files ./tcpdump and /usr/share/bash-completion/completions/tcpdump differ
+Files ./tcpkill and /usr/share/bash-completion/completions/tcpkill differ
+Files ./tcpnice and /usr/share/bash-completion/completions/tcpnice differ
+Files ./tightvncviewer and /usr/share/bash-completion/completions/tightvncviewer differ
+Only in /usr/share/bash-completion/completions/: timedatectl
+Only in .: timeout
+Only in .: tipc
+Only in /usr/share/bash-completion/completions/: torsocks
+Only in .: tox
+Files ./tracepath and /usr/share/bash-completion/completions/tracepath differ
+Files ./tracepath6 and /usr/share/bash-completion/completions/tracepath6 differ
+Files ./tshark and /usr/share/bash-completion/completions/tshark differ
+Files ./tune2fs and /usr/share/bash-completion/completions/tune2fs differ
+Only in /usr/share/bash-completion/completions/: tunelp
+Files ./typeset and /usr/share/bash-completion/completions/typeset differ
+Only in /usr/share/bash-completion/completions/: udevadm
+Only in .: _udevadm
+Only in /usr/share/bash-completion/completions/: ufw
+Only in /usr/share/bash-completion/completions/: ul
+Files ./umount and /usr/share/bash-completion/completions/umount differ
+Files ./umount.linux and /usr/share/bash-completion/completions/umount.linux differ
+Files ./unace and /usr/share/bash-completion/completions/unace differ
+Files ./unpack200 and /usr/share/bash-completion/completions/unpack200 differ
+Files ./unrar and /usr/share/bash-completion/completions/unrar differ
+Only in /usr/share/bash-completion/completions/: unshare
+Files ./unshunt and /usr/share/bash-completion/completions/unshunt differ
+Files ./update-alternatives and /usr/share/bash-completion/completions/update-alternatives differ
+Files ./update-rc.d and /usr/share/bash-completion/completions/update-rc.d differ
+Files ./upgradepkg and /usr/share/bash-completion/completions/upgradepkg differ
+Files ./urlsnarf and /usr/share/bash-completion/completions/urlsnarf differ
+Files ./useradd and /usr/share/bash-completion/completions/useradd differ
+Files ./userdel and /usr/share/bash-completion/completions/userdel differ
+Files ./usermod and /usr/share/bash-completion/completions/usermod differ
+Only in /usr/share/bash-completion/completions/: utmpdump
+Only in /usr/share/bash-completion/completions/: uuidd
+Only in /usr/share/bash-completion/completions/: uuidgen
+Only in /usr/share/bash-completion/completions/: uuidparse
+Files ./valgrind and /usr/share/bash-completion/completions/valgrind differ
+Files ./vgcfgbackup and /usr/share/bash-completion/completions/vgcfgbackup differ
+Files ./vgcfgrestore and /usr/share/bash-completion/completions/vgcfgrestore differ
+Files ./vgchange and /usr/share/bash-completion/completions/vgchange differ
+Files ./vgck and /usr/share/bash-completion/completions/vgck differ
+Files ./vgconvert and /usr/share/bash-completion/completions/vgconvert differ
+Files ./vgcreate and /usr/share/bash-completion/completions/vgcreate differ
+Files ./vgdisplay and /usr/share/bash-completion/completions/vgdisplay differ
+Files ./vgexport and /usr/share/bash-completion/completions/vgexport differ
+Files ./vgextend and /usr/share/bash-completion/completions/vgextend differ
+Files ./vgimport and /usr/share/bash-completion/completions/vgimport differ
+Files ./vgmerge and /usr/share/bash-completion/completions/vgmerge differ
+Files ./vgmknodes and /usr/share/bash-completion/completions/vgmknodes differ
+Files ./vgreduce and /usr/share/bash-completion/completions/vgreduce differ
+Files ./vgremove and /usr/share/bash-completion/completions/vgremove differ
+Files ./vgrename and /usr/share/bash-completion/completions/vgrename differ
+Files ./vgs and /usr/share/bash-completion/completions/vgs differ
+Files ./vgscan and /usr/share/bash-completion/completions/vgscan differ
+Files ./vgsplit and /usr/share/bash-completion/completions/vgsplit differ
+Files ./vigr and /usr/share/bash-completion/completions/vigr differ
+Files ./vipw and /usr/share/bash-completion/completions/vipw differ
+Files ./vmstat and /usr/share/bash-completion/completions/vmstat differ
+Files ./vncviewer and /usr/share/bash-completion/completions/vncviewer differ
+Files ./vpnc and /usr/share/bash-completion/completions/vpnc differ
+Only in /usr/share/bash-completion/completions/: wall
+Files ./watch and /usr/share/bash-completion/completions/watch differ
+Only in /usr/share/bash-completion/completions/: wdctl
+Files ./webmitm and /usr/share/bash-completion/completions/webmitm differ
+Only in /usr/share/bash-completion/completions/: wg
+Files ./wget and /usr/share/bash-completion/completions/wget differ
+Only in /usr/share/bash-completion/completions/: wg-quick
+Files ./whatis and /usr/share/bash-completion/completions/whatis differ
+Only in /usr/share/bash-completion/completions/: whereis
+Files ./wine and /usr/share/bash-completion/completions/wine differ
+Only in /usr/share/bash-completion/completions/: wipefs
+Files ./withlist and /usr/share/bash-completion/completions/withlist differ
+Files ./wodim and /usr/share/bash-completion/completions/wodim differ
+Files ./wol and /usr/share/bash-completion/completions/wol differ
+Only in .: _write
+Files ./wsimport and /usr/share/bash-completion/completions/wsimport differ
+Files ./wtf and /usr/share/bash-completion/completions/wtf differ
+Files ./wvdial and /usr/share/bash-completion/completions/wvdial differ
+Only in .: xdg-mime
+Only in .: xdg-settings
+Files ./xfreerdp and /usr/share/bash-completion/completions/xfreerdp differ
+Files ./xgamma and /usr/share/bash-completion/completions/xgamma differ
+Files ./xhost and /usr/share/bash-completion/completions/xhost differ
+Files ./xm and /usr/share/bash-completion/completions/xm differ
+Files ./xmllint and /usr/share/bash-completion/completions/xmllint differ
+Files ./xmlwf and /usr/share/bash-completion/completions/xmlwf differ
+Files ./xmms and /usr/share/bash-completion/completions/xmms differ
+Files ./xmodmap and /usr/share/bash-completion/completions/xmodmap differ
+Files ./xpovray and /usr/share/bash-completion/completions/xpovray differ
+Files ./xrandr and /usr/share/bash-completion/completions/xrandr differ
+Files ./xrdb and /usr/share/bash-completion/completions/xrdb differ
+Files ./xsltproc and /usr/share/bash-completion/completions/xsltproc differ
+Files ./xvnc4viewer and /usr/share/bash-completion/completions/xvnc4viewer differ
+Files ./xxd and /usr/share/bash-completion/completions/xxd differ
+Files ./xz and /usr/share/bash-completion/completions/xz differ
+Files ./xzdec and /usr/share/bash-completion/completions/xzdec differ
+Files ./ypcat and /usr/share/bash-completion/completions/ypcat differ
+Files ./ypmatch and /usr/share/bash-completion/completions/ypmatch differ
+Only in .: _yum
+Files ./yum-arch and /usr/share/bash-completion/completions/yum-arch differ
+Only in .: zopfli
+Only in .: zopflipng
+Only in /usr/share/bash-completion/completions/: zramctl

@@ -1,0 +1,35 @@
+.TH "fish_prompt" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBfish_prompt\fP -- define the appearance of the command line prompt 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBfunction\fP fish_prompt
+    \&.\&.\&.
+\fBend\fP
+.fi
+.PP
+.SS "Description"
+By defining the \fCfish_prompt\fP function, the user can choose a custom prompt\&. The \fCfish_prompt\fP function is executed when the prompt is to be shown, and the output is used as a prompt\&.
+.PP
+The exit status of commands within \fCfish_prompt\fP will not modify the value of \fC$status\fP outside of the \fCfish_prompt\fP function\&.
+.PP
+\fCfish\fP ships with a number of example prompts that can be chosen with the \fCfish_config\fP command\&.
+.SS "Example"
+A simple prompt:
+.PP
+.PP
+.nf
+
+\fBfunction\fP fish_prompt -d 'Write out the prompt'
+    \fBprintf\fP '%s@%s%s%s%s> ' (\fBwhoami\fP) (\fBhostname\fP | \fBcut\fP -d \&. -f 1) \\ 
+            (\fBset_color\fP $fish_color_cwd) (\fBprompt_pwd\fP) (\fBset_color\fP normal)
+\fBend\fP
+.fi
+.PP
+ 

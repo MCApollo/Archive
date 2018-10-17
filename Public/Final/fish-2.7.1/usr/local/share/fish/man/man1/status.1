@@ -1,0 +1,64 @@
+.TH "status" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBstatus\fP -- query fish runtime information 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBstatus\fP
+\fBstatus\fP is-login
+\fBstatus\fP is-interactive
+\fBstatus\fP is-block
+\fBstatus\fP is-breakpoint
+\fBstatus\fP is-command-substitution
+\fBstatus\fP is-no-job-control
+\fBstatus\fP is-full-job-control
+\fBstatus\fP is-interactive-job-control
+\fBstatus\fP filename
+\fBstatus\fP \fBfunction\fP
+\fBstatus\fP line-number
+\fBstatus\fP stack-trace
+\fBstatus\fP job-control CONTROL-TYPE
+.fi
+.PP
+.SS "Description"
+With no arguments, \fCstatus\fP displays a summary of the current login and job control status of the shell\&.
+.PP
+The following operations (sub-commands) are available:
+.PP
+.IP "\(bu" 2
+\fCis-command-sub\fP returns 0 if fish is currently executing a command substitution\&. Also \fC-c\fP or \fC--is-command-substitution\fP\&.
+.IP "\(bu" 2
+\fCis-block\fP returns 0 if fish is currently executing a block of code\&. Also \fC-b\fP or \fC--is-block\fP\&.
+.IP "\(bu" 2
+\fCis-breakpoint\fP returns 0 if fish is currently showing a prompt in the context of a \fCbreakpoint\fP command\&. See also the \fCfish_breakpoint_prompt\fP function\&.
+.IP "\(bu" 2
+\fCis-interactive\fP returns 0 if fish is interactive - that is, connected to a keyboard\&. Also \fC-i\fP or \fC--is-interactive\fP\&.
+.IP "\(bu" 2
+\fCis-login\fP returns 0 if fish is a login shell - that is, if fish should perform login tasks such as setting up the PATH\&. Also \fC-l\fP or \fC--is-login\fP\&.
+.IP "\(bu" 2
+\fCis-full-job-control\fP returns 0 if full job control is enabled\&. Also \fC--is-full-job-control\fP (no short flag)\&.
+.IP "\(bu" 2
+\fCis-interactive-job-control\fP returns 0 if interactive job control is enabled\&. Also, \fC--is-interactive-job-control\fP (no short flag)\&.
+.IP "\(bu" 2
+\fCis-no-job-control\fP returns 0 if no job control is enabled\&. Also \fC--is-no-job-control\fP (no short flag)\&.
+.IP "\(bu" 2
+\fCfilename\fP prints the filename of the currently running script\&. Also \fCcurrent-filename\fP, \fC-f\fP or \fC--current-filename\fP\&.
+.IP "\(bu" 2
+\fCfunction\fP prints the name of the currently called function if able, when missing displays 'Not a
+  function' (or equivalent translated string)\&. Also \fCcurrent-function\fP, \fC-u\fP or \fC--current-function\fP\&.
+.IP "\(bu" 2
+\fCline-number\fP prints the line number of the currently running script\&. Also \fCcurrent-line-number\fP, \fC-n\fP or \fC--current-line-number\fP\&.
+.IP "\(bu" 2
+\fCjob-control CONTROL-TYPE\fP sets the job control type, which can be \fCnone\fP, \fCfull\fP, or \fCinteractive\fP\&. Also \fC-j CONTROL-TYPE\fP or \fC--job-control=CONTROL-TYPE\fP\&.
+.IP "\(bu" 2
+\fCstack-trace\fP prints a stack trace of all function calls on the call stack\&. Also \fCprint-stack-trace\fP, \fC-t\fP or \fC--print-stack-trace\fP\&.
+.PP
+.SS "Notes"
+For backwards compatibility each subcommand can also be specified as a long or short option\&. For example, rather than \fCstatus is-login\fP you can type \fCstatus --is-login\fP\&. The flag forms are deprecated and may be removed in a future release (but not before fish 3\&.0)\&.
+.PP
+You can only specify one subcommand per invocation even if you use the flag form of the subcommand\&. 

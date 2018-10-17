@@ -1,0 +1,10 @@
+Package: com.mc.cowsay
+Name: Cowsay
+Version: 1.12-2
+Section: Utility
+Architecture: iphoneos-arm
+Depends: perl
+Author: Tony Monroe
+Maintainer: u/LULShotz
+Description: Compiled for arm64
+	Cowsay is a program that generates ASCII pictures of a cow with a message.

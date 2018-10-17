@@ -1,0 +1,11 @@
+Package: com.mc.googlelibpam
+Name: Google-Auth PAM
+Version: 1.0.5
+Section: Networking
+Architecture: iphoneos-arm
+Author: Thomas Habets
+Depends: com.mc.qrencode, com.mc.openpam
+Maintainer: u/LULShotz
+Homepage: https://github.com/google/google-authenticator-libpam#google-authenticator-pam-module
+Description: Compiled for ARM64.
+	Does it work? I dunno. Seems cool though.

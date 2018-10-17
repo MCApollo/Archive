@@ -1,0 +1,7 @@
+complete -c wc -s c -l bytes --description "Print byte counts"
+complete -c wc -s m -l chars --description "Print character counts"
+complete -c wc -s l -l lines --description "Print newline counts"
+complete -c wc -s L -l max-line-length --description "Print length of longest line"
+complete -c wc -s w -l words --description "Print word counts"
+complete -c wc -l help --description "Display help and exit"
+complete -c wc -l version --description "Display version and exit"

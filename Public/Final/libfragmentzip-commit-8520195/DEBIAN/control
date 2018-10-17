@@ -1,0 +1,10 @@
+Package: com.mc.libfragmentzip
+Name: libfragmentzip
+Version: 1.0-commit8520195
+Section: Development
+Architecture: iphoneos-arm
+Author: tihmstar
+Depends: curl
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	A library allowing to download single files from a remote zip archive.

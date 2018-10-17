@@ -1,0 +1,195 @@
+.TH "test" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBtest\fP -- perform tests on files and text 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBtest\fP [EXPRESSION]
+[ [EXPRESSION] ]
+.fi
+.PP
+.SS "Description"
+Tests the expression given and sets the exit status to 0 if true, and 1 if false\&. An expression is made up of one or more operators and their arguments\&.
+.PP
+The first form (\fCtest\fP) is preferred\&. For compatibility with other shells, the second form is available: a matching pair of square brackets (\fC[ [EXPRESSION ] ]\fP)\&.
+.PP
+This test is mostly POSIX-compatible\&.
+.PP
+When using a variable as an argument for a test operator you should almost always enclose it in double-quotes\&. There are only two situations it is safe to omit the quote marks\&. The first is when the argument is a literal string with no whitespace or other characters special to the shell (e\&.g\&., semicolon)\&. For example, \fCtest -b /my/file\fP\&. The second is using a variable that expands to exactly one element including if that element is the empty string (e\&.g\&., `set x ''\fC)\&. If the variable is not set, set but with no value, or set to more than one value you must enclose it in double-quotes\&. For example,\fPtest '$x' = '$y'\fC\&. Since it is always safe to enclose variables in double-quotes when used as\fPtest` arguments that is the recommended practice\&.
+.SS "Operators for files and directories"
+.IP "\(bu" 2
+\fC-b FILE\fP returns true if \fCFILE\fP is a block device\&.
+.IP "\(bu" 2
+\fC-c FILE\fP returns true if \fCFILE\fP is a character device\&.
+.IP "\(bu" 2
+\fC-d FILE\fP returns true if \fCFILE\fP is a directory\&.
+.IP "\(bu" 2
+\fC-e FILE\fP returns true if \fCFILE\fP exists\&.
+.IP "\(bu" 2
+\fC-f FILE\fP returns true if \fCFILE\fP is a regular file\&.
+.IP "\(bu" 2
+\fC-g FILE\fP returns true if \fCFILE\fP has the set-group-ID bit set\&.
+.IP "\(bu" 2
+\fC-G FILE\fP returns true if \fCFILE\fP exists and has the same group ID as the current user\&.
+.IP "\(bu" 2
+\fC-k FILE\fP returns true if \fCFILE\fP has the sticky bit set\&. If the OS does not support the concept it returns false\&. See https://en.wikipedia.org/wiki/Sticky_bit\&.
+.IP "\(bu" 2
+\fC-L FILE\fP returns true if \fCFILE\fP is a symbolic link\&.
+.IP "\(bu" 2
+\fC-O FILE\fP returns true if \fCFILE\fP exists and is owned by the current user\&.
+.IP "\(bu" 2
+\fC-p FILE\fP returns true if \fCFILE\fP is a named pipe\&.
+.IP "\(bu" 2
+\fC-r FILE\fP returns true if \fCFILE\fP is marked as readable\&.
+.IP "\(bu" 2
+\fC-s FILE\fP returns true if the size of \fCFILE\fP is greater than zero\&.
+.IP "\(bu" 2
+\fC-S FILE\fP returns true if \fCFILE\fP is a socket\&.
+.IP "\(bu" 2
+\fC-t FD\fP returns true if the file descriptor \fCFD\fP is a terminal (TTY)\&.
+.IP "\(bu" 2
+\fC-u FILE\fP returns true if \fCFILE\fP has the set-user-ID bit set\&.
+.IP "\(bu" 2
+\fC-w FILE\fP returns true if \fCFILE\fP is marked as writable; note that this does not check if the filesystem is read-only\&.
+.IP "\(bu" 2
+\fC-x FILE\fP returns true if \fCFILE\fP is marked as executable\&.
+.PP
+.SS "Operators for text strings"
+.IP "\(bu" 2
+\fCSTRING1 = STRING2\fP returns true if the strings \fCSTRING1\fP and \fCSTRING2\fP are identical\&.
+.IP "\(bu" 2
+\fCSTRING1 != STRING2\fP returns true if the strings \fCSTRING1\fP and \fCSTRING2\fP are not identical\&.
+.IP "\(bu" 2
+\fC-n STRING\fP returns true if the length of \fCSTRING\fP is non-zero\&.
+.IP "\(bu" 2
+\fC-z STRING\fP returns true if the length of \fCSTRING\fP is zero\&.
+.PP
+.SS "Operators to compare and examine numbers"
+.IP "\(bu" 2
+\fCNUM1 -eq NUM2\fP returns true if \fCNUM1\fP and \fCNUM2\fP are numerically equal\&.
+.IP "\(bu" 2
+\fCNUM1 -ne NUM2\fP returns true if \fCNUM1\fP and \fCNUM2\fP are not numerically equal\&.
+.IP "\(bu" 2
+\fCNUM1 -gt NUM2\fP returns true if \fCNUM1\fP is greater than \fCNUM2\fP\&.
+.IP "\(bu" 2
+\fCNUM1 -ge NUM2\fP returns true if \fCNUM1\fP is greater than or equal to \fCNUM2\fP\&.
+.IP "\(bu" 2
+\fCNUM1 -lt NUM2\fP returns true if \fCNUM1\fP is less than \fCNUM2\fP\&.
+.IP "\(bu" 2
+\fCNUM1 -le NUM2\fP returns true if \fCNUM1\fP is less than or equal to \fCNUM2\fP\&.
+.PP
+.PP
+Note that only integers are supported\&. For more complex mathematical operations, including fractions, the \fCenv\fP program may be useful\&. Consult the documentation for your operating system\&.
+.SS "Operators to combine expressions"
+.IP "\(bu" 2
+\fCCOND1 -a COND2\fP returns true if both \fCCOND1\fP and \fCCOND2\fP are true\&.
+.IP "\(bu" 2
+\fCCOND1 -o COND2\fP returns true if either \fCCOND1\fP or \fCCOND2\fP are true\&.
+.PP
+.PP
+Expressions can be inverted using the \fC!\fP operator:
+.PP
+.IP "\(bu" 2
+\fC! EXPRESSION\fP returns true if \fCEXPRESSION\fP is false, and false if \fCEXPRESSION\fP is true\&.
+.PP
+.PP
+Expressions can be grouped using parentheses\&.
+.PP
+.IP "\(bu" 2
+\fC( EXPRESSION )\fP returns the value of \fCEXPRESSION\fP\&.
+.PP
+Note that parentheses will usually require escaping with \fC\\(\fP to avoid being interpreted as a command substitution\&.
+.PP
+.SS "Examples"
+If the \fC/tmp\fP directory exists, copy the \fC/etc/motd\fP file to it:
+.PP
+.PP
+.nf
+
+\fBif\fP \fBtest\fP -d /tmp
+    \fBcp\fP /etc/motd /tmp/motd
+\fBend\fP
+.fi
+.PP
+.PP
+If the variable \fCMANPATH\fP is defined and not empty, print the contents\&. (If \fCMANPATH\fP is not defined, then it will expand to zero arguments, unless quoted\&.)
+.PP
+.PP
+.nf
+
+\fBif\fP \fBtest\fP -n '$MANPATH'
+    \fBecho\fP $MANPATH
+\fBend\fP
+.fi
+.PP
+.PP
+Parentheses and the \fC-o\fP and \fC-a\fP operators can be combined to produce more complicated expressions\&. In this example, success is printed if there is a \fC/foo\fP or \fC/bar\fP file as well as a \fC/baz\fP or \fC/bat\fP file\&.
+.PP
+.PP
+.nf
+
+\fBif\fP \fBtest\fP \\( -f /foo -o -f /bar \\) -a \\( -f /baz -o -f /bat \\)
+    \fBecho\fP Success\&.
+\fBend\fP\&.
+.fi
+.PP
+.PP
+Numerical comparisons will simply fail if one of the operands is not a number:
+.PP
+.PP
+.nf
+
+\fBif\fP \fBtest\fP 42 -eq 'The answer to life, the universe and everything'
+    \fBecho\fP So long and thanks \fBfor\fP all the fish  # will not be executed
+\fBend\fP
+.fi
+.PP
+.PP
+A common comparison is with $status:
+.PP
+.PP
+.nf
+
+\fBif\fP \fBtest\fP $status -eq 0
+    \fBecho\fP 'Previous command succeeded'
+\fBend\fP
+.fi
+.PP
+.PP
+The previous test can likewise be inverted:
+.PP
+.PP
+.nf
+
+\fBif\fP \fBtest\fP ! $status -eq 0
+    \fBecho\fP 'Previous command failed'
+\fBend\fP
+.fi
+.PP
+.PP
+which is logically equivalent to the following:
+.PP
+.PP
+.nf
+
+\fBif\fP \fBtest\fP $status -ne 0
+    \fBecho\fP 'Previous command failed'
+\fBend\fP
+.fi
+.PP
+.SS "Standards"
+\fCtest\fP implements a subset of the \fCIEEE Std 1003\&.1-2008 (POSIX\&.1) standard\fP\&. The following exceptions apply:
+.PP
+.IP "\(bu" 2
+The \fC<\fP and \fC>\fP operators for comparing strings are not implemented\&.
+.IP "\(bu" 2
+Because this test is a shell builtin and not a standalone utility, using the -c flag on a special file descriptors like standard input and output may not return the same result when invoked from within a pipe as one would expect when invoking the \fCtest\fP utility in another shell\&.
+.PP
+In cases such as this, one can use \fCcommand\fP \fCtest\fP to explicitly use the system's standalone \fCtest\fP rather than this \fCbuiltin\fP \fCtest\fP\&. 
+.PP
+

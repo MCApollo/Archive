@@ -1,0 +1,389 @@
+.TH "string" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBstring\fP -- manipulate strings 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBstring\fP escape [(-n | --no-quoted)] [--style=xxx] [STRING\&.\&.\&.]
+\fBstring\fP join [(-q | --quiet)] SEP [STRING\&.\&.\&.]
+\fBstring\fP length [(-q | --quiet)] [STRING\&.\&.\&.]
+\fBstring\fP lower [(-q | --quiet)] [STRING\&.\&.\&.]
+\fBstring\fP match [(-a | --all)] [((-e | --entire)] [(-i | --ignore-case)] [(-r | --regex)]
+             [(-n | --index)] [(-q | --quiet)] [(-v | --invert)] PATTERN [STRING\&.\&.\&.]
+\fBstring\fP repeat [(-n | --count) COUNT] [(-m | --max) MAX] [(-N | --no-newline)]
+              [(-q | --quiet)] [STRING\&.\&.\&.]
+\fBstring\fP replace [(-a | --all)] [(-f | --filter)] [(-i | --ignore-case)] [(-r | --regex)]
+               [(-q | --quiet)] PATTERN REPLACEMENT [STRING\&.\&.\&.]
+\fBstring\fP split [(-m | --max) MAX] [(-r | --right)] [(-q | --quiet)] SEP
+             [STRING\&.\&.\&.]
+\fBstring\fP sub [(-s | --start) START] [(-l | --length) LENGTH] [(-q | --quiet)]
+           [STRING\&.\&.\&.]
+\fBstring\fP trim [(-l | --left)] [(-r | --right)] [(-c | --chars CHARS)]
+            [(-q | --quiet)] [STRING\&.\&.\&.]
+\fBstring\fP unescape [--style=xxx] [STRING\&.\&.\&.]
+\fBstring\fP upper [(-q | --quiet)] [STRING\&.\&.\&.]
+.fi
+.PP
+.SS "Description"
+\fCstring\fP performs operations on strings\&.
+.PP
+STRING arguments are taken from the command line unless standard input is connected to a pipe or a file, in which case they are read from standard input, one STRING per line\&. It is an error to supply STRING arguments on the command line and on standard input\&.
+.PP
+Arguments beginning with \fC-\fP are normally interpreted as switches; \fC--\fP causes the following arguments not to be treated as switches even if they begin with \fC-\fP\&. Switches and required arguments are recognized only on the command line\&.
+.PP
+Most subcommands accept a \fC-q\fP or \fC--quiet\fP switch, which suppresses the usual output but exits with the documented status\&.
+.PP
+The following subcommands are available\&.
+.SS "'escape' subcommand"
+\fCstring escape\fP escapes each STRING in one of three ways\&. The first is \fC--style=script\fP\&. This is the default\&. It alters the string such that it can be passed back to \fCeval\fP to produce the original argument again\&. By default, all special characters are escaped, and quotes are used to simplify the output when possible\&. If \fC-n\fP or \fC--no-quoted\fP is given, the simplifying quoted format is not used\&. Exit status: 0 if at least one string was escaped, or 1 otherwise\&.
+.PP
+The second is \fC--style=var\fP which ensures the string can be used as a variable name by hex encoding any non-alphanumeric characters\&. The string is first converted to UTF-8 before being encoded\&.
+.PP
+The third is \fC--style=url\fP which ensures the string can be used as a URL by hex encoding any character which is not legal in a URL\&. The string is first converted to UTF-8 before being encoded\&.
+.PP
+\fCstring unescape\fP performs the inverse of the \fCstring escape\fP command\&. If the string to be unescaped is not properly formatted it is ignored\&. For example, doing \fCstring unescape --style=var (string escape --style=var $str)\fP will return the original string\&.
+.SS "'join' subcommand"
+\fCstring join\fP joins its STRING arguments into a single string separated by SEP, which can be an empty string\&. Exit status: 0 if at least one join was performed, or 1 otherwise\&.
+.SS "'length' subcommand"
+\fCstring length\fP reports the length of each string argument in characters\&. Exit status: 0 if at least one non-empty STRING was given, or 1 otherwise\&.
+.SS "'lower' subcommand"
+\fCstring lower\fP converts each string argument to lowercase\&. Exit status: 0 if at least one string was converted to lowercase, else 1\&. This means that in conjunction with the \fC-q\fP flag you can readily test whether a string is already lowercase\&.
+.SS "'match' subcommand"
+\fCstring match\fP tests each STRING against PATTERN and prints matching substrings\&. Only the first match for each STRING is reported unless \fC-a\fP or \fC--all\fP is given, in which case all matches are reported\&.
+.PP
+If you specify the \fC-e\fP or \fC--entire\fP then each matching string is printed including any prefix or suffix not matched by the pattern (equivalent to \fCgrep\fP without the \fC-o\fP flag)\&. You can, obviously, achieve the same result by prepending and appending \fC*\fP or \fC\&.*\fP depending on whether or not you have specified the \fC--regex\fP flag\&. The \fC--entire\fP flag is simply a way to avoid having to complicate the pattern in that fashion and make the intent of the \fCstring match\fP clearer\&. Without \fC--entire\fP and \fC--regex\fP, a PATTERN will need to match the entire STRING before it will be reported\&.
+.PP
+Matching can be made case-insensitive with \fC--ignore-case\fP or \fC-i\fP\&.
+.PP
+If \fC--index\fP or \fC-n\fP is given, each match is reported as a 1-based start position and a length\&. By default, PATTERN is interpreted as a glob pattern matched against each entire STRING argument\&. A glob pattern is only considered a valid match if it matches the entire STRING\&.
+.PP
+If \fC--regex\fP or \fC-r\fP is given, PATTERN is interpreted as a Perl-compatible regular expression, which does not have to match the entire STRING\&. For a regular expression containing capturing groups, multiple items will be reported for each match, one for the entire match and one for each capturing group\&. With this, only the matching part of the STRING will be reported, unless \fC--entire\fP is given\&.
+.PP
+If \fC--invert\fP or \fC-v\fP is used the selected lines will be only those which do not match the given glob pattern or regular expression\&.
+.PP
+Exit status: 0 if at least one match was found, or 1 otherwise\&.
+.SS "'repeat' subcommand"
+\fCstring repeat\fP repeats the STRING \fC-n\fP or \fC--count\fP times\&. The \fC-m\fP or \fC--max\fP option will limit the number of outputed char (excluding the newline)\&. This option can be used by itself or in conjuction with \fC--count\fP\&. If both \fC--count\fP and \fC--max\fP are present, max char will be outputed unless the final repeated string size is less than max, in that case, the string will repeat until count has been reached\&. Both \fC--count\fP and \fC--max\fP will accept a number greater than or equal to zero, in the case of zero, nothing will be outputed\&. If \fC-N\fP or \fC--no-newline\fP is given, the output won't contain a newline character at the end\&. Exit status: 0 if yielded string is not empty, 1 otherwise\&.
+.SS "'replace' subcommand"
+\fCstring replace\fP is similar to \fCstring match\fP but replaces non-overlapping matching substrings with a replacement string and prints the result\&. By default, PATTERN is treated as a literal substring to be matched\&.
+.PP
+If \fC-r\fP or \fC--regex\fP is given, PATTERN is interpreted as a Perl-compatible regular expression, and REPLACEMENT can contain C-style escape sequences like \fC\\t\fP as well as references to capturing groups by number or name as \fC$n\fP or \fC${n}\fP\&.
+.PP
+If you specify the \fC-f\fP or \fC--filter\fP flag then each input string is printed only if a replacement was done\&. This is useful where you would otherwise use this idiom: \fCa_cmd | string match pattern | string replace pattern new_pattern\fP\&. You can instead just write \fCa_cmd | string replace --filter pattern new_pattern\fP\&.
+.PP
+Exit status: 0 if at least one replacement was performed, or 1 otherwise\&.
+.SS "'split' subcommand"
+\fCstring split\fP splits each STRING on the separator SEP, which can be an empty string\&. If \fC-m\fP or \fC--max\fP is specified, at most MAX splits are done on each STRING\&. If \fC-r\fP or \fC--right\fP is given, splitting is performed right-to-left\&. This is useful in combination with \fC-m\fP or \fC--max\fP\&. Exit status: 0 if at least one split was performed, or 1 otherwise\&.
+.SS "'sub' subcommand"
+\fCstring sub\fP prints a substring of each string argument\&. The start of the substring can be specified with \fC-s\fP or \fC--start\fP followed by a 1-based index value\&. Positive index values are relative to the start of the string and negative index values are relative to the end of the string\&. The default start value is 1\&. The length of the substring can be specified with \fC-l\fP or \fC--length\fP\&. If the length is not specified, the substring continues to the end of each STRING\&. Exit status: 0 if at least one substring operation was performed, 1 otherwise\&.
+.SS "'trim' subcommand"
+\fCstring trim\fP removes leading and trailing whitespace from each STRING\&. If \fC-l\fP or \fC--left\fP is given, only leading whitespace is removed\&. If \fC-r\fP or \fC--right\fP is given, only trailing whitespace is trimmed\&. The \fC-c\fP or \fC--chars\fP switch causes the characters in CHARS to be removed instead of whitespace\&. Exit status: 0 if at least one character was trimmed, or 1 otherwise\&.
+.SS "'upper' subcommand"
+\fCstring upper\fP converts each string argument to uppercase\&. Exit status: 0 if at least one string was converted to uppercase, else 1\&. This means that in conjunction with the \fC-q\fP flag you can readily test whether a string is already uppercase\&.
+.SS "Regular Expressions"
+Both the \fCmatch\fP and \fCreplace\fP subcommand support regular expressions when used with the \fC-r\fP or \fC--regex\fP option\&. The dialect is that of PCRE2\&.
+.PP
+In general, special characters are special by default, so \fCa+\fP matches one or more 'a's, while \fCa\\+\fP matches an 'a' and then a '+'\&. \fC(a+)\fP matches one or more 'a's in a capturing group (\fC(?:XXXX)\fP denotes a non-capturing group)\&. For the replacement parameter of \fCreplace\fP, \fC$n\fP refers to the n-th group of the match\&. In the match parameter, \fC\\n\fP (e\&.g\&. \fC\\1\fP) refers back to groups\&.
+.SS "Examples"
+.PP
+.nf
+
+> \fBstring\fP length 'hello, world'
+12
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBset\fP str foo
+> \fBstring\fP length -q $str; \fBecho\fP $status
+0
+  Equivalent to test -n $str
+.fi
+.PP
+.PP
+.PP
+.nf
+
+> \fBstring\fP sub --length 2 abcde
+ab
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP sub -s 2 -l 2 abcde
+bc
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP sub --start=-2 abcde
+de
+.fi
+.PP
+.PP
+.PP
+.nf
+
+> \fBstring\fP split \&. example\&.com
+example
+com
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP split -r -m1 / /usr/local/bin/fish
+/usr/local/bin
+fish
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP split '' abc
+a
+b
+c
+.fi
+.PP
+.PP
+.PP
+.nf
+
+> \fBseq\fP 3 | \fBstring\fP join \&.\&.\&.
+1\&.\&.\&.2\&.\&.\&.3
+.fi
+.PP
+.PP
+.PP
+.nf
+
+> \fBstring\fP trim ' abc  '
+abc
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP trim --right --chars=yz xyzzy zany
+x
+zan
+.fi
+.PP
+.PP
+.PP
+.nf
+
+> \fBecho\fP \\x07 | \fBstring\fP escape
+\\cg
+.fi
+.PP
+.PP
+.PP
+.nf
+
+> \fBstring\fP escape --style=var 'a1 b2'\\u6161
+\\a1_20b2__c_E6_85_A1
+.fi
+.PP
+.SS "Match Glob Examples"
+.PP
+.nf
+
+> \fBstring\fP match '?' a
+a
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP match 'a*b' axxb
+axxb
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP match -i 'a??B' Axxb
+Axxb
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBecho\fP 'ok?' | \fBstring\fP match '*\\?'
+ok?
+.fi
+.PP
+.PP
+.PP
+.nf
+  Note that only the second STRING will match here\&.
+> \fBstring\fP match 'foo' 'foo1' 'foo' 'foo2'
+foo
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP match -e 'foo' 'foo1' 'foo' 'foo2'
+foo1
+foo
+foo2
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP match 'foo?' 'foo1' 'foo' 'foo2'
+foo1
+foo
+foo2
+.fi
+.PP
+.PP
+.PP
+.nf
+.fi
+.PP
+.SS "Match Regex Examples"
+.PP
+.nf
+
+> \fBstring\fP match -r 'cat|dog|fish' 'nice dog'
+dog
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP match -r -v 'c\&.*[12]' {cat,dog}(\fBseq\fP 1 4)
+dog1
+dog2
+cat3
+dog3
+cat4
+dog4
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP match -r '(\\d\\d?):(\\d\\d):(\\d\\d)' 2:34:56
+2:34:56
+2
+34
+56
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP match -r '^(\\w{2,4})\\g1$' papa mud murmur
+papa
+pa
+murmur
+mur
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP match -r -a -n at ratatat
+2 2
+4 2
+6 2
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP match -r -i '0x[0-9a-f]{1,8}' 'int magic = 0xBadC0de;'
+0xBadC0de
+.fi
+.PP
+.SS "Replace Literal Examples"
+.PP
+.nf
+
+> \fBstring\fP replace is was 'blue is my favorite'
+blue was my favorite
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP replace 3rd last 1st 2nd 3rd
+1st
+2nd
+last
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP replace -a ' ' _ 'spaces to underscores'
+spaces_to_underscores
+.fi
+.PP
+.SS "Replace Regex Examples"
+.PP
+.nf
+
+> \fBstring\fP replace -r -a '[^\\d\&.]+' ' ' '0 one two 3\&.14 four 5x'
+0 3\&.14 5
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP replace -r '(\\w+)\\s+(\\w+)' '$2 $1 $$' 'left right'
+right left $
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP replace -r '\\s*newline\\s*' '\\n' 'put a newline here'
+put a
+here
+.fi
+.PP
+.SS "Repeat Examples"
+.PP
+.nf
+
+> \fBstring\fP repeat -n 2 'foo '
+foo foo
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBecho\fP foo | \fBstring\fP repeat -n 2
+foofoo
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP repeat -n 2 -m 5 'foo'
+foofo
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBstring\fP repeat -m 5 'foo'
+foofo
+.fi
+.PP
+ 

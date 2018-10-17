@@ -1,0 +1,12 @@
+Package: com.mc.xar
+Name: Xar & pbzx
+Version: 1.6.1
+Section: Utility
+Architecture: iphoneos-arm
+Author: mackyle
+Depends: lzma, com.mc.zlib, openssl, com.mc.libxml, com.mc.cpio
+Website: https://github.com/NiklasRosenstein/pbzx
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	A extensible archive format
+	Check out the website for more info on pbzx

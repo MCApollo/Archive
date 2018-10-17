@@ -1,0 +1,21 @@
+--- setup.py	2017-12-19 04:53:56.000000000 +0000
++++ /home/user/Python-3.6.4-Patches/setup.py	2018-06-15 06:11:23.942026633 +0000
+@@ -595,6 +595,9 @@
+ 
+         srcdir = sysconfig.get_config_var('srcdir')
+ 
++        inc_dirs += ['/home/user/toolchain/SDK/usr/include']
++        lib_dirs += ['/home/user/toolchain/SDK/usr/lib']
++
+         # OSF/1 and Unixware have some stuff in /usr/ccs/lib (like -ldb)
+         if host_platform in ['osf1', 'unixware7', 'openunix8']:
+             lib_dirs += ['/usr/ccs/lib']
+@@ -604,6 +607,8 @@
+             lib_dirs += ['/usr/lib/hpux64', '/usr/lib/hpux32']
+ 
+         if host_platform == 'darwin':
++            inc_dirs += ['/home/user/toolchain/SDK/usr/include']
++            lib_dirs += ['/home/user/toolchain/SDK/usr/lib']
+             # This should work on any unixy platform ;-)
+             # If the user has bothered specifying additional -I and -L flags
+             # in OPT and LDFLAGS we might as well use them here.

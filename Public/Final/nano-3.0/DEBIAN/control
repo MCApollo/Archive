@@ -1,0 +1,13 @@
+Package: com.mc.nano
+Name: nano
+Version: 3.0.0-3
+Section: Text Editors
+Architecture: iphoneos-arm
+Author: GNU
+Maintainer: u/LULShotz
+Conflicts: nano, com.mc.nanosyntax
+Provides: nano
+Replaces: nano 
+Description: Compiled for ARM64.
+	completely free, modern clone of Pico
+	Update: Fix mistake of not compiling with nanorc support, remember to edit /etc/nanorc.

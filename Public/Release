@@ -1,0 +1,8 @@
+Origin: MCApollo 
+Label: Taking requests
+Suite: stable
+Version: 1.1
+Architectures: iphoneos-arm
+Components: main
+Codename: NerdGlasses
+Description: ~Taking requests~ (easier things get priority!)

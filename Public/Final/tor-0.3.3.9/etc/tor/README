@@ -1,0 +1,24 @@
+#########################################################################
+## Copy (C) Wizardy and Steamworks 2013 - License: GNU GPLv3           ##
+## Please see: http://www.gnu.org/licenses/gpl.html for legal details, ##
+## rights of fair usage, the disclaimer and warranty conditions.       ##
+#########################################################################
+Basic off the works of Wizardry and Steamworks.
+
+Just trying to stay out of trouble for copying pasting their solution for a launchdaemon/launch script.
+	(I know, I'm still a idiot for thinking copying the copyright makes it fine. Then again, It's GPL and I didn't make changes to the source code of TOR. Still doesn't make it fine without permission personally.) 
+
+Used files from their package of tor:
+tor-tsocks.conf
+torrc
+proxy.pac
+Launchdaemon - CHANGED ID TO AVOID CONFLICT
+Setting Panel - CHANGED ID TO AVOID CONFLICT
+
+
+Due to dependency of plutil (SamBingner's repo has it, but not a default repo) I don't think a launchdaemon is a good idea.
+You could just type this in a new prompt:
+`su nobody -s /bin/sh -c "/usr/local/bin/tor --defaults-torrc --hush" & exit` 
+
+
+Change '127.0.0.1' to '0.0.0.0' If you want other devices to be able to connect to the SOCK proxy.

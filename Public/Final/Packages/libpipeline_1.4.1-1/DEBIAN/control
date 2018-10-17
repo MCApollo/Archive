@@ -1,0 +1,17 @@
+Package: org.thebigboss.libpipeline
+Conflicts: libpipeline
+Replaces: libpipeline
+Depends: firmware (>= 4.0)
+Name: Libpipeline
+Version: 1.4.1-2
+Architecture: iphoneos-arm
+Description: manipulate pipelines of subprocesses in a flexible and convenient way.
+Depiction: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=libpipelineDp
+Homepage: http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=libpipelineDp
+Installed-Size: 1816
+Maintainer: BigBoss <bigboss@thebigboss.org>
+Author: idotce <idotce@gmail.com>
+Sponsor: thebigboss.org <http://thebigboss.org>
+Section: Development
+dev: idotce
+Tag: purpose::library, role::developer

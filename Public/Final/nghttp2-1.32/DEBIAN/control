@@ -1,0 +1,12 @@
+Package: com.mc.nghttp2
+Name: 
+Version: 
+Section: Utility
+Architecture: iphoneos-arm
+Author: https://nghttp2.org/
+Depends:
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	nghttp2 is an implementation of HTTP/2 and its header compression algorithm, HPACK.
+	** This package has no use, nghttp2 is already on the electra repo.
+	** This just has the static lib that the one on electra's repo doesn't.

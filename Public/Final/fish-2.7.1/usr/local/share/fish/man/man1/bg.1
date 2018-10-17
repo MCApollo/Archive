@@ -1,0 +1,30 @@
+.TH "bg" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBbg\fP -- send jobs to background 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBbg\fP [PID\&.\&.\&.]
+.fi
+.PP
+.SS "Description"
+\fCbg\fP sends \fCjobs\fP to the background, resuming them if they are stopped\&. A background job is executed simultaneously with fish, and does not have access to the keyboard\&. If no job is specified, the last job to be used is put in the background\&. If PID is specified, the jobs with the specified process group IDs are put in the background\&.
+.PP
+The PID of the desired process is usually found by using \fCprocess expansion\fP\&.
+.PP
+When at least one of the arguments isn't a valid job specifier (i\&.e\&. PID), \fCbg\fP will print an error without backgrounding anything\&.
+.PP
+When all arguments are valid job specifiers, bg will background all matching jobs that exist\&.
+.SS "Example"
+\fCbg %1\fP will put the job with job ID 1 in the background\&.
+.PP
+\fCbg 123 456 789\fP will background 123, 456 and 789\&.
+.PP
+If only 123 and 789 exist, it will still background them and print an error about 456\&.
+.PP
+\fCbg 123 banana\fP or \fCbg banana 123\fP will complain that 'banana' is not a valid job specifier\&. 

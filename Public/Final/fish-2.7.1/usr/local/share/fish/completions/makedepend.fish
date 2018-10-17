@@ -1,0 +1,13 @@
+complete -c makedepend -s D -r --description "Define"
+complete -c makedepend -s I -r --description "Include directory"
+complete -c makedepend -s Y -r --description "Replace include directories"
+complete -c makedepend -s a --description "Append dependencies to makefile"
+complete -c makedepend -s f -r --description "Specify makefile"
+complete -c makedepend -o include -r --description "Prepend file to input"
+complete -c makedepend -s o -r --description "Object file suffix"
+complete -c makedepend -s p -r --description "Object file prefix"
+complete -c makedepend -s s -r --description "Starting string delimiter"
+complete -c makedepend -s w -r --description "Line width"
+complete -c makedepend -s v --description "Verbose mode"
+complete -c makedepend -s m --description "Warn about multiple inclusion"
+

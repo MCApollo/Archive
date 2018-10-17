@@ -1,0 +1,24 @@
+.TH "end" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBend\fP -- end a block of commands\&. 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBbegin\fP; [COMMANDS\&.\&.\&.] \fBend\fP
+\fBif\fP CONDITION; COMMANDS_TRUE\&.\&.\&.; [\fBelse\fP; COMMANDS_FALSE\&.\&.\&.;] \fBend\fP
+\fBwhile\fP CONDITION; COMMANDS\&.\&.\&.; \fBend\fP
+\fBfor\fP VARNAME \fBin\fP [VALUES\&.\&.\&.]; COMMANDS\&.\&.\&.; \fBend\fP
+\fBswitch\fP VALUE; [\fBcase\fP [WILDCARD\&.\&.\&.]; [COMMANDS\&.\&.\&.]; \&.\&.\&.] \fBend\fP
+.fi
+.PP
+.SS "Description"
+\fCend\fP ends a block of commands\&.
+.PP
+For more information, read the documentation for the block constructs, such as \fCif\fP, \fCfor\fP and \fCwhile\fP\&.
+.PP
+The \fCend\fP command does not change the current exit status\&. Instead, the status after it will be the status returned by the most recent command\&. 

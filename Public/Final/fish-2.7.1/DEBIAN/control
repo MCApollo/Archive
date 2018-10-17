@@ -1,0 +1,12 @@
+Package: com.mc.fish
+Name: Fish
+Version: 2.7.1
+Section: Terminal Support
+Architecture: iphoneos-arm
+Author: fish-shell
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	The user-friendly command line shell.
+	`
+	** Hey you! I couldn't figure out where to plaformize, so scripts can't be launched by doing ./foo-bar.script
+	** If you want to help me, download the lastest version and just tell me where to platformized.

@@ -1,0 +1,9 @@
+Package: com.mc.gperf
+Name: gperf
+Version: 3.1
+Section: Utility
+Architecture: iphoneos-arm
+Author: GNU
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Gperf generates a perfect hash function from a key set.

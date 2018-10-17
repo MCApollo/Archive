@@ -1,0 +1,54 @@
+.TH "alias" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBalias\fP -- create a function 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBalias\fP
+\fBalias\fP NAME DEFINITION
+\fBalias\fP NAME=DEFINITION
+.fi
+.PP
+.SS "Description"
+\fCalias\fP is a simple wrapper for the \fCfunction\fP builtin, which creates a function wrapping a command\&. It has similar syntax to POSIX shell \fCalias\fP\&. For other uses, it is recommended to define a \fCfunction\fP\&.
+.PP
+\fCfish\fP marks functions that have been created by \fCalias\fP by including the command used to create them in the function description\&. You can list \fCalias\fP-created functions by running \fCalias\fP without arguments\&. They must be erased using \fCfunctions -e\fP\&.
+.PP
+.IP "\(bu" 2
+\fCNAME\fP is the name of the alias
+.IP "\(bu" 2
+\fCDEFINITION\fP is the actual command to execute\&. The string \fC$argv\fP will be appended\&.
+.PP
+.PP
+You cannot create an alias to a function with the same name\&. Note that spaces need to be escaped in the call to \fCalias\fP just like at the command line, \fIeven inside quoted parts\fP\&.
+.SS "Example"
+The following code will create \fCrmi\fP, which runs \fCrm\fP with additional arguments on every invocation\&.
+.PP
+.PP
+.nf
+
+\fBalias\fP rmi='rm -i'
+.fi
+.PP
+.PP
+.PP
+.nf
+  This is equivalent to entering the following function:
+\fBfunction\fP rmi --wraps rm --description 'alias rmi=rm -i'
+    \fBrm\fP -i $argv
+\fBend\fP
+.fi
+.PP
+.PP
+.PP
+.nf
+  This needs to have the spaces escaped or 'Chrome\&.app\&.\&.\&.' will be seen as an argument to '/Applications/Google':
+\fBalias\fP chrome='/Applications/Google\\ Chrome\&.app/Contents/MacOS/Google\\ Chrome banana'
+.fi
+.PP
+ 

@@ -1,0 +1,22 @@
+Package: com.mc.ruby
+Name: Ruby
+Version: 2.5.1-8
+Depends: com.mc.zlib, com.mc.readline, openssl
+Section: Utility
+Architecture: iphoneos-arm
+Author: Yukihiro Matsumoto
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Ruby is a dynamic, reflective, object-oriented, general-purpose programming language. It was designed and developed in the mid-1990s by Yukihiro "Matz" Matsumoto in Japan. This is a test build for arm64
+	LULSHOTZ' messages:
+	Grab a iPhoneOS SDK, rename it to SDK, and put it in /usr for gem.
+	Have /usr/SDK/usr! It's used as a sysroot for gems.
+	HAVE A SDK OR RUBY GEMS WILL /NOT/ WORK.
+	Update May 12th:
+	Rebuilded ruby, ruby gems should have a better chance of installing.
+	Recommended to install pkg-config as some gems use it.
+	ELECTRA CANNOT RUN CONFIGURE SCRIPTS; you're going to have to get your hands dirty
+	Hint: cd into the directory and do 'ruby -I. extconf.rb -- --use-system-libraries' to generate a makefile and from there you can just run make.
+	Hint: Everything most be codesigned, you may need to sign some gems after they been installed with ldid.
+	I'll do my best to support LIBS you may need for some gems, just PM me on reddit.
+	Don't come to me unless you googled and still cannot figure something out with ruby gems.

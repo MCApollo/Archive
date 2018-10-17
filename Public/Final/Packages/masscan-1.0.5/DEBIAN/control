@@ -1,0 +1,12 @@
+Package: com.mc.masscan
+Name: MassScan
+Version: 1.0.5
+Section: Networking
+Architecture: iphoneos-arm
+Author: Robert Graham
+Depends: com.mc.libpcap
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Mass IP port scanner
+	A flamethrower version of nmap
+	** Non-Tested Package

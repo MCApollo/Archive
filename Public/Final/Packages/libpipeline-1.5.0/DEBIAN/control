@@ -1,0 +1,12 @@
+Package: com.mc.libpipeline-1.5.0
+Name: libpipeline
+Version: 1.5.0
+Section: Utility
+Architecture: iphoneos-arm
+Author: Colin Watson
+Conflicts: org.thebigboss.libpipeline
+Replaces: org.thebigboss.libpipeline
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	libpipeline is a C library for manipulating pipelines of subprocesses in a flexible and convenient way.
+	Replaces the package on BigBoss

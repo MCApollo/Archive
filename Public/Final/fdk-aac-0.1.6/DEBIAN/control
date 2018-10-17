@@ -1,0 +1,9 @@
+Package: com.mc.fdk-aac
+Name: libfdk
+Version: 0.1.6
+Section: Development
+Architecture: iphoneos-arm
+Author: mstorsjo
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	AAC audio encoder.

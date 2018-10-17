@@ -1,0 +1,17 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+bindir=${exec_prefix}/bin
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+datarootdir=${prefix}/share
+datadir=${datarootdir}
+mandir=${datarootdir}/info
+infodir=${datarootdir}/info
+
+Name: Snort
+Description: Snort dynamic plugins/detection/rules
+URL: www.snort.org
+Version: 2.9.11.1
+Libs: -L${libdir} -lcurl  -L/home/cade/armtools/daq-2.0.6/usr/local/lib -lpcre -L/home/cade/armtools/libdnet-1.12/usr/local/lib -lnghttp2 -lz -ldaq_static -ldnet -lpcre -lpcap -luuid -lm -lm  -lcrypto -ldl -ldaq_static_modules  -lpcap -lsfbpf -lpcap -lz -llzma -lpthread -lpthread -lpthread
+Cflags: -I/home/cade/armtools/libdnet-1.12/usr/local/include -DSF_VISIBILITY -fvisibility=hidden -Wall -I/home/cade/armtools/daq-2.0.6/usr/local/include -I/home/cade/armtools/libdnet-1.12/usr/local/include -DLZMA -DGRE -DMPLS -DPPM_MGR -DNDEBUG -DENABLE_REACT -DENABLE_RESPOND -DENABLE_RESPONSE3 -DSF_WCHAR -DTARGET_BASED -DPERF_PROFILING -DSNORT_RELOAD -DNO_NON_ETHER_DECODER -DNORMALIZER -DACTIVE_RESPONSE
+

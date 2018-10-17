@@ -1,0 +1,72 @@
+.TH "echo" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBecho\fP -- display a line of text 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBecho\fP [OPTIONS] [STRING]
+.fi
+.PP
+.SS "Description"
+\fCecho\fP displays a string of text\&.
+.PP
+The following options are available:
+.PP
+.IP "\(bu" 2
+\fC-n\fP, Do not output a newline
+.IP "\(bu" 2
+\fC-s\fP, Do not separate arguments with spaces
+.IP "\(bu" 2
+\fC-E\fP, Disable interpretation of backslash escapes (default)
+.IP "\(bu" 2
+\fC-e\fP, Enable interpretation of backslash escapes
+.PP
+.SS "Escape Sequences"
+If \fC-e\fP is used, the following sequences are recognized:
+.PP
+.IP "\(bu" 2
+\fC\\\fP backslash
+.IP "\(bu" 2
+\fC\\a\fP alert (BEL)
+.IP "\(bu" 2
+\fC\\b\fP backspace
+.IP "\(bu" 2
+\fC\\c\fP produce no further output
+.IP "\(bu" 2
+\fC\\e\fP escape
+.IP "\(bu" 2
+\fC\\f\fP form feed
+.IP "\(bu" 2
+\fC\\n\fP new line
+.IP "\(bu" 2
+\fC\\r\fP carriage return
+.IP "\(bu" 2
+\fC\\t\fP horizontal tab
+.IP "\(bu" 2
+\fC\\v\fP vertical tab
+.IP "\(bu" 2
+\fC\\0NNN\fP byte with octal value NNN (1 to 3 digits)
+.IP "\(bu" 2
+\fC\\xHH\fP byte with hexadecimal value HH (1 to 2 digits)
+.PP
+.SS "Example"
+.PP
+.nf
+
+\fBecho\fP 'Hello World'
+.fi
+.PP
+ Print hello world to stdout
+.PP
+.PP
+.nf
+
+\fBecho\fP -e 'Top\\nBottom'
+.fi
+.PP
+ Print Top and Bottom on separate lines, using an escape sequence 

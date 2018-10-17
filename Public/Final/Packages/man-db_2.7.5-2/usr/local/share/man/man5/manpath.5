@@ -1,0 +1,173 @@
+.\" Man page for format of the manpath.config data file
+.\"
+.\" Copyright (C) 1994, 1995 Graeme W. Wilford. (Wilf.)
+.\" Copyright (C) 2001, 2007, 2008 Colin Watson.
+.\"
+.\" You may distribute under the terms of the GNU General Public
+.\" License as specified in the file COPYING that comes with the
+.\" man-db distribution.
+.\"
+.\" Sat Oct 29 13:09:31 GMT 1994  Wilf. (G.Wilford@ee.surrey.ac.uk) 
+.\" 
+.pc
+.TH MANPATH 5 "2015-11-06" "2.7.5" "/usr/local/etc/man_db.conf"
+.SH NAME
+manpath \- format of the /usr/local/etc/man_db.conf file
+.SH DESCRIPTION
+The manpath configuration file is used by the manual page utilities
+to assess users' manpaths at run time, to indicate which manual page
+hierarchies (manpaths) are to be treated as system hierarchies and to
+assign them directories to be used for storing cat files.
+
+If the environment variable
+.RB $ MANPATH
+is already set, the information contained within /usr/local/etc/man_db.conf will
+not override it.
+.SH FORMAT
+The following field types are currently recognised:
+.TP
+.BI # \ comment
+Blank lines or those beginning with a
+.B #
+will be treated as comments and ignored.
+.TP
+.BI MANDATORY_MANPATH \ manpath_element
+Lines of this form indicate manpaths that every automatically generated
+.RB $ MANPATH
+should contain.
+This will typically include
+.IR /usr/man .
+.TP
+.BI MANPATH_MAP \ path_element\ manpath_element
+Lines of this form set up
+.RB $ PATH
+to
+.RB $ MANPATH
+mappings.
+For each
+.I path_element
+found in the user's
+.RB $ PATH ,
+.I manpath_element
+will be added to the
+.RB $ MANPATH .
+.TP
+\fBMANDB_MAP \fImanpath_element \fR\|[\| \fIcatpath_element\fR \|]
+Lines of this form indicate which manpaths are to be treated as system
+manpaths, and optionally where their cat files should be stored.
+This field type is particularly important if
+.B man
+is a setuid program, as (when in the system configuration file
+/usr/local/etc/man_db.conf rather than the per-user configuration file .manpath)
+it indicates which manual page hierarchies to access as the setuid user and
+which as the invoking user.
+
+The system manual page hierarchies are usually those stored under
+.I /usr
+such as
+.IR /usr/man ,
+.I /usr/local/man
+and
+.IR /usr/X11R6/man .
+
+If cat pages from a particular
+.I manpath_element
+are not to be stored or are to be stored in the traditional location,
+.I catpath_element
+may be omitted.
+
+Traditional cat placement would be impossible for read only mounted manual
+page hierarchies and because of this it is possible to specify any valid
+directory hierarchy for their storage.
+To observe the
+.B Linux FSSTND
+the keyword
+.RB ` FSSTND
+can be used in place of an actual directory.
+
+Unfortunately, it is necessary to specify
+.B all
+system man tree paths, including alternate operating system paths such as
+.I /usr/man/sun
+and any
+.B NLS locale
+paths such as
+.IR /usr/man/de_DE.88591 .
+
+As the information is parsed line by line in the order written, it is
+necessary for any manpath that is a sub-hierarchy of another hierarchy to be
+listed first, otherwise an incorrect match will be made.
+An example is that
+.I /usr/man/de_DE.88591
+must come before
+.IR /usr/man .
+.TP
+.BI DEFINE \ key\ value
+Lines of this form define miscellaneous configuration variables; see the
+default configuration file for those variables used by the manual pager
+utilities.
+They include default paths to various programs (such as
+.I grep
+and
+.IR tbl ),
+and default sets of arguments to those programs.
+.TP
+\fBSECTION\fR \fIsection\fR .\|.\|.
+.RS
+Lines of this form define the order in which manual sections should be
+searched.
+If there are no
+.B SECTION
+directives in the configuration file, the default is:
+.PP
+.RS
+.nf
+SECTION 1 n l 8 3 0 2 5 4 9 6 7
+.fi
+.RE
+.PP
+If multiple
+.B SECTION
+directives are given, their section lists will be concatenated.
+.PP
+If a particular extension is not in this list (say, 1mh) it will be
+displayed with the rest of the section it belongs to.
+The effect of this is that you only need to explicitly list extensions if
+you want to force a particular order.
+Sections with extensions should usually be adjacent to their main section
+(e.g. "1 1mh 8 ...").
+.PP
+.B SECTIONS
+is accepted as an alternative name for this directive.
+.RE
+.TP
+.BI MINCATWIDTH \ width
+If the terminal width is less than
+.IR width ,
+cat pages will not be created (if missing) or displayed.
+The default is 80.
+.TP
+.BI MAXCATWIDTH \ width
+If the terminal width is greater than
+.IR width ,
+cat pages will not be created (if missing) or displayed.
+The default is 80.
+.TP
+.BI CATWIDTH \ width
+If
+.I width
+is non-zero, cat pages will always be formatted for a terminal of the given
+width, regardless of the width of the terminal actually being used.
+This should generally be within the range set by
+.B MINCATWIDTH
+and
+.BR MAXCATWIDTH .
+.TP
+.B NOCACHE
+This flag prevents
+.BR man (1)
+from creating cat pages automatically.
+.SH BUGS
+Unless the rules above are followed and observed precisely, the manual pager
+utilities will not function as desired.
+The rules are overly complicated.

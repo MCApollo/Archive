@@ -1,0 +1,10 @@
+Package: com.mc.qrencode
+Name: libqrencode
+Version: 4.0.2
+Section: Development
+Architecture: iphoneos-arm
+Author: Kentaro Fukuchi.
+Depends: com.mc.libpng
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	QR Code generation library.

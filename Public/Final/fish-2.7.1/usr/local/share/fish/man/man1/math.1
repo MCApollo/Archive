@@ -1,0 +1,40 @@
+.TH "math" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBmath\fP -- Perform mathematics calculations 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBmath\fP [-sN | --scale=N] [--] EXPRESSION
+.fi
+.PP
+.SS "Description"
+\fCmath\fP is used to perform mathematical calculations\&. It is a very thin wrapper for the bc program, which makes it possible to specify an expression from the command line without using non-standard extensions or a pipeline\&.
+.PP
+For a description of the syntax supported by math, see the manual for the bc program\&. Keep in mind that parameter expansion takes place on any expressions before they are evaluated\&. This can be very useful in order to perform calculations involving shell variables or the output of command substitutions, but it also means that parenthesis have to be escaped\&.
+.PP
+The following options are available:
+.PP
+.IP "\(bu" 2
+\fC-sN\fP or \fC--scale=N\fP sets the scale of the result\&. \fCN\fP must be an integer and defaults to zero\&. This simply sets bc's \fCscale\fP variable to the provided value\&.
+.PP
+.SS "Return Values"
+If invalid options or no expression is provided the return \fCstatus\fP is two\&. If the expression is invalid the return \fCstatus\fP is three\&. If bc returns a result of \fC0\fP (literally, not \fC0\&.0\fP or similar variants) the return \fCstatus\fP is one otherwise it's zero\&.
+.SS "Examples"
+\fCmath 1+1\fP outputs 2\&.
+.PP
+\fCmath $status-128\fP outputs the numerical exit status of the last command minus 128\&.
+.PP
+\fCmath 10 / 6\fP outputs \fC1\fP\&.
+.PP
+\fCmath -s0 10\&.0 / 6\&.0\fP outputs \fC1\fP\&.
+.PP
+\fCmath -s3 10 / 6\fP outputs \fC1\&.666\fP\&.
+.SS "Cautions"
+You should always place a \fC--\fP flag separator before the expression\&. 99\&.99% of the time you'll get the desired result without the separator\&. Something like \fCmath -10\&.0 / 2\fP will fail because the negative floating point value gets treated as an invalid flag\&. But \fCmath -10 / 2\fP will work because negative integers are special-cased\&.
+.PP
+Note that the modulo operator (\fCx % y\fP) is not well defined for floating point arithmetic\&. The \fCbc\fP command produces a nonsensical result rather than emit an error and fail in that case\&. It doesn't matter if the arguments are integers; e\&.g\&., \fC10 % 4\fP\&. You'll still get an incorrect result\&. Do not use the \fC-sN\fP flag with N greater than zero if you want sensible answers when using the modulo operator\&. 

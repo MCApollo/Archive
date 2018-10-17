@@ -1,0 +1,9 @@
+Package: com.mc.libuv
+Name: libuv
+Version: 1.22.0
+Section: Development
+Architecture: iphoneos-arm
+Author: libuv Team
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Cross-platform asynchronous I/O 

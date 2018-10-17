@@ -1,0 +1,92 @@
+.TH "history" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBhistory\fP -- Show and manipulate command history 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBhistory\fP search [ --show-time ] [ --case-sensitive ] [ --exact | --prefix | --contains ] [ --max=n ] [ --null ] [ 'search string'\&.\&.\&. ]
+\fBhistory\fP delete [ --show-time ] [ --case-sensitive ] [ --exact | --prefix | --contains ] 'search string'\&.\&.\&.
+\fBhistory\fP merge
+\fBhistory\fP save
+\fBhistory\fP clear
+\fBhistory\fP ( -h | --help )
+.fi
+.PP
+.SS "Description"
+\fChistory\fP is used to search, delete, and otherwise manipulate the history of interactive commands\&.
+.PP
+The following operations (sub-commands) are available:
+.PP
+.IP "\(bu" 2
+\fCsearch\fP returns history items matching the search string\&. If no search string is provided it returns all history items\&. This is the default operation if no other operation is specified\&. You only have to explicitly say \fChistory search\fP if you wish to search for one of the subcommands\&. The \fC--contains\fP search option will be used if you don't specify a different search option\&. Entries are ordered newest to oldest\&. If stdout is attached to a tty the output will be piped through your pager by the history function\&. The history builtin simply writes the results to stdout\&.
+.IP "\(bu" 2
+\fCdelete\fP deletes history items\&. Without the \fC--prefix\fP or \fC--contains\fP options, the exact match of the specified text will be deleted\&. If you don't specify \fC--exact\fP a prompt will be displayed before any items are deleted asking you which entries are to be deleted\&. You can enter the word 'all' to delete all matching entries\&. You can enter a single ID (the number in square brackets) to delete just that single entry\&. You can enter more than one ID separated by a space to delete multiple entries\&. Just press [enter] to not delete anything\&. Note that the interactive delete behavior is a feature of the history function\&. The history builtin only supports \fC--exact --case-sensitive\fP deletion\&.
+.IP "\(bu" 2
+\fCmerge\fP immediately incorporates history changes from other sessions\&. Ordinarily \fCfish\fP ignores history changes from sessions started after the current one\&. This command applies those changes immediately\&.
+.IP "\(bu" 2
+\fCsave\fP immediately writes all changes to the history file\&. The shell automatically saves the history file; this option is provided for internal use and should not normally need to be used by the user\&.
+.IP "\(bu" 2
+\fCclear\fP clears the history file\&. A prompt is displayed before the history is erased asking you to confirm you really want to clear all history unless \fCbuiltin history\fP is used\&.
+.PP
+.PP
+The following options are available:
+.PP
+These flags can appear before or immediately after one of the sub-commands listed above\&.
+.PP
+.IP "\(bu" 2
+\fC-C\fP or \fC--case-sensitive\fP does a case-sensitive search\&. The default is case-insensitive\&. Note that prior to fish 2\&.4\&.0 the default was case-sensitive\&.
+.IP "\(bu" 2
+\fC-c\fP or \fC--contains\fP searches or deletes items in the history that contain the specified text string\&. This is the default for the \fC--search\fP flag\&. This is not currently supported by the \fC--delete\fP flag\&.
+.IP "\(bu" 2
+\fC-e\fP or \fC--exact\fP searches or deletes items in the history that exactly match the specified text string\&. This is the default for the \fC--delete\fP flag\&. Note that the match is case-insensitive by default\&. If you really want an exact match, including letter case, you must use the \fC-C\fP or \fC--case-sensitive\fP flag\&.
+.IP "\(bu" 2
+\fC-p\fP or \fC--prefix\fP searches or deletes items in the history that begin with the specified text string\&. This is not currently supported by the \fC--delete\fP flag\&.
+.IP "\(bu" 2
+\fC-t\fP or \fC--show-time\fP prepends each history entry with the date and time the entry was recorded \&. By default it uses the strftime format \fC# cn\fP\&. You can specify another format; e\&.g\&., `--show-time='Y-m-d H:M:S '\fCor\fP--show-time='aIp'\fC\&. The short option,\fP-t\fCdoesn't accept a stftime format string; it only uses the default format\&. Any strftime format is allowed, including\fPs\fCto get the raw UNIX seconds since the epoch\&. Note that\fP--with-time` is also allowed but is deprecated and will be removed at a future date\&.
+.IP "\(bu" 2
+\fC-z\fP or \fC--null\fP causes history entries written by the search operations to be terminated by a NUL character rather than a newline\&. This allows the output to be processed by \fCread -z\fP to correctly handle multiline history entries\&.
+.IP "\(bu" 2
+\fC-<number>\fP \fC-n <number>\fP or \fC--max=<number>\fP limits the matched history items to the first 'n' matching entries\&. This is only valid for \fChistory search\fP\&.
+.IP "\(bu" 2
+\fC-h\fP or \fC--help\fP display help for this command\&.
+.PP
+.SS "Example"
+.PP
+.nf
+
+\fBhistory\fP clear
+  Deletes all history items
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBhistory\fP search --contains 'foo'
+  Outputs a list of all previous commands containing the string 'foo'\&.
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBhistory\fP delete --prefix 'foo'
+  Interactively deletes commands which start with 'foo' from the history\&.
+  You can select more than one entry by entering their IDs seperated by a space\&.
+.fi
+.PP
+.SS "Customizing the name of the history file"
+By default interactive commands are logged to \fC$XDG_DATA_HOME/fish/fish_history\fP (typically \fC~/\&.local/share/fish/fish_history\fP)\&.
+.PP
+You can set the \fCfish_history\fP variable to another name for the current shell session\&. The default value (when the variable is unset) is \fCfish\fP which corresponds to \fC$XDG_DATA_HOME/fish/fish_history\fP\&. If you set it to e\&.g\&. \fCfun\fP, the history would be written to \fC$XDG_DATA_HOME/fish/fun_history\fP\&. An empty string means history will not be stored at all\&. This is similar to the private session features in web browsers\&.
+.PP
+You can change \fCfish_history\fP at any time (by using \fCset -x fish_history 'session_name'\fP) and it will take effect right away\&. If you set it to \fC'default'\fP, it will use the default session name (which is \fC'fish'\fP)\&.
+.PP
+Other shells such as bash and zsh use a variable named \fCHISTFILE\fP for a similar purpose\&. Fish uses a different name to avoid conflicts and signal that the behavior is different (session name instead of a file path)\&. Also, if you set the var to anything other than \fCfish\fP or \fCdefault\fP it will inhibit importing the bash history\&. That's because the most common use case for this feature is to avoid leaking private or sensitive history when giving a presentation\&.
+.SS "Notes"
+If you specify both \fC--prefix\fP and \fC--contains\fP the last flag seen is used\&.
+.PP
+Note that for backwards compatibility each subcommand can also be specified as a long option\&. For example, rather than \fChistory search\fP you can type \fChistory --search\fP\&. Those long options are deprecated and will be removed in a future release\&. 

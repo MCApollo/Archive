@@ -1,0 +1,10 @@
+Package: com.mc.pbz
+Name: PartialZipBrowser
+Version: 1.0-commit-a5dec1f
+Section: Utility
+Architecture: iphoneos-arm
+Author: tihmstar
+Depends: curl, com.mc.libzip, com.mc.libfragmentzip
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	A tool for browsing and downloading files from zip files on remote webserver.

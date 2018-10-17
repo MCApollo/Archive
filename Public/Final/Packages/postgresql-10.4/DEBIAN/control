@@ -1,0 +1,13 @@
+Package: com.mc.postgresql
+Name: PostgreSQL
+Version: 10.4-4
+Section: Data Storage
+Architecture: iphoneos-arm
+Author: PostgreSQL
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
+	—
+	** Daemons, Scripts, and the Preference loader are taken from the BigBoss Package, Credit goes to C.Ngon.
+	** The following is from that Package:
+	"The package will install [a] PostgreSQL server, create postgres user [by editing /etc/groups & /etc/passwd], add switch button in preference loader to start/stop database."

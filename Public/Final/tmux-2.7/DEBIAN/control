@@ -1,0 +1,10 @@
+Package: com.mc.tmux
+Name: Tmux
+Version: 2.7
+Section: Terminal Support
+Architecture: iphoneos-arm
+Author: tmux
+Depends: com.mc.libevent-2.0.22, ncurses
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Screen multiplexer

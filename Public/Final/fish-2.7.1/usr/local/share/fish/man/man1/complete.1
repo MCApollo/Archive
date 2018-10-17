@@ -1,0 +1,147 @@
+.TH "complete" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBcomplete\fP -- edit command specific tab-completions 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBcomplete\fP ( -c | --command | -p | --path ) COMMAND
+        [( -c | --command | -p | --path ) COMMAND]\&.\&.\&.
+        [( -e | --erase )]
+        [( -s | --short-option ) SHORT_OPTION]\&.\&.\&.
+        [( -l | --long-option | -o | --old-option ) LONG_OPTION]\&.\&.\&.
+        [( -a | --arguments ) OPTION_ARGUMENTS]
+        [( -f | --no-files )]
+        [( -r | --require-parameter )]
+        [( -x | --exclusive )]
+        [( -w | --wraps ) WRAPPED_COMMAND]\&.\&.\&.
+        [( -n | --condition ) CONDITION]
+        [( -d | --description ) DESCRIPTION]
+\fBcomplete\fP ( -C[STRING] | --do-complete[=STRING] )
+.fi
+.PP
+.SS "Description"
+For an introduction to specifying completions, see \fCWriting your own completions\fP in the fish manual\&.
+.PP
+.IP "\(bu" 2
+\fCCOMMAND\fP is the name of the command for which to add a completion\&.
+.IP "\(bu" 2
+\fCSHORT_OPTION\fP is a one character option for the command\&.
+.IP "\(bu" 2
+\fCLONG_OPTION\fP is a multi character option for the command\&.
+.IP "\(bu" 2
+\fCOPTION_ARGUMENTS\fP is parameter containing a space-separated list of possible option-arguments, which may contain command substitutions\&.
+.IP "\(bu" 2
+\fCDESCRIPTION\fP is a description of what the option and/or option arguments do\&.
+.IP "\(bu" 2
+\fC-c COMMAND\fP or \fC--command COMMAND\fP specifies that \fCCOMMAND\fP is the name of the command\&.
+.IP "\(bu" 2
+\fC-p COMMAND\fP or \fC--path COMMAND\fP specifies that \fCCOMMAND\fP is the absolute path of the program (optionally containing wildcards)\&.
+.IP "\(bu" 2
+\fC-e\fP or \fC--erase\fP deletes the specified completion\&.
+.IP "\(bu" 2
+\fC-s SHORT_OPTION\fP or \fC--short-option=SHORT_OPTION\fP adds a short option to the completions list\&.
+.IP "\(bu" 2
+\fC-l LONG_OPTION\fP or \fC--long-option=LONG_OPTION\fP adds a GNU style long option to the completions list\&.
+.IP "\(bu" 2
+\fC-o LONG_OPTION\fP or \fC--old-option=LONG_OPTION\fP adds an old style long option to the completions list (See below for details)\&.
+.IP "\(bu" 2
+\fC-a OPTION_ARGUMENTS\fP or \fC--arguments=OPTION_ARGUMENTS\fP adds the specified option arguments to the completions list\&.
+.IP "\(bu" 2
+\fC-f\fP or \fC--no-files\fP specifies that the options specified by this completion may not be followed by a filename\&.
+.IP "\(bu" 2
+\fC-r\fP or \fC--require-parameter\fP specifies that the options specified by this completion always must have an option argument, i\&.e\&. may not be followed by another option\&.
+.IP "\(bu" 2
+\fC-x\fP or \fC--exclusive\fP implies both \fC-r\fP and \fC-f\fP\&.
+.IP "\(bu" 2
+\fC-w WRAPPED_COMMAND\fP or \fC--wraps=WRAPPED_COMMAND\fP causes the specified command to inherit completions from the wrapped command (See below for details)\&.
+.IP "\(bu" 2
+\fC-n\fP or \fC--condition\fP specifies a shell command that must return 0 if the completion is to be used\&. This makes it possible to specify completions that should only be used in some cases\&.
+.IP "\(bu" 2
+\fC-CSTRING\fP or \fC--do-complete=STRING\fP makes complete try to find all possible completions for the specified string\&.
+.IP "\(bu" 2
+\fC-C\fP or \fC--do-complete\fP with no argument makes complete try to find all possible completions for the current command line buffer\&. If the shell is not in interactive mode, an error is returned\&.
+.IP "\(bu" 2
+\fC-A\fP and \fC--authoritative\fP no longer do anything and are silently ignored\&.
+.IP "\(bu" 2
+\fC-u\fP and \fC--unauthoritative\fP no longer do anything and are silently ignored\&.
+.PP
+.PP
+Command specific tab-completions in \fCfish\fP are based on the notion of options and arguments\&. An option is a parameter which begins with a hyphen, such as '\fC-h\fP', '\fC-help\fP' or '\fC--help\fP'\&. Arguments are parameters that do not begin with a hyphen\&. Fish recognizes three styles of options, the same styles as the GNU version of the getopt library\&. These styles are:
+.PP
+.IP "\(bu" 2
+Short options, like '\fC-a\fP'\&. Short options are a single character long, are preceded by a single hyphen and may be grouped together (like '\fC-la\fP', which is equivalent to '\fC-l -a\fP')\&. Option arguments may be specified in the following parameter ('\fC-w 32\fP') or by appending the option with the value ('\fC-w32\fP')\&.
+.IP "\(bu" 2
+Old style long options, like '\fC-Wall\fP'\&. Old style long options can be more than one character long, are preceded by a single hyphen and may not be grouped together\&. Option arguments are specified in the following parameter ('\fC-ao null\fP')\&.
+.IP "\(bu" 2
+GNU style long options, like '\fC--colors\fP'\&. GNU style long options can be more than one character long, are preceded by two hyphens, and may not be grouped together\&. Option arguments may be specified in the following parameter ('\fC--quoting-style shell\fP') or by appending the option with a '\fC=\fP' and the value ('\fC--quoting-style=shell\fP')\&. GNU style long options may be abbreviated so long as the abbreviation is unique ('\fC--h\fP') is equivalent to '\fC--help\fP' if help is the only long option beginning with an 'h')\&.
+.PP
+.PP
+The options for specifying command name and command path may be used multiple times to define the same completions for multiple commands\&.
+.PP
+The options for specifying command switches and wrapped commands may be used multiple times to define multiple completions for the command(s) in a single call\&.
+.PP
+Invoking \fCcomplete\fP multiple times for the same command adds the new definitions on top of any existing completions defined for the command\&.
+.PP
+When \fC-a\fP or \fC--arguments\fP is specified in conjunction with long, short, or old style options, the specified arguments are only used as completions when attempting to complete an argument for any of the specified options\&. If \fC-a\fP or \fC--arguments\fP is specified without any long, short, or old style options, the specified arguments are used when completing any argument to the command (except when completing an option argument that was specified with \fC-r\fP or \fC--require-parameter\fP)\&.
+.PP
+Command substitutions found in \fCOPTION_ARGUMENTS\fP are not expected to return a space-separated list of arguments\&. Instead they must return a newline-separated list of arguments, and each argument may optionally have a tab character followed by the argument description\&. Any description provided in this way overrides a description given with \fC-d\fP or \fC--description\fP\&.
+.PP
+The \fC-w\fP or \fC--wraps\fP options causes the specified command to inherit completions from another command\&. The inheriting command is said to 'wrap' the inherited command\&. The wrapping command may have its own completions in addition to inherited ones\&. A command may wrap multiple commands, and wrapping is transitive: if A wraps B, and B wraps C, then A automatically inherits all of C's completions\&. Wrapping can be removed using the \fC-e\fP or \fC--erase\fP options\&. Note that wrapping only works for completions specified with \fC-c\fP or \fC--command\fP and are ignored when specifying completions with \fC-p\fP or \fC--path\fP\&.
+.PP
+When erasing completions, it is possible to either erase all completions for a specific command by specifying \fCcomplete -c COMMAND -e\fP, or by specifying a specific completion option to delete by specifying either a long, short or old style option\&.
+.SS "Example"
+The short style option \fC-o\fP for the \fCgcc\fP command requires that a file follows it\&. This can be done using writing:
+.PP
+.PP
+.nf
+
+\fBcomplete\fP -c gcc -s o -r
+.fi
+.PP
+.PP
+The short style option \fC-d\fP for the \fCgrep\fP command requires that one of the strings '\fCread\fP', '\fCskip\fP' or '\fCrecurse\fP' is used\&. This can be specified writing:
+.PP
+.PP
+.nf
+
+\fBcomplete\fP -c grep -s d -x -a 'read skip recurse'
+.fi
+.PP
+.PP
+The \fCsu\fP command takes any username as an argument\&. Usernames are given as the first colon-separated field in the file /etc/passwd\&. This can be specified as:
+.PP
+.PP
+.nf
+
+\fBcomplete\fP -x -c su -d 'Username' -a '(cat /etc/passwd | cut -d : -f 1)'
+.fi
+.PP
+.PP
+The \fCrpm\fP command has several different modes\&. If the \fC-e\fP or \fC--erase\fP flag has been specified, \fCrpm\fP should delete one or more packages, in which case several switches related to deleting packages are valid, like the \fCnodeps\fP switch\&.
+.PP
+This can be written as:
+.PP
+.PP
+.nf
+
+\fBcomplete\fP -c rpm -n '__fish_contains_opt -s e erase' -d nodeps 'Don't check dependencies'
+.fi
+.PP
+.PP
+where \fC__fish_contains_opt\fP is a function that checks the command line buffer for the presence of a specified set of options\&.
+.PP
+To implement an alias, use the \fC-w\fP or \fC--wraps\fP option:
+.PP
+.PP
+.nf
+
+\fBcomplete\fP -c hub -w git
+.fi
+.PP
+.PP
+Now hub inherits all of the completions from git\&. Note this can also be specified in a function declaration\&. 

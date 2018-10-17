@@ -1,0 +1,47 @@
+.TH "trap" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBtrap\fP -- perform an action when the shell receives a signal 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBtrap\fP [OPTIONS] [[ARG] REASON \&.\&.\&. ]
+.fi
+.PP
+.SS "Description"
+\fCtrap\fP is a wrapper around the fish event delivery framework\&. It exists for backwards compatibility with POSIX shells\&. For other uses, it is recommended to define an \fCevent handler\fP\&.
+.PP
+The following parameters are available:
+.PP
+.IP "\(bu" 2
+\fCARG\fP is the command to be executed on signal delivery\&.
+.IP "\(bu" 2
+\fCREASON\fP is the name of the event to trap\&. For example, a signal like \fCINT\fP or \fCSIGINT\fP, or the special symbol \fCEXIT\fP\&.
+.IP "\(bu" 2
+\fC-l\fP or \fC--list-signals\fP prints a list of signal names\&.
+.IP "\(bu" 2
+\fC-p\fP or \fC--print\fP prints all defined signal handlers\&.
+.PP
+.PP
+If \fCARG\fP and \fCREASON\fP are both specified, \fCARG\fP is the command to be executed when the event specified by \fCREASON\fP occurs (e\&.g\&., the signal is delivered)\&.
+.PP
+If \fCARG\fP is absent (and there is a single REASON) or -, each specified signal is reset to its original disposition (the value it had upon entrance to the shell)\&. If \fCARG\fP is the null string the signal specified by each \fCREASON\fP is ignored by the shell and by the commands it invokes\&.
+.PP
+If \fCARG\fP is not present and \fC-p\fP has been supplied, then the trap commands associated with each \fCREASON\fP are displayed\&. If no arguments are supplied or if only \fC-p\fP is given, \fCtrap\fP prints the list of commands associated with each signal\&.
+.PP
+Signal names are case insensitive and the \fCSIG\fP prefix is optional\&.
+.PP
+The return status is 1 if any \fCREASON\fP is invalid; otherwise trap returns 0\&.
+.SS "Example"
+.PP
+.nf
+
+\fBtrap\fP 'status --print-stack-trace' SIGUSR1
+  Prints a stack trace each time the SIGUSR1 signal is sent to the shell\&.
+.fi
+.PP
+ 

@@ -1,0 +1,9 @@
+Package: com.mc.libxslt
+Name: libxslt
+Version: 1.1.32-4
+Section: Utility
+Architecture: iphoneos-arm
+Author: GNOME Project
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	 The libxstl package contains XSLT libraries used for extending libxml2 libraries to support XSLT files.

@@ -1,0 +1,9 @@
+Package: com.mc.x265
+Name: libx265
+Version: 2.8
+Section: Development
+Architecture: iphoneos-arm
+Author: multicoreware
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	H.265/HEVC video encoder.

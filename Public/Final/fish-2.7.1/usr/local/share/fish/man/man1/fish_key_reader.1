@@ -1,0 +1,47 @@
+.TH "fish_key_reader" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBfish_key_reader\fP -- explore what characters keyboard keys send 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBfish_key_reader\fP [OPTIONS]
+.fi
+.PP
+.SS "Description"
+\fCfish_key_reader\fP is used to study input received from the terminal and can help with key binds\&. The program is interactive and works on standard input\&. Individual characters themselves and their hexadecimal values are displayed\&.
+.PP
+The tool will write an example \fCbind\fP command matching the character sequence captured to stdout\&. If the character sequence matches a special key name (see \fCbind --key-names\fP), both \fCbind CHARS \&.\&.\&.\fP and \fCbind -k KEYNAME \&.\&.\&.\fP usage will be shown\&. Additional details about the characters received, such as the delay between chars, are written to stderr\&.
+.PP
+The following options are available:
+.PP
+.IP "\(bu" 2
+\fC-c\fP or \fC--continuous\fP begins a session where multiple key sequences can be inspected\&. By default the program exits after capturing a single key sequence\&.
+.IP "\(bu" 2
+\fC-d\fP or \fC--debug-level=DEBUG_LEVEL\fP enables debug output and specifies a verbosity level (like \fCfish -d\fP)\&. Defaults to 0\&.
+.IP "\(bu" 2
+\fC-D\fP or \fC--debug-stack-frames=DEBUG_LEVEL\fP specify how many stack frames to display when debug messages are written\&. The default is zero\&. A value of 3 or 4 is usually sufficient to gain insight into how a given debug call was reached but you can specify a value up to 128\&.
+.IP "\(bu" 2
+\fC-h\fP or \fC--help\fP prints usage information\&.
+.IP "\(bu" 2
+\fC-v\fP or \fC--version\fP prints fish_key_reader's version and exits\&.
+.PP
+.SS "Usage Notes"
+The delay in milliseconds since the previous character was received is included in the diagnostic information written to stderr\&. This information may be useful to determine the optimal \fCfish_escape_delay_ms\fP setting or learn the amount of lag introduced by tools like \fCssh\fP, \fCmosh\fP or \fCtmux\fP\&.
+.PP
+\fCfish_key_reader\fP intentionally disables handling of many signals\&. To terminate \fCfish_key_reader\fP in \fC--continuous\fP mode do:
+.PP
+.IP "\(bu" 2
+press \fCCtrl-C\fP twice, or
+.IP "\(bu" 2
+press \fCCtrl-D\fP twice, or
+.IP "\(bu" 2
+type \fCexit\fP, or
+.IP "\(bu" 2
+type \fCquit\fP 
+.PP
+

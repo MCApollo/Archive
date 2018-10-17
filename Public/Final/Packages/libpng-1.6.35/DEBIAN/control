@@ -1,0 +1,10 @@
+Package: com.mc.libpng
+Name: libpng
+Version: 1.6.35
+Section: Development
+Architecture: iphoneos-arm
+Author: Cosmin Truta
+Depends: com.mc.zlib
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	PNG library for C functions.

@@ -1,0 +1,9 @@
+Package: com.mc.ncftp
+Name: ncftp
+Version: 3.2.6
+Section: Networking
+Architecture: iphoneos-arm
+Author: Mike Gleason
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	the best ftp client known to man

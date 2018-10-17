@@ -1,0 +1,39 @@
+.TH "fish_mode_prompt" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBfish_mode_prompt\fP -- define the appearance of the mode indicator 
+
+.PP
+.SS "Synopsis"
+The fish_mode_prompt function will output the mode indicator for use in vi-mode\&.
+.SS "Description"
+The default \fCfish_mode_prompt\fP function will output indicators about the current Vi editor mode displayed to the left of the regular prompt\&. Define your own function to customize the appearance of the mode indicator\&. You can also define an empty \fCfish_mode_prompt\fP function to remove the Vi mode indicators\&. The \fC$fish_bind_mode variable\fP can be used to determine the current mode\&. It will be one of \fCdefault\fP, \fCinsert\fP, \fCreplace_one\fP, or \fCvisual\fP\&.
+.SS "Example"
+.PP
+.nf
+
+\fBfunction\fP fish_mode_prompt
+  \fBswitch\fP $fish_bind_mode
+    \fBcase\fP default
+      \fBset_color\fP --bold red
+      \fBecho\fP 'N'
+    \fBcase\fP insert
+      \fBset_color\fP --bold green
+      \fBecho\fP 'I'
+    \fBcase\fP replace_one
+      \fBset_color\fP --bold green
+      \fBecho\fP 'R'
+    \fBcase\fP visual
+      \fBset_color\fP --bold brmagenta
+      \fBecho\fP 'V'
+    \fBcase\fP '*'
+      \fBset_color\fP --bold red
+      \fBecho\fP '?'
+  \fBend\fP
+  \fBset_color\fP normal
+\fBend\fP
+.fi
+.PP
+.PP
+Outputting multiple lines is not supported in \fCfish_mode_prompt\fP\&. 

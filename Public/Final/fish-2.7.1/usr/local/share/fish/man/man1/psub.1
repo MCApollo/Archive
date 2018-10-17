@@ -1,0 +1,42 @@
+.TH "psub" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBpsub\fP -- perform process substitution 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+COMMAND1 ( COMMAND2 | \fBpsub\fP [-F | --fifo] [-f | --file] [-s SUFFIX])
+.fi
+.PP
+.SS "Description"
+Some shells (e\&.g\&., ksh, bash) feature a syntax that is a mix between command substitution and piping, called process substitution\&. It is used to send the output of a command into the calling command, much like command substitution, but with the difference that the output is not sent through commandline arguments but through a named pipe, with the filename of the named pipe sent as an argument to the calling program\&. \fCpsub\fP combined with a regular command substitution provides the same functionality\&.
+.PP
+The following options are available:
+.PP
+.IP "\(bu" 2
+\fC-f\fP or \fC--file\fP will cause psub to use a regular file instead of a named pipe to communicate with the calling process\&. This will cause \fCpsub\fP to be significantly slower when large amounts of data are involved, but has the advantage that the reading process can seek in the stream\&. This is the default\&.
+.IP "\(bu" 2
+\fC-F\fP or \fC--fifo\fP will cause psub to use a named pipe rather than a file\&. You should only use this if the command produces no more than 8 KiB of output\&. The limit on the amount of data a FIFO can buffer varies with the OS but is typically 8 KiB, 16 KiB or 64 KiB\&. If you use this option and the command on the left of the psub pipeline produces more output a deadlock is likely to occur\&.
+.IP "\(bu" 2
+\fC-s\fP or \fC--suffix\fP will append SUFFIX to the filename\&.
+.PP
+.SS "Example"
+.PP
+.nf
+
+\fBdiff\fP (\fBsort\fP a\&.txt | \fBpsub\fP) (\fBsort\fP b\&.txt | \fBpsub\fP)
+  shows the difference between the sorted versions of files \fCa\&.txt\fP and \fCb\&.txt\fP\&.
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBsource\fP-highlight -f esc (cpp main\&.c | \fBpsub\fP -f -s \&.c)
+  highlights \fCmain\&.c\fP after preprocessing as a C source\&.
+.fi
+.PP
+ 

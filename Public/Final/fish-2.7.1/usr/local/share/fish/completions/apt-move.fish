@@ -1,0 +1,22 @@
+#apt-move
+complete -c apt-move -a get --description "Generate master file"
+complete -c apt-move -a getlocal --description "Alias for 'get'"
+complete -f -c apt-move -a move --description "Move packages to local tree"
+complete -f -c apt-move -a delete --description "Delete obsolete package files"
+complete -f -c apt-move -a packages --description "Build new local files"
+complete -f -c apt-move -a fsck --description "Rebuild index files"
+complete -f -c apt-move -a update --description "Move packages from cache to local mirror"
+complete -f -c apt-move -a local --description "Alias for 'move delete packages'"
+complete -f -c apt-move -a localupdate --description "Alias for 'update'"
+complete -f -c apt-move -a mirror --description "Download package missing from mirror"
+complete -f -c apt-move -a sync --description "Sync packages installed"
+complete -f -c apt-move -a exclude -d 'test $LOCALDIR/.exclude file'
+complete -c apt-move -a movefile --description "Move file specified on commandline"
+complete -f -c apt-move -a listbin --description 'List packages that may serve as input to mirrorbin or mirrorsource'
+complete -f -c apt-move -a mirrorbin --description "Fetch package from STDIN"
+complete -f -c apt-move -a mirrorsrc --description "Fetch source package from STDIN"
+complete -f -c apt-move -s a --description "Process all packages"
+complete -c apt-move -s c --description "Use specific conffile"
+complete -f -c apt-move -s f --description "Force deletion"
+complete -f -c apt-move -s q --description "Suppresses normal output"
+complete -f -c apt-move -s t --description "Test run"

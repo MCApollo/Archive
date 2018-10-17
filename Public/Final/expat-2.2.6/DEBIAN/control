@@ -1,0 +1,9 @@
+Package: com.mc.expat
+Name: expat
+Version: 2.2.6
+Section: Utility
+Architecture: iphoneos-arm
+Author: libexpat
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	The Expat package contains a stream oriented C library for parsing XML.	

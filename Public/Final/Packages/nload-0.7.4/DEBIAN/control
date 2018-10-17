@@ -1,0 +1,9 @@
+Package: com.mc.nload
+Name: nload
+Version: 0.7.4
+Section: Networking
+Architecture: iphoneos-arm
+Author: Roland Riegel
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	nload is a console application which monitors network traffic and bandwidth usage in real time. It visualizes the in- and outgoing traffic using two graphs and provides additional info like total amount of transfered data and min/max network usage.

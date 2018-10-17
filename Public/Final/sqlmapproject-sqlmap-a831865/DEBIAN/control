@@ -1,0 +1,10 @@
+Package: com.mc.sqlmap
+Name: SQLMap
+Version: 1-a831865-2
+Section: Utility
+Architecture: iphoneos-arm
+Depends: python
+Author: sqlmapproject
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Automatic SQL injection and database takeover tool.

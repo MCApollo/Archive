@@ -1,0 +1,40 @@
+.TH "fish" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBfish\fP -- the friendly interactive shell 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBfish\fP [OPTIONS] [-c command] [FILE [ARGUMENTS\&.\&.\&.]]
+.fi
+.PP
+.SS "Description"
+\fCfish\fP is a command-line shell written mainly with interactive use in mind\&. The full manual is available \fCin HTML\fP by using the \fChelp\fP command from inside fish\&.
+.PP
+The following options are available:
+.PP
+.IP "\(bu" 2
+\fC-c\fP or \fC--command=COMMANDS\fP evaluate the specified commands instead of reading from the commandline
+.IP "\(bu" 2
+\fC-C\fP or \fC--init-command=COMMANDS\fP evaluate the specified commands after reading the configuration, before running the command specified by \fC-c\fP or reading interactive input
+.IP "\(bu" 2
+\fC-d\fP or \fC--debug-level=DEBUG_LEVEL\fP specify the verbosity level of fish\&. A higher number means higher verbosity\&. The default level is 1\&.
+.IP "\(bu" 2
+\fC-i\fP or \fC--interactive\fP specify that fish is to run in interactive mode
+.IP "\(bu" 2
+\fC-l\fP or \fC--login\fP specify that fish is to run as a login shell
+.IP "\(bu" 2
+\fC-n\fP or \fC--no-execute\fP do not execute any commands, only perform syntax checking
+.IP "\(bu" 2
+\fC-p\fP or \fC--profile=PROFILE_FILE\fP when fish exits, output timing information on all executed commands to the specified file
+.IP "\(bu" 2
+\fC-v\fP or \fC--version\fP display version and exit
+.IP "\(bu" 2
+\fC-D\fP or \fC--debug-stack-frames=DEBUG_LEVEL\fP specify how many stack frames to display when debug messages are written\&. The default is zero\&. A value of 3 or 4 is usually sufficient to gain insight into how a given debug call was reached but you can specify a value up to 128\&.
+.PP
+.PP
+The fish exit status is generally the exit status of the last foreground command\&. If fish is exiting because of a parse error, the exit status is 127\&. 

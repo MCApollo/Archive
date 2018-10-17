@@ -1,0 +1,9 @@
+Package: com.mc.axel
+Name: axel
+Version: 2.16.1
+Section: Networking
+Architecture: iphoneos-arm
+Author: Wilmer Gaast
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	A light download accelerator.

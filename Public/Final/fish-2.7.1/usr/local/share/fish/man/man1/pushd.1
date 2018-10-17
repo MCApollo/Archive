@@ -1,0 +1,68 @@
+.TH "pushd" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBpushd\fP -- push directory to directory stack 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBpushd\fP [DIRECTORY]
+.fi
+.PP
+.SS "Description"
+The \fCpushd\fP function adds \fCDIRECTORY\fP to the top of the directory stack and makes it the current working directory\&. \fC\fCpopd\fP\fP will pop it off and return to the original directory\&.
+.PP
+Without arguments, it exchanges the top two directories in the stack\&.
+.PP
+\fCpushd +NUMBER\fP rotates the stack counter-clockwise i\&.e\&. from bottom to top
+.PP
+\fCpushd -NUMBER\fP rotates clockwise i\&.e\&. top to bottom\&.
+.PP
+See also \fCdirs\fP and \fCdirs -c\fP\&.
+.PP
+You may be interested in the \fC\fCcdh\fP\fP command which provides a more intuitive way to navigate to recently visited directories\&.
+.SS "Example"
+.PP
+.nf
+
+\fBpushd\fP /usr/src
+  Working directory is now /usr/src
+  Directory stack contains /usr/src
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBpushd\fP /usr/src/fish-shell
+  Working directory is now /usr/src/fish-shell
+  Directory stack contains /usr/src /usr/src/fish-shell
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBpushd\fP /tmp/
+  Working directory is now /tmp
+  Directory stack contains /tmp /usr/src /usr/src/fish-shell
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBpushd\fP +1
+  Working directory is now /usr/src
+  Directory stack contains /usr/src /usr/src/fish-shell /tmp
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBpopd\fP
+  Working directory is now /usr/src/fish-shell
+  Directory stack contains /usr/src/fish-shell /tmp
+.fi
+.PP
+ 

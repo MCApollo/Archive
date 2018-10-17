@@ -1,0 +1,41 @@
+.TH "cd" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBcd\fP -- change directory 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBcd\fP [DIRECTORY]
+.fi
+.PP
+.SS "Description"
+\fCcd\fP changes the current working directory\&.
+.PP
+If \fCDIRECTORY\fP is supplied, it will become the new directory\&. If no parameter is given, the contents of the \fCHOME\fP environment variable will be used\&.
+.PP
+If \fCDIRECTORY\fP is a relative path, the paths found in the \fCCDPATH\fP environment variable array will be tried as prefixes for the specified path\&.
+.PP
+Note that the shell will attempt to change directory without requiring \fCcd\fP if the name of a directory is provided (starting with \fC\&.\fP, \fC/\fP or \fC~\fP, or ending with \fC/\fP)\&.
+.PP
+Fish also ships a wrapper function around the builtin \fCcd\fP that understands \fCcd -\fP as changing to the previous directory\&. See also \fC\fCprevd\fP\fP\&. This wrapper function maintains a history of the 25 most recently visited directories in the \fC$dirprev\fP and \fC$dirnext\fP global variables\&. If you make those universal variables your \fCcd\fP history is shared among all fish instances\&.
+.SS "Examples"
+.PP
+.nf
+
+\fBcd\fP
+  changes the working directory to your home directory\&.
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBcd\fP /usr/src/fish-shell
+  changes the working directory to /usr/src/fish-shell
+.fi
+.PP
+.SS "See Also"
+See also the \fC\fCcdh\fP\fP command for changing to a recently visited directory\&. 

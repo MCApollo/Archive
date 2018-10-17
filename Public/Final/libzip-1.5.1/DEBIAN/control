@@ -1,0 +1,10 @@
+Package: com.mc.libzip
+Name: libzip
+Version: 1.5.1
+Section: Development
+Architecture: iphoneos-arm
+Author: DieterB.&ThomasK.
+Depends: com.mc.zlib
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	A C library for reading, creating, and modifying zip archives.

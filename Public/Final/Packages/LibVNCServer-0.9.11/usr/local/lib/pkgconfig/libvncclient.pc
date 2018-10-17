@@ -1,0 +1,14 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: LibVNCClient
+Description: A library for easy implementation of a VNC client.
+Version: 0.9.11
+Requires:
+Requires.private: zlib
+Libs: -L${libdir} -lvncclient
+Libs.private: -lpthread -lz -lpng -ljpeg -L/home/cade/toolchain/SDK/usr/lib -lgcrypt -lgpg-error  
+Cflags: -I${includedir}
+

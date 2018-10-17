@@ -1,0 +1,37 @@
+.TH "fish_breakpoint_prompt" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBfish_breakpoint_prompt\fP -- define the appearance of the command line prompt when in the context of a `breakpoint` command 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBfunction\fP fish_breakpoint_prompt
+    \&.\&.\&.
+\fBend\fP
+.fi
+.PP
+.SS "Description"
+By defining the \fCfish_breakpoint_prompt\fP function, the user can choose a custom prompt when asking for input in response to a \fCbreakpoint\fP command\&. The \fCfish_breakpoint_prompt\fP function is executed when the prompt is to be shown, and the output is used as a prompt\&.
+.PP
+The exit status of commands within \fCfish_breakpoint_prompt\fP will not modify the value of \fC$status\fP outside of the \fCfish_breakpoint_prompt\fP function\&.
+.PP
+\fCfish\fP ships with a default version of this function that displays the function name and line number of the current execution context\&.
+.SS "Example"
+A simple prompt that is a simplified version of the default debugging prompt:
+.PP
+.PP
+.nf
+
+\fBfunction\fP fish_breakpoint_prompt -d 'Write out the debug prompt'
+    \fBset\fP -l \fBfunction\fP (\fBstatus\fP current-function)
+    \fBset\fP -l line (\fBstatus\fP current-line-number)
+    \fBset\fP -l prompt '$function:$line &gt;'
+    \fBecho\fP -ns (\fBset_color\fP $fish_color_status) \\ (\fBset_color\fP normal)
+\fBend\fP
+.fi
+.PP
+ 

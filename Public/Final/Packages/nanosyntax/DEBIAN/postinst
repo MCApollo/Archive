@@ -1,0 +1,3 @@
+echo "adding include /usr/share/nano/extrasyntax/* into root and mobile's .nanorc"
+echo 'include /usr/share/nano/extrasyntax/*' >> /var/root/.nanorc
+echo 'include /usr/share/nano/extrasyntax/*' >> /var/mobile/.nanorc

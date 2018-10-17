@@ -1,0 +1,29 @@
+.TH "while" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBwhile\fP -- perform a command multiple times 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBwhile\fP CONDITION; COMMANDS\&.\&.\&.; \fBend\fP
+.fi
+.PP
+.SS "Description"
+\fCwhile\fP repeatedly executes \fCCONDITION\fP, and if the exit status is 0, then executes \fCCOMMANDS\fP\&.
+.PP
+If the exit status of \fCCONDITION\fP is non-zero on the first iteration, \fCCOMMANDS\fP will not be executed at all\&.
+.PP
+You can use \fC\fCand\fP\fP or \fC\fCor\fP\fP for complex conditions\&. Even more complex control can be achieved with \fCwhile true\fP containing a \fCbreak\fP\&.
+.SS "Example"
+.PP
+.nf
+
+\fBwhile\fP test -f foo\&.txt; \fBor\fP \fBtest\fP -f bar\&.txt ; \fBecho\fP file exists; \fBsleep\fP 10; \fBend\fP
+  outputs 'file exists' at 10 second intervals as long as the file foo\&.txt or bar\&.txt exists\&.
+.fi
+.PP
+ 

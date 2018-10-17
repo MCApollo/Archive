@@ -1,0 +1,18 @@
+.TH "exec" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBexec\fP -- execute command in current process 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBexec\fP COMMAND [OPTIONS\&.\&.\&.]
+.fi
+.PP
+.SS "Description"
+\fCexec\fP replaces the currently running shell with a new command\&. On successful completion, \fCexec\fP never returns\&. \fCexec\fP cannot be used inside a pipeline\&.
+.SS "Example"
+\fCexec emacs\fP starts up the emacs text editor, and exits \fCfish\fP\&. When emacs exits, the session will terminate\&. 

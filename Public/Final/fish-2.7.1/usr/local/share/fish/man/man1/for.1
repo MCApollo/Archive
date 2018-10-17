@@ -1,0 +1,33 @@
+.TH "for" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBfor\fP -- perform a set of commands multiple times\&. 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBfor\fP VARNAME \fBin\fP [VALUES\&.\&.\&.]; COMMANDS\&.\&.\&.; \fBend\fP
+.fi
+.PP
+.SS "Description"
+\fCfor\fP is a loop construct\&. It will perform the commands specified by \fCCOMMANDS\fP multiple times\&. On each iteration, the local variable specified by \fCVARNAME\fP is assigned a new value from \fCVALUES\fP\&. If \fCVALUES\fP is empty, \fCCOMMANDS\fP will not be executed at all\&.
+.SS "Example"
+.PP
+.nf
+
+\fBfor\fP i \fBin\fP foo bar baz; \fBecho\fP $i; \fBend\fP
+.fi
+.PP
+.PP
+.PP
+.nf
+  would output:
+foo
+bar
+baz
+.fi
+.PP
+ 

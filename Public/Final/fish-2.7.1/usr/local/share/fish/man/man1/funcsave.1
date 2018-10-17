@@ -1,0 +1,18 @@
+.TH "funcsave" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBfuncsave\fP -- save the definition of a function to the user's autoload directory 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBfuncsave\fP FUNCTION_NAME
+.fi
+.PP
+.SS "Description"
+\fCfuncsave\fP saves the current definition of a function to a file in the fish configuration directory\&. This function will be automatically loaded by current and future fish sessions\&. This can be useful if you have interactively created a new function and wish to save it for later use\&.
+.PP
+Note that because fish loads functions on-demand, saved functions will not function as \fCevent handlers\fP until they are run or sourced otherwise\&. To activate an event handler for every new shell, add the function to your \fCshell initialization file\fP instead of using \fCfuncsave\fP\&. 

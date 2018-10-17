@@ -1,0 +1,13 @@
+Package: com.mc.zork1
+Name: DUNGEON (Zork I)
+Version: 1.0.2-2
+Section: Keyboards
+Architecture: iphoneos-arm
+Author: Infocom
+Depends: ncurses
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	You are in an open field west of a big white house with a boarded front door.
+	There is a small mailbox here.
+	> Opening the mailbox reveals:
+        A leaflet.

@@ -1,0 +1,118 @@
+.TH "function" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBfunction\fP -- create a function 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBfunction\fP NAME [OPTIONS]; BODY; \fBend\fP
+.fi
+.PP
+.SS "Description"
+\fCfunction\fP creates a new function \fCNAME\fP with the body \fCBODY\fP\&.
+.PP
+A function is a list of commands that will be executed when the name of the function is given as a command\&.
+.PP
+The following options are available:
+.PP
+.IP "\(bu" 2
+\fC-a NAMES\fP or \fC--argument-names NAMES\fP assigns the value of successive command-line arguments to the names given in NAMES\&.
+.IP "\(bu" 2
+\fC-d DESCRIPTION\fP or \fC--description=DESCRIPTION\fP is a description of what the function does, suitable as a completion description\&.
+.IP "\(bu" 2
+\fC-w WRAPPED_COMMAND\fP or \fC--wraps=WRAPPED_COMMAND\fP causes the function to inherit completions from the given wrapped command\&. See the documentation for \fC\fCcomplete\fP\fP for more information\&.
+.IP "\(bu" 2
+\fC-e\fP or \fC--on-event EVENT_NAME\fP tells fish to run this function when the specified named event is emitted\&. Fish internally generates named events e\&.g\&. when showing the prompt\&.
+.IP "\(bu" 2
+\fC-v\fP or \fC--on-variable VARIABLE_NAME\fP tells fish to run this function when the variable VARIABLE_NAME changes value\&.
+.IP "\(bu" 2
+\fC-j PGID\fP or \fC--on-job-exit PGID\fP tells fish to run this function when the job with group ID PGID exits\&. Instead of PGID, the string 'caller' can be specified\&. This is only legal when in a command substitution, and will result in the handler being triggered by the exit of the job which created this command substitution\&.
+.IP "\(bu" 2
+\fC-p PID\fP or \fC--on-process-exit PID\fP tells fish to run this function when the fish child process with process ID PID exits\&.
+.IP "\(bu" 2
+\fC-s\fP or \fC--on-signal SIGSPEC\fP tells fish to run this function when the signal SIGSPEC is delivered\&. SIGSPEC can be a signal number, or the signal name, such as SIGHUP (or just HUP)\&.
+.IP "\(bu" 2
+\fC-S\fP or \fC--no-scope-shadowing\fP allows the function to access the variables of calling functions\&. Normally, any variables inside the function that have the same name as variables from the calling function are 'shadowed', and their contents is independent of the calling function\&.
+.IP "\(bu" 2
+\fC-V\fP or \fC--inherit-variable NAME\fP snapshots the value of the variable \fCNAME\fP and defines a local variable with that same name and value when the function is defined\&. This is similar to a closure in other languages like Python but a bit different\&. Note the word 'snapshot' in the first sentence\&. If you change the value of the variable after defining the function, even if you do so in the same scope (typically another function) the new value will not be used by the function you just created using this option\&. See the \fCfunction notify\fP example below for how this might be used\&.
+.PP
+.PP
+If the user enters any additional arguments after the function, they are inserted into the environment \fCvariable array\fP \fC$argv\fP\&. If the \fC--argument-names\fP option is provided, the arguments are also assigned to names specified in that option\&.
+.PP
+By using one of the event handler switches, a function can be made to run automatically at specific events\&. The user may generate new events using the \fCemit\fP builtin\&. Fish generates the following named events:
+.PP
+.IP "\(bu" 2
+\fCfish_prompt\fP, which is emitted whenever a new fish prompt is about to be displayed\&.
+.IP "\(bu" 2
+\fCfish_command_not_found\fP, which is emitted whenever a command lookup failed\&.
+.IP "\(bu" 2
+\fCfish_preexec\fP, which is emitted right before executing an interactive command\&. The commandline is passed as the first parameter\&.
+.PP
+Note: This event will be emitted even if the command is invalid\&. The commandline parameter includes the entire commandline verbatim, and may potentially include newlines\&.
+.IP "\(bu" 2
+\fCfish_postexec\fP, which is emitted right after executing an interactive command\&. The commandline is passed as the first parameter\&.
+.PP
+Note: This event will be emitted even if the command is invalid\&. The commandline parameter includes the entire commandline verbatim, and may potentially include newlines\&.
+.PP
+.SS "Example"
+.PP
+.nf
+
+\fBfunction\fP ll
+    \fBls\fP -l $argv
+\fBend\fP
+.fi
+.PP
+.PP
+will run the \fCls\fP command, using the \fC-l\fP option, while passing on any additional files and switches to \fCls\fP\&.
+.PP
+.PP
+.nf
+
+\fBfunction\fP mkdir -d 'Create a directory and set CWD'
+    \fBcommand\fP \fBmkdir\fP $argv
+    \fBif\fP \fBtest\fP $status = 0
+        \fBswitch\fP $argv[(\fBcount\fP $argv)]
+            \fBcase\fP '-*'
+.fi
+.PP
+.PP
+.PP
+.nf
+            \fBcase\fP '*'
+                \fBcd\fP $argv[(\fBcount\fP $argv)]
+                \fBreturn\fP
+        \fBend\fP
+    \fBend\fP
+\fBend\fP
+.fi
+.PP
+.PP
+This will run the \fCmkdir\fP command, and if it is successful, change the current working directory to the one just created\&.
+.PP
+.PP
+.nf
+
+\fBfunction\fP notify
+    \fBset\fP -l job (\fBjobs\fP -l -g)
+    \fBor\fP \fBbegin\fP; \fBecho\fP 'There are no jobs' >&2; \fBreturn\fP 1; \fBend\fP
+.fi
+.PP
+.PP
+.PP
+.nf
+    \fBfunction\fP _notify_job_$job --on-job-exit $job --inherit-variable job
+        \fBecho\fP -n \\a  # beep
+        \fBfunctions\fP -e _notify_job_$job
+    \fBend\fP
+\fBend\fP
+.fi
+.PP
+.PP
+This will beep when the most recent job completes\&.
+.SS "Notes"
+Note that events are only received from the current fish process as there is no way to send events from one fish process to another\&. 

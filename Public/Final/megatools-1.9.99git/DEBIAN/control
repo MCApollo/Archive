@@ -1,0 +1,11 @@
+Package: com.mc.megatools
+Name: megatools
+Version: 1.9.99-2
+Section: Utility
+Architecture: iphoneos-arm
+Author: megous
+Depends: com.mc.glib, openssl, curl, com.mc.gettext
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	command line client application for Mega
+	** man pages taken from the debian pages due to ascii needing 1GB just to install... (v1.9.98 is used.)

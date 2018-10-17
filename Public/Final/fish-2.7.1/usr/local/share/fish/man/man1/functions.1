@@ -1,0 +1,91 @@
+.TH "functions" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBfunctions\fP -- print or erase functions 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBfunctions\fP [ -a | --all ] [ -n | --names ]
+\fBfunctions\fP [ -D | --details ] [ -v ] FUNCTION
+\fBfunctions\fP -c OLDNAME NEWNAME
+\fBfunctions\fP -d DESCRIPTION FUNCTION
+\fBfunctions\fP [ -e | -q ] FUNCTIONS\&.\&.\&.
+.fi
+.PP
+.SS "Description"
+\fCfunctions\fP prints or erases functions\&.
+.PP
+The following options are available:
+.PP
+.IP "\(bu" 2
+\fC-a\fP or \fC--all\fP lists all functions, even those whose name starts with an underscore\&.
+.IP "\(bu" 2
+\fC-c OLDNAME NEWNAME\fP or \fC--copy OLDNAME NEWNAME\fP creates a new function named NEWNAME, using the definition of the OLDNAME function\&.
+.IP "\(bu" 2
+\fC-d DESCRIPTION\fP or \fC--description=DESCRIPTION\fP changes the description of this function\&.
+.IP "\(bu" 2
+\fC-e\fP or \fC--erase\fP causes the specified functions to be erased\&.
+.IP "\(bu" 2
+\fC-D\fP or \fC--details\fP reports the path name where each function is defined or could be autoloaded, \fCstdin\fP if the function was defined interactively or on the command line or by reading stdin, and \fCn/a\fP if the function isn't available\&. If the \fC--verbose\fP option is also specified then five lines are written:
+.IP "  1." 6
+the pathname as already described,
+.IP "  2." 6
+\fCautoloaded\fP, \fCnot-autoloaded\fP or \fCn/a\fP,
+.IP "  3." 6
+the line number within the file or zero if not applicable,
+.IP "  4." 6
+\fCscope-shadowing\fP if the function shadows the vars in the calling function (the normal case if it wasn't defined with \fC--no-scope-shadowing\fP), else \fCno-scope-shadowing\fP, or \fCn/a\fP if the function isn't defined,
+.IP "  5." 6
+the function description minimally escaped so it is a single line or \fCn/a\fP if the function isn't defined\&.
+.PP
+
+.PP
+.PP
+You should not assume that only five lines will be written since we may add additional information to the output in the future\&.
+.PP
+.IP "\(bu" 2
+\fC-n\fP or \fC--names\fP lists the names of all defined functions\&.
+.IP "\(bu" 2
+\fC-q\fP or \fC--query\fP tests if the specified functions exist\&.
+.IP "\(bu" 2
+\fC-v\fP or \fC--verbose\fP will make some output more verbose\&.
+.PP
+.PP
+The default behavior of \fCfunctions\fP, when called with no arguments, is to print the names of all defined functions\&. Unless the \fC-a\fP option is given, no functions starting with underscores are not included in the output\&.
+.PP
+If any non-option parameters are given, the definition of the specified functions are printed\&.
+.PP
+Automatically loaded functions cannot be removed using \fCfunctions -e\fP\&. Either remove the definition file or change the $fish_function_path variable to remove autoloaded functions\&.
+.PP
+Copying a function using \fC-c\fP copies only the body of the function, and does not attach any event notifications from the original function\&.
+.PP
+Only one function's description can be changed in a single invocation of \fCfunctions -d\fP\&.
+.PP
+The exit status of \fCfunctions\fP is the number of functions specified in the argument list that do not exist, which can be used in concert with the \fC-q\fP option\&.
+.SS "Examples"
+.PP
+.nf
+
+\fBfunctions\fP -n
+  Displays a list of currently-defined functions
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBfunctions\fP -c foo bar
+  Copies the 'foo' function to a new function called 'bar'
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBfunctions\fP -e bar
+  Erases the function \fCbar\fP
+.fi
+.PP
+ 

@@ -1,0 +1,5 @@
+echo "Remove your pip installs."
+echo "rm -rf /usr/local/lib/python3.6/site-packages"
+
+
+exit 0

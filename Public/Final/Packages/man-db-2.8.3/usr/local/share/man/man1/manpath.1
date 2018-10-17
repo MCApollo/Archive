@@ -1,0 +1,137 @@
+.\" Man page for manpath
+.\"
+.\" Copyright (C), 1995, Graeme W. Wilford. (Wilf.)
+.\"
+.\" You may distribute under the terms of the GNU General Public
+.\" License as specified in the COPYING file that comes with the
+.\" man-db distribution.  
+.\"
+.\" Sun Jan 22 22:15:17 GMT 1995 Wilf. (G.Wilford@ee.surrey.ac.uk)
+.\"
+.pc
+.TH MANPATH 1 "2018-04-05" "2.8.3" "Manual pager utils"
+.SH NAME
+manpath \- determine search path for manual pages
+.SH SYNOPSIS
+.B manpath  
+.RB [\| \-qgdc?V \|]
+.RB [\| \-m
+.IR system \|[\|,.\|.\|.\|]\|]
+.RB [\| \-C
+.IR file \|]
+.SH DESCRIPTION
+If 
+.RB $ MANPATH
+is set, 
+.B manpath
+will simply display its contents and issue a warning.
+If not, 
+.B manpath 
+will determine a suitable manual page hierarchy search path and display the
+results.
+
+The colon-delimited path is determined using information gained from the
+man-db configuration file -
+.RI ( "/usr/local/etc/man_db.conf" )
+and the user's environment.
+.SH OPTIONS
+.TP
+.BR \-q ", " \-\-quiet
+Do not issue warnings.
+.TP
+.BR \-d ", " \-\-debug
+Print debugging information.
+.TP
+.BR \-c ", " \-\-catpath
+Produce a catpath as opposed to a manpath. 
+Once the manpath is determined,
+each path element is converted to its relative catpath.
+.TP
+.BR \-g ", " \-\-global
+Produce a manpath consisting of all paths named as `global' within the
+man-db configuration file. 
+.\"
+.\" Due to the rather silly limit of 6 args per request in some `native'
+.\" *roff compilers, we have do the following to get the two-line
+.\" hanging tag on one line. .PP to begin a new paragraph, then the
+.\" tag, then .RS (start relative indent), the text, finally .RE
+.\" (end relative indent).
+.\"
+.PP
+.B \-m 
+.I system\c 
+\|[\|,.\|.\|.\|]\|,
+.BI \-\-systems= system\c 
+\|[\|,.\|.\|.\|]
+.RS
+If this system has access to other operating system's manual hierarchies, 
+this option can be used to include them in the output of
+.BR manpath .
+To include NewOS's manual page hierarchies use the option
+.B \-m
+.BR NewOS .
+
+The
+.I system
+specified can be a combination of comma delimited operating system names.
+To include the native operating system's manual page hierarchies, 
+the system name
+.B man
+must be included in the argument string.
+This option will override the
+.RB $ SYSTEM
+environment variable.
+.RE
+.TP
+.BI \-C\  file \fR,\ \fB\-\-config\-file= file
+Use this user configuration file rather than the default of
+.IR ~/.manpath .
+.TP
+.BR \-? ", " \-\-help
+Print a help message and exit.
+.TP
+.BR \-\-usage
+Print a short usage message and exit.
+.TP
+.BR \-V ", " \-\-version
+Display version information.
+.SH ENVIRONMENT
+.TP
+.B MANPATH
+If
+.RB $ MANPATH
+is set,
+.B manpath
+displays its value rather than determining it on the fly.
+If 
+.RB $ MANPATH
+is prefixed by a colon, then the value of the variable is appended
+to the list determined from the content of the configuration files.
+If the colon comes at the end of the value in the variable, then the
+determined list is appended to the content of the variable.
+If the value of the variable contains a double colon
+.RB ( :: ),
+then the determined list is inserted in the middle of the value, between
+the two colons.
+.TP
+.B SYSTEM
+If
+.RB $ SYSTEM
+is set, it will have the same effect as if it had been specified as the
+argument to the
+.B \-m
+option.
+.SH FILES
+.TP \w'/usr/local/etc/man_db.conf'u+2n
+.I /usr/local/etc/man_db.conf
+man-db configuration file.
+.SH "SEE ALSO"
+.BR apropos (1),
+.BR man (1),
+.BR whatis (1)
+.SH AUTHOR
+.nf
+Wilf. (G.Wilford@ee.surrey.ac.uk).
+Fabrizio Polacco (fpolacco@debian.org).
+Colin Watson (cjwatson@debian.org).
+.fi

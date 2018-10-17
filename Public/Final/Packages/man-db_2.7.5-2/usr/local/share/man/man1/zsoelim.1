@@ -1,0 +1,80 @@
+.\" Man page for zsoelim
+.\"
+.\" Copyright (C), 1994, 1995, Graeme W. Wilford. (Wilf.)
+.\"
+.\" You may distribute under the terms of the GNU General Public
+.\" License as specified in the file COPYING that comes with the
+.\" man-db distribution.
+.\"
+.\" Sat Dec 10 19:33:32 GMT 1994  Wilf. (G.Wilford@ee.surrey.ac.uk) 
+.\" 
+.pc
+.TH ZSOELIM 1 "2015-11-06" "2.7.5" "Manual pager utils"
+.SH NAME
+zsoelim \- satisfy .so requests in roff input
+.SH SYNOPSIS
+.B zsoelim 
+.RB [\| \-CVh \|]
+.RI [\| file
+\&.\|.\|.\|]
+.SH DESCRIPTION
+.B zsoelim 
+parses 
+.I file
+arguments, or if none are specified, its standard input for lines of the
+form:
+
+.B .so  
+.RI <\| filename \|>
+
+These requests are replaced by the contents of the 
+.I filename
+specified.
+If the request cannot be met,
+.B zsoelim
+looks for 
+.I filename.ext
+where
+.I .ext
+can be one of 
+.BR .gz ,
+.BR .Z
+or
+.BR .z .
+Other extension types may be supported depending upon compile time options.
+If the request can be met by a compressed file, this file is decompressed
+using an appropriate decompressor and its output is used to satisfy
+the request.
+
+Traditionally,
+.B soelim 
+programs were used to allow roff preprocessors to be able to preprocess the 
+files referred to by the requests.
+This particular version was written to circumvent problems created by
+support for compressed manual pages.
+.SH OPTIONS
+.TP
+.BR \-C ", " \-\-compatible
+This flag is available for compatibility with other 
+.B soelim
+programs.
+Its use is to enable .so requests followed by something other than 
+whitespace.
+As this is already the default behaviour, it is ignored.
+.TP
+.BR \-h ", " \-\-help
+Print a help message and exit.
+.TP
+.BR \-V ", " \-\-version
+Display version information.
+.SH "SEE ALSO"
+.BR groff (1),
+.BR man (1),
+.BR nroff (1),
+.BR troff (1)
+.SH AUTHOR
+.nf
+Wilf. (G.Wilford@ee.surrey.ac.uk).
+Fabrizio Polacco (fpolacco@debian.org).
+Colin Watson (cjwatson@debian.org).
+.fi

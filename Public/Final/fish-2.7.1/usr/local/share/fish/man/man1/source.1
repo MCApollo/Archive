@@ -1,0 +1,32 @@
+.TH "source" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBsource\fP -- evaluate contents of file\&. 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBsource\fP FILENAME [ARGUMENTS\&.\&.\&.]
+.fi
+.PP
+.SS "Description"
+\fCsource\fP evaluates the commands of the specified file in the current shell\&. This is different from starting a new process to perform the commands (i\&.e\&. \fCfish < FILENAME\fP) since the commands will be evaluated by the current shell, which means that changes in shell variables will affect the current shell\&. If additional arguments are specified after the file name, they will be inserted into the \fC$argv\fP variable\&. The \fC$argv\fP variable will not include the name of the sourced file\&.
+.PP
+If no file is specified, or if the file name '\fC-\fP' is used, stdin will be read\&.
+.PP
+The return status of \fCsource\fP is the return status of the last job to execute\&. If something goes wrong while opening or reading the file, \fCsource\fP exits with a non-zero status\&.
+.PP
+\fC\&.\fP (a single period) is an alias for the \fCsource\fP command\&. The use of \fC\&.\fP is deprecated in favour of \fCsource\fP, and \fC\&.\fP will be removed in a future version of fish\&.
+.SS "Example"
+.PP
+.nf
+
+\fBsource\fP ~/\&.config/fish/config\&.fish
+  Causes fish to re-read its initialization file\&.
+.fi
+.PP
+.SS "Caveats"
+In fish versions prior to 2\&.3\&.0 the \fC$argv\fP variable would have a single element (the name of the sourced file) if no arguments are present\&. Otherwise it would contain arguments without the name of the sourced file\&. That behavior was very confusing and unlike other shells such as bash and zsh\&. 

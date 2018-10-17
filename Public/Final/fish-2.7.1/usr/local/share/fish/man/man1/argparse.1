@@ -1,0 +1,142 @@
+.TH "argparse" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBargparse\fP -- parse options passed to a fish script or function 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBargparse\fP [OPTIONS] OPTION_SPEC\&.\&.\&. -- [ARG\&.\&.\&.]
+.fi
+.PP
+.SS "Description"
+This command makes it easy for fish scripts and functions to handle arguments in a manner 100% identical to how fish builtin commands handle their arguments\&. You pass a sequence of arguments that define the options recognized, followed by a literal \fC--\fP, then the arguments to be parsed (which might also include a literal \fC--\fP)\&. More on this in the \fCusage\fP section below\&.
+.PP
+Each OPTION_SPEC can be written in the domain specific language \fCdescribed below\fP or created using the companion \fC\fCfish_opt\fP\fP command\&. All OPTION_SPECs must appear after any argparse flags and before the \fC--\fP that separates them from the arguments to be parsed\&.
+.PP
+Each option that is seen in the ARG list will result in a var name of the form \fC_flag_X\fP, where \fCX\fP is the short flag letter and the long flag name\&. The OPTION_SPEC always requires a short flag even if it can't be used\&. So there will always be \fC_flag_X\fP var set using the short flag letter if the corresponding short or long flag is seen\&. The long flag name var (e\&.g\&., \fC_flag_help\fP) will only be defined, obviously, if the OPTION_SPEC includes a long flag name\&.
+.PP
+For example \fC_flag_h\fP and \fC_flag_help\fP if \fC-h\fP or \fC--help\fP is seen\&. The var will be set with local scope (i\&.e\&., as if the script had done \fCset -l _flag_X\fP)\&. If the flag is a boolean (that is, does not have an associated value) the values are the short and long flags seen\&. If the option is not a boolean flag the values will be zero or more values corresponding to the values collected when the ARG list is processed\&. If the flag was not seen the flag var will not be set\&.
+.PP
+The following \fCargparse\fP options are available\&. They must appear before all OPTION_SPECs:
+.PP
+.IP "\(bu" 2
+\fC-n\fP or \fC--name\fP is the command name to insert into any error messages\&. If you don't provide this value \fCargparse\fP will be used\&.
+.IP "\(bu" 2
+\fC-x\fP or \fC--exclusive\fP should be followed by a comma separated list of short of long options that are mutually exclusive\&. You can use this option more than once to define multiple sets of mutually exclusive options\&.
+.IP "\(bu" 2
+\fC-N\fP or \fC--min-args\fP is followed by an integer that defines the minimum number of acceptable non-option arguments\&. The default is zero\&.
+.IP "\(bu" 2
+\fC-X\fP or \fC--max-args\fP is followed by an integer that defines the maximum number of acceptable non-option arguments\&. The default is infinity\&.
+.IP "\(bu" 2
+\fC-s\fP or \fC--stop-nonopt\fP causes scanning the arguments to stop as soon as the first non-option argument is seen\&. Using this arg is equivalent to calling the C function \fCgetopt_long()\fP with the short options starting with a \fC+\fP symbol\&. This is sometimes known as 'POSIXLY CORRECT'\&. If this flag is not used then arguments are reordered (i\&.e\&., permuted) so that all non-option arguments are moved after option arguments\&. This mode has several uses but the main one is to implement a command that has subcommands\&.
+.IP "\(bu" 2
+\fC-h\fP or \fC--help\fP displays help about using this command\&.
+.PP
+.SS "Usage"
+Using this command involves passing two sets of arguments separated by \fC--\fP\&. The first set consists of one or more option specifications (\fCOPTION_SPEC\fP above) and options that modify the behavior of \fCargparse\fP\&. These must be listed before the \fC--\fP argument\&. The second set are the arguments to be parsed in accordance with the option specifications\&. They occur after the \fC--\fP argument and can be empty\&. More about this below but here is a simple example that might be used in a function named \fCmy_function\fP:
+.PP
+.PP
+.nf
+
+\fBargparse\fP --name=my_function 'h/help' 'n/name:' -- $argv
+\fBor\fP \fBreturn\fP
+.fi
+.PP
+.PP
+If \fC$argv\fP is empty then there is nothing to parse and \fCargparse\fP returns zero to indicate success\&. If \fC$argv\fP is not empty then it is checked for flags \fC-h\fP, \fC--help\fP, \fC-n\fP and \fC--name\fP\&. If they are found they are removed from the arguments and local variables (more on this \fCbelow\fP) are set so the script can determine which options were seen\&. Assuming \fC$argv\fP doesn't have any errors, such as a missing mandatory value for an option, then \fCargparse\fP exits with status zero\&. Otherwise it writes appropriate error messages to stderr and exits with a status of one\&.
+.PP
+Not including a \fC--\fP argument is an error condition\&. You do not have to include any arguments after the \fC--\fP but you must include the \fC--\fP\&. For example, this is acceptable:
+.PP
+.PP
+.nf
+
+\fBset\fP -l argv
+\fBargparse\fP 'h/help' 'n/name' -- $argv
+.fi
+.PP
+.PP
+But this is not:
+.PP
+.PP
+.nf
+
+\fBset\fP -l argv
+\fBargparse\fP 'h/help' 'n/name' $argv
+.fi
+.PP
+.PP
+The first \fC--\fP seen is what allows the \fCargparse\fP command to reliably seperate the option specifications from the command arguments\&.
+.SS "Option Specifications"
+Each option specification is a string composed of
+.PP
+.IP "\(bu" 2
+A short flag letter (which is mandatory)\&. It must be an alphanumeric or '#'\&. The '#' character is special and means that a flag of the form \fC-123\fP is valid\&. The short flag '#' must be followed by '-' (since the short name isn't otherwise valid since \fC_flag_#\fP is not a valid var name) and must but followed by a long flag name with no modifiers\&.
+.IP "\(bu" 2
+A \fC/\fP if the short flag can be used by someone invoking your command else \fC-\fP if it should not be exposed as a valid short flag\&. If there is no long flag name these characters should be omitted\&. You can also specify a '#' to indicate the short and long flag names can be used and the value can be specified as an implicit int; i\&.e\&., a flag of the form \fC-NNN\fP\&.
+.IP "\(bu" 2
+A long flag name which is optional\&. If not present then only the short flag letter can be used\&.
+.IP "\(bu" 2
+Nothing if the flag is a boolean that takes no argument or is an implicit int flag, else
+.IP "\(bu" 2
+\fC=\fP if it requires a value and only the last instance of the flag is saved, else
+.IP "\(bu" 2
+\fC=?\fP it takes an optional value and only the last instance of the flag is saved, else
+.IP "\(bu" 2
+\fC=+\fP if it requires a value each instance of the flag is saved\&.
+.IP "\(bu" 2
+Optionally a \fC!\fP followed by fish script to validate the value\&. Typically this will be a function to run\&. If the return status is zero the value for the flag is valid\&. If non-zero the value is invalid\&. Any error messages should be written to stdout (not stderr)\&. See the section on \fCFlag Value Validation\fP for more information\&.
+.PP
+.PP
+See the \fC\fCfish_opt\fP\fP command for a friendlier but more verbose way to create option specifications\&.
+.PP
+In the following examples if a flag is not seen when parsing the arguments then the corresponding _flag_X var(s) will not be set\&.
+.SS "Flag Value Validation"
+It is common to want to validate the the value provided for an option satisfies some criteria\&. For example, that it is a valid integer within a specific range\&. You can always do this after \fCargparse\fP returns but you can also request that \fCargparse\fP perform the validation by executing arbitrary fish script\&. To do so simply append an \fC!\fP (exclamation-mark) then the fish script to be run\&. When that code is executed three vars will be defined:
+.PP
+.IP "\(bu" 2
+\fC_argparse_cmd\fP will be set to the value of the value of the \fCargparse --name\fP value\&.
+.IP "\(bu" 2
+\fC_flag_name\fP will be set to the short or long flag that being processed\&.
+.IP "\(bu" 2
+\fC_flag_value\fP will be set to the value associated with the flag being processed\&.
+.PP
+.PP
+If you do this via a function it should be defined with the \fC--no-scope-shadowing\fP flag\&. Otherwise it won't have access to those variables\&.
+.PP
+The script should write any error messages to stdout, not stderr\&. It should return a status of zero if the flag value is valid otherwise a non-zero status to indicate it is invalid\&.
+.PP
+Fish ships with a \fC_validate_int\fP function that accepts a \fC--min\fP and \fC--max\fP flag\&. Let's say your command accepts a \fC-m\fP or \fC--max\fP flag and the minimum allowable value is zero and the maximum is 5\&. You would define the option like this: \fCm/max=!_validate_int --min 0 --max 5\fP\&. The default if you just call \fC_validate_int\fP without those flags is to simply check that the value is a valid integer with no limits on the min or max value allowed\&.
+.SS "Example OPTION_SPECs"
+Some OPTION_SPEC examples:
+.PP
+.IP "\(bu" 2
+\fCh/help\fP means that both \fC-h\fP and \fC--help\fP are valid\&. The flag is a boolean and can be used more than once\&. If either flag is used then \fC_flag_h\fP and \fC_flag_help\fP will be set to the count of how many times either flag was seen\&.
+.IP "\(bu" 2
+\fCh-help\fP means that only \fC--help\fP is valid\&. The flag is a boolean and can be used more than once\&. If the long flag is used then \fC_flag_h\fP and \fC_flag_help\fP will be set to the count of how many times the long flag was seen\&.
+.IP "\(bu" 2
+\fCn/name=\fP means that both \fC-n\fP and \fC--name\fP are valid\&. It requires a value and can be used at most once\&. If the flag is seen then \fC_flag_n\fP and \fC_flag_name\fP will be set with the single mandatory value associated with the flag\&.
+.IP "\(bu" 2
+\fCn/name=?\fP means that both \fC-n\fP and \fC--name\fP are valid\&. It accepts an optional value and can be used at most once\&. If the flag is seen then \fC_flag_n\fP and \fC_flag_name\fP will be set with the value associated with the flag if one was provided else it will be set with no values\&.
+.IP "\(bu" 2
+\fCn-name=+\fP means that only \fC--name\fP is valid\&. It requires a value and can be used more than once\&. If the flag is seen then \fC_flag_n\fP and \fC_flag_name\fP will be set with the values associated with each occurrence of the flag\&.
+.IP "\(bu" 2
+\fCx\fP means that only \fC-x\fP is valid\&. It is a boolean can can be used more than once\&. If it is seen then \fC_flag_x\fP will be set to the count of how many times the flag was seen\&.
+.IP "\(bu" 2
+\fCx=\fP, \fCx=?\fP, and \fCx=+\fP are similar to the n/name examples above but there is no long flag alternative to the short flag \fC-x\fP\&.
+.IP "\(bu" 2
+\fCx-\fP is not valid since there is no long flag name and therefore the short flag, \fC-x\fP, has to be usable\&. This is obviously true whether or not the specification also includes one of \fC:\fP, \fC::\fP, \fC+\fP\&.
+.IP "\(bu" 2
+\fC#-max\fP means that flags matching the regex '^--?\\d+$' are valid\&. When seen they are assigned to the variable \fC_flag_max\fP\&. This allows any valid positive or negative integer to be specified by prefixing it with a single '-'\&. Many commands support this idiom\&. For example \fChead -3 /a/file\fP to emit only the first three lines of /a/file\&.
+.IP "\(bu" 2
+\fCn::max\fP means that flags matching the regex '^--?\\d+$' are valid\&. When seen they are assigned to the variables \fC_flag_n\fP and \fC_flag_max\fP\&. This allows any valid positive or negative integer to be specified by prefixing it with a single '-'\&. Many commands support this idiom\&. For example \fChead -3 /a/file\fP to emit only the first three lines of /a/file\&. You can also specify the value using either flag: \fC-n NNN\fP or \fC--max NNN\fP in this example\&.
+.PP
+.PP
+After parsing the arguments the \fCargv\fP var is set with local scope to any values not already consumed during flag processing\&. If there are not unbound values the var is set but \fCcount $argv\fP will be zero\&.
+.PP
+If an error occurs during argparse processing it will exit with a non-zero status and appropriate error messages are written to stderr\&.
+.SS "Notes"
+Prior to the addition of this builtin command in the 2\&.7\&.0 release there were two main ways to parse the arguments passed to a fish script or function\&. One way was to use the OS provided \fCgetopt\fP command\&. The problem with that is that the GNU and BSD implementations are not compatible\&. Which makes using that external command difficult other than in trivial situations\&. The other way is to iterate over \fC$argv\fP and use the fish \fCswitch\fP statement to decide how to handle the argument\&. That, however, involves a huge amount of boilerplate code\&. It is also borderline impossible to implement the same behavior as builtin commands\&. 

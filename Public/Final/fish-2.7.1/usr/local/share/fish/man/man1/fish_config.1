@@ -1,0 +1,19 @@
+.TH "fish_config" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBfish_config\fP -- start the web-based configuration interface 
+
+.PP
+.SS "Description"
+\fCfish_config\fP starts the web-based configuration interface\&.
+.PP
+The web interface allows you to view your functions, variables and history, and to make changes to your prompt and color configuration\&.
+.PP
+\fCfish_config\fP starts a local web server and then opens a web browser window; when you have finished, close the browser window and then press the Enter key to terminate the configuration session\&.
+.PP
+\fCfish_config\fP optionally accepts name of the initial configuration tab\&. For e\&.g\&. \fCfish_config history\fP will start configuration interface with history tab\&.
+.PP
+If the \fCBROWSER\fP environment variable is set, it will be used as the name of the web browser to open instead of the system default\&.
+.SS "Example"
+\fCfish_config\fP opens a new web browser window and allows you to configure certain fish settings\&. 

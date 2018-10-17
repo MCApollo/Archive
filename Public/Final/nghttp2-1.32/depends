@@ -1,0 +1,16 @@
+Libs:                                                                                                         [1/1740]
+      OpenSSL:        yes (CFLAGS='' LIBS='-lssl -lcrypto')
+      Libxml2:        yes (CFLAGS='' LIBS='-lxml2')
+      Libev:          no (CFLAGS='' LIBS='')
+      Libc-ares       yes (CFLAGS='' LIBS='-lcares')
+      Libevent(SSL):  yes (CFLAGS='' LIBS='-levent_openssl -levent')
+      Jansson:        no (CFLAGS='' LIBS='')
+      Jemalloc:       no (LIBS='')
+      Zlib:           yes (CFLAGS='' LIBS='-lz')
+      Systemd:        yes (CFLAGS='' LIBS='-lsystemd')
+      Boost CPPFLAGS: 
+      Boost LDFLAGS:  
+      Boost::ASIO:    
+      Boost::System:  
+      Boost::Thread:  
+

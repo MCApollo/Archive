@@ -1,0 +1,11 @@
+Package: com.mc.daq
+Name: DAQ
+Version: 2.0.6-3
+Section: Development
+Architecture: iphoneos-arm
+Author: Snork
+Depends: com.mc.libpcap
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	Data Acquisition library for packet I/O.
+	** Missing libdnet modules.

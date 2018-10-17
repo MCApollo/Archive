@@ -1,0 +1,29 @@
+For 1.9.99
+----------
+
+- fix progress reporting while resuming
+- allow to disable resume
+
+- megacopy: show paths relative to destination directory
+  https://github.com/megous/megatools/issues/120
+
+- set timestamp for downloaded files
+ +#include <utime.h> 
+
+- https://github.com/megous/megatools/issues/324
+
+- download exported folder with invalid password
+
+ERROR: Can't login to mega.nz: API call 'us' failed: Server returned error ENOENT
+
+(megadl:37830): Mega-CRITICAL **: mega_session_watch_status: assertion 's != NULL' failed
+
+(megadl:37830): Mega-CRITICAL **: mega_session_open_exp_folder: assertion 's != NULL' failed
+[1]    37830 segmentation fault  megadl --config /root/.megarc --debug api
+
+
+Maybe someday
+-------------
+
+- better abort mechanism for http workers
+- use chunked parallel download

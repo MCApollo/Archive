@@ -1,0 +1,70 @@
+.TH "fish_opt" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBfish_opt\fP -- create an option spec for the argparse command 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBfish_opt\fP [ -h | --help ]
+\fBfish_opt\fP ( -s X | --short=X ) [ -l LONG | --long=LONG ] [ --long-only ] \\ 
+    [ -o | --optional-val ] [ -r | --required-val ] [ --multiple-vals ]
+.fi
+.PP
+.SS "Description"
+This command provides a way to produce option specifications suitable for use with the \fC\fCargparse\fP\fP command\&. You can, of course, write the option specs by hand without using this command\&. But you might prefer to use this for the clarity it provides\&.
+.PP
+The following \fCargparse\fP options are available:
+.PP
+.IP "\(bu" 2
+\fC-s\fP or \fC--short\fP takes a single letter that is used as the short flag in the option being defined\&. This option is mandatory\&.
+.IP "\(bu" 2
+\fC-l\fP or \fC--long\fP takes a string that is used as the long flag in the option being defined\&. This option is optional and has no default\&. If no long flag is defined then only the short flag will be allowed when parsing arguments using the option spec\&.
+.IP "\(bu" 2
+\fC--long-only\fP means the option spec being defined will only allow the long flag name to be used\&. The short flag name must still be defined (i\&.e\&., \fC--short\fP must be specified) but it cannot be used when parsing args using this option spec\&.
+.IP "\(bu" 2
+\fC-o\fP or \fC--optional\fP means the option being defined can take a value but it is optional rather than required\&. If the option is seen more than once when parsing arguments only the last value seen is saved\&. This means the resulting flag variable created by \fCargparse\fP will zero elements if no value was given with the option else it will have exactly one element\&.
+.IP "\(bu" 2
+\fC-r\fP or \fC--required\fP means the option being defined requires a value\&. If the option is seen more than once when parsing arguments only the last value seen is saved\&. This means the resulting flag variable created by \fCargparse\fP will have exactly one element\&.
+.IP "\(bu" 2
+\fC--multiple-vals\fP means the option being defined requires a value each time it is seen\&. Each instance is stored\&. This means the resulting flag variable created by \fCargparse\fP will have one element for each instance of this option in the args\&.
+.IP "\(bu" 2
+\fC-h\fP or \fC--help\fP displays help about using this command\&.
+.PP
+.SS "Examples"
+Define a single option spec for the boolean help flag:
+.PP
+.PP
+.nf
+
+\fBset\fP -l options (\fBfish_opt\fP -s h -l help)
+\fBargparse\fP $options -- $argv
+.fi
+.PP
+.PP
+Same as above but with a second flag that requires a value:
+.PP
+.PP
+.nf
+
+\fBset\fP -l options (\fBfish_opt\fP -s h -l help)
+\fBset\fP options $options (\fBfish_opt\fP -s m -l max --required-val)
+\fBargparse\fP $options -- $argv
+.fi
+.PP
+.PP
+Same as above but with a third flag that can be given multiple times saving the value of each instance seen and only the long flag name (\fC--token\fP) can be used:
+.PP
+.PP
+.nf
+
+\fBset\fP -l options (\fBfish_opt\fP --short=h --long=help)
+\fBset\fP options $options (\fBfish_opt\fP --short=m --long=max --required-val)
+\fBset\fP options $options (\fBfish_opt\fP --short=t --long=token --multiple-vals --long-only)
+\fBargparse\fP $options -- $argv
+.fi
+.PP
+ 

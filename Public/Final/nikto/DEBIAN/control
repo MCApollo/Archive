@@ -1,0 +1,13 @@
+Package: com.mc.nikto2
+Name: Nikto
+Version: 2.0-2
+Section: Utility
+Architecture: iphoneos-arm
+Author: cirt
+Maintainer: u/LULShotz
+Website: https://cirt.net/Nikto2
+Depends: perl
+Description: Compiled for ARM64.
+	Nikto is an Open Source (GPL) web server scanner.
+	No SSL Support.
+	** Get perl from http://repo.binger.com/

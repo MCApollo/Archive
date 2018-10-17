@@ -1,0 +1,19 @@
+Package: com.mc.bind
+Name: bind
+Version: 9.13.0-3
+Section: Networking
+Architecture: iphoneos-arm
+Author: ISC
+Depends: openssl, com.mc.libxml
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	the standard DNS server used by millions
+	dig, host, and nslookup come from this package.
+	** Notes for dig, host, and nslookup.
+	We don't have a listner on port 53 (DNS)
+	Dirty DNS server:
+	'ncat --sh-exec "ncat -u 8.8.8.8 53" -ul 53 --keep-open &'
+	Requries netcat from the nmap package, GNU netcat doesn't have --sh-exec.
+	Or, putting "@8.8.8.8" in your args may work. '8.8.8.8' is Google's DNS Server
+	** Other Notes
+	Other programs are not tested, PM if you find it working.

@@ -1,0 +1,10 @@
+Package: com.mc.tcpdump
+Name: tcpdump
+Version: 4.9.2-2
+Depends: com.mc.libpcap
+Section: Utility
+Architecture: iphoneos-arm
+Author: Lawrence Berkeley National Laboratory
+Maintainer: u/LULShotz
+Description: ARM64
+	Tcpdump prints out a description of the contents of packets on a network interface that match the boolean expression.

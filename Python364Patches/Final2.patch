@@ -1,0 +1,111 @@
+--- configure.ac	2017-12-19 04:53:56.000000000 +0000
++++ /home/user/Python-3.6.4-Patches/configure.ac-backup4	2018-06-16 04:07:52.460179256 +0000
+@@ -379,6 +379,10 @@
+ 	*-*-cygwin*)
+ 		ac_sys_system=Cygwin
+ 		;;
++# Allow our target to be selected
++	*-*-darwin*)
++		ac_sys_system=Darwin
++		;;
+ 	*)
+ 		# for now, limit cross builds to known configurations
+ 		MACHDEP="unknown"
+@@ -386,7 +390,9 @@
+ 	esac
+ 	ac_sys_release=
+     else
+-	ac_sys_system=`uname -s`
++#	ac_sys_system=`uname -s`
++	ac_sys_system=Darwin
++
+ 	if test "$ac_sys_system" = "AIX" \
+ 	-o "$ac_sys_system" = "UnixWare" -o "$ac_sys_system" = "OpenUNIX"; then
+ 		ac_sys_release=`uname -v`
+@@ -424,6 +430,20 @@
+ 	*-*-cygwin*)
+ 		_host_cpu=
+ 		;;
++# Use arm if your target is armv7, use aarch64 if your target is arm64. Assumed aarch64 for my use case, make edits for yours.
++	*-*-darwin*)
++		case "$host_cpu" in
++		arm*)
++			_host_cpu=arm
++			;;
++		aarch64*)
++			_host_cpu=aarch64
++			;;
++# If invaild, but still using the darwin triple.
++		*)
++			_host_cpu=$host_cpu
++		esac
++		;;
+ 	*)
+ 		# for now, limit cross builds to known configurations
+ 		MACHDEP="unknown"
+@@ -515,6 +535,10 @@
+ 
+ esac
+ 
++# \ \ \ \ \
++define_xopen_source=no
++# / / / / /
++
+ if test $define_xopen_source = yes
+ then
+   # X/Open 7, incorporating POSIX.1-2008
+@@ -1209,11 +1233,18 @@
+ 
+ AC_CHECK_TOOLS([READELF], [readelf], [:])
+ if test "$cross_compiling" = yes; then
+-    case "$READELF" in
+-	readelf|:)
+-	AC_MSG_ERROR([readelf for the host is required for cross builds])
+-	;;
+-    esac
++	case "$host" in
++	*-*-darwin*)
++	#TF we need readelf for?
++	# readelf not required for iOS cross builds.
++		;;
++	*)
++	case "$READELF" in
++		readelf|:)
++		AC_MSG_ERROR([readelf for the host is required for cross builds])
++		;;
++    		esac
++	esac
+ fi
+ AC_SUBST(READELF)
+ 
+@@ -1841,6 +1872,10 @@
+                 fi
+             fi
+         fi
++
++	# Saurik's
++	cur_target=10.5
++
+         CONFIGURE_MACOSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET-${cur_target}}
+ 
+         # Make sure that MACOSX_DEPLOYMENT_TARGET is set in the
+@@ -2343,7 +2378,8 @@
+     		MACOSX_DEFAULT_ARCH="ppc"
+     		;;
+     	*)
+-    		AC_MSG_ERROR([Unexpected output of 'arch' on OSX])
++		MACOSX_DEFAULT_ARCH="aarch64"
++#    		AC_MSG_ERROR([Unexpected output of 'arch' on OSX])
+     		;;
+     	esac
+     else
+@@ -2355,7 +2391,8 @@
+     		MACOSX_DEFAULT_ARCH="ppc64"
+     		;;
+     	*)
+-    		AC_MSG_ERROR([Unexpected output of 'arch' on OSX])
++		MACOSX_DEFAULT_ARCH="aarch64"
++#    		AC_MSG_ERROR([Unexpected output of 'arch' on OSX])
+     		;;
+     	esac
+ 

@@ -1,0 +1,11 @@
+Package: com.mc.ffmpeg
+Name: ffmpeg
+Version: 4.0.2
+Section: Multimedia
+Architecture: iphoneos-arm
+Replaces: com.nin9tyfour.ffmpeg, com.fizk.ffmpeg, com.nin9tyfour.ffprobe
+Depends: com.mc.x265, com.mc.fdk-aac, com.mc.lame, com.mc.opus, com.mc.libogg, com.mc.libvorbis, com.mc.libvpx, com.mc.zlib, lzma, com.mc.libiconv
+Author: ffmpeg.org
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	A complete, cross-platform solution to record, convert and stream audio and video.

@@ -1,0 +1,9 @@
+Package: com.mc.nbtscan
+Name: nbtscan
+Version: 1.0.35
+Section: Utility
+Architecture: iphoneos-arm
+Author: Steve Fried
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	NETBIOS nameserver scanner

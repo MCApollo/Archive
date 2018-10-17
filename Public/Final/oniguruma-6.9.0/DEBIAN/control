@@ -1,0 +1,9 @@
+Package: com.mc.oniguruma
+Name: Oniguruma
+Version: 6.9.0
+Section: Development
+Architecture: iphoneos-arm
+Author: kkos
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	regular expression library.

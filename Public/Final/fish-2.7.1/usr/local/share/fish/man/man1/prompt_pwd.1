@@ -1,0 +1,51 @@
+.TH "prompt_pwd" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBprompt_pwd\fP -- Print pwd suitable for prompt 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBprompt_pwd\fP
+.fi
+.PP
+.SS "Description"
+prompt_pwd is a function to print the current working directory in a way suitable for prompts\&. It will replace the home directory with '~' and shorten every path component but the last to a default of one character\&.
+.PP
+To change the number of characters per path component, set $fish_prompt_pwd_dir_length to the number of characters\&. Setting it to 0 or an invalid value will disable shortening entirely\&.
+.SS "Examples"
+.PP
+.nf
+
+> \fBcd\fP ~/
+> \fBecho\fP $PWD
+/home/alfa
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBprompt_pwd\fP
+~
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBcd\fP /tmp/banana/sausage/with/mustard
+> \fBprompt_pwd\fP
+/t/b/s/w/mustard
+.fi
+.PP
+.PP
+.PP
+.nf
+> \fBset\fP -g fish_prompt_pwd_dir_length 3
+> \fBprompt_pwd\fP
+/tmp/ban/sau/wit/mustard
+.fi
+.PP
+ 

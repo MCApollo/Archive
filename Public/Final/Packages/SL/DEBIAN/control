@@ -1,0 +1,9 @@
+Package: com.mc.sl
+Name: SL (Steam Locomotive)
+Version: 5.03
+Section: Utility
+Architecture: iphoneos-arm
+Author: Toyoda Masashi
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	cure your bad habit of mistyping

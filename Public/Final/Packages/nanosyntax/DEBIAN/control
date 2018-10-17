@@ -1,0 +1,8 @@
+Package: com.mc.nanosyntax
+Name: nanosyntax
+Version: 2.0
+Section: Utility
+Architecture: iphoneos-arm
+Description: Adds colored syntax to nano by editing the rc file.
+Author: nano
+Maintainer: u/LULShotz

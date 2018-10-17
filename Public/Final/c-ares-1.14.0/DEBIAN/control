@@ -1,0 +1,9 @@
+Package: com.mc.c-ares
+Name: c-ares
+Version: 1.14.0
+Section: Development
+Architecture: iphoneos-arm
+Author: Greg Hudson
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	an asynchronous resolver library.

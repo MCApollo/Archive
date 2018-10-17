@@ -1,0 +1,86 @@
+.TH "abbr" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBabbr\fP -- manage fish abbreviations 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBabbr\fP --add word phrase\&.\&.\&.
+\fBabbr\fP --rename word new_word
+\fBabbr\fP --show
+\fBabbr\fP --list
+\fBabbr\fP --erase word
+.fi
+.PP
+.SS "Description"
+\fCabbr\fP manipulates the list of abbreviations that fish will expand\&.
+.PP
+Abbreviations are user-defined character sequences or words that are replaced with longer phrases after they are entered\&. For example, a frequently-run command such as \fCgit checkout\fP can be abbreviated to \fCgco\fP\&. After entering \fCgco\fP and pressing [\fBSpace\fP] or [\fBEnter\fP], the full text \fCgit checkout\fP will appear in the command line\&.
+.PP
+Abbreviations are stored in a variable named \fCfish_user_abbreviations\fP\&. This is automatically created as a universal variable the first time an abbreviation is created\&. If you want your abbreviations to be private to a particular fish session you can put the following in your *~/\&.config/fish/config\&.fish* file before you define your first abbrevation:
+.PP
+.PP
+.nf
+
+\fBif\fP status --is-interactive
+    \fBset\fP -g fish_user_abbreviations
+    \fBabbr\fP --add first 'echo my first abbreviation'
+    \fBabbr\fP --add second 'echo my second abbreviation'
+      etcetera
+\fBend\fP
+.fi
+.PP
+.PP
+You can create abbreviations directly on the command line and they will be saved automatically and made visible to other fish sessions if \fCfish_user_abbreviations\fP is a universal variable\&. If you keep the variable as universal, \fCabbr --add\fP statements in \fCconfig\&.fish\fP will do nothing but slow down startup slightly\&.
+.SS "Options"
+The following parameters are available:
+.PP
+.IP "\(bu" 2
+\fC-a WORD PHRASE\fP or \fC--add WORD PHRASE\fP Adds a new abbreviation, causing WORD to be expanded to PHRASE\&.
+.IP "\(bu" 2
+\fC-r WORD NEW_WORD\fP or \fC--rename WORD NEW_WORD\fP Renames an abbreviation, from WORD to NEW_WORD\&.
+.IP "\(bu" 2
+\fC-s\fP or \fC--show\fP Show all abbreviated words and their expanded phrases in a manner suitable for export and import\&.
+.IP "\(bu" 2
+\fC-l\fP or \fC--list\fP Lists all abbreviated words\&.
+.IP "\(bu" 2
+\fC-e WORD\fP or \fC--erase WORD\fP Erase the abbreviation WORD\&.
+.PP
+.PP
+Note: fish version 2\&.1 supported \fC-a WORD=PHRASE\fP\&. This syntax is now deprecated but will still be converted\&.
+.SS "Examples"
+.PP
+.nf
+
+\fBabbr\fP -a gco git checkout
+.fi
+.PP
+ Add a new abbreviation where \fCgco\fP will be replaced with \fCgit checkout\fP\&.
+.PP
+.PP
+.nf
+
+\fBabbr\fP -r gco gch
+.fi
+.PP
+ Renames an existing abbreviation from \fCgco\fP to \fCgch\fP\&.
+.PP
+.PP
+.nf
+
+\fBabbr\fP -e gco
+.fi
+.PP
+ Erase the \fCgco\fP abbreviation\&.
+.PP
+.PP
+.nf
+
+\fBssh\fP another_host abbr -s | \fBsource\fP
+.fi
+.PP
+ Import the abbreviations defined on another_host over SSH\&. 

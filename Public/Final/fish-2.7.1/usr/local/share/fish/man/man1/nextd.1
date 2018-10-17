@@ -1,0 +1,52 @@
+.TH "nextd" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBnextd\fP -- move forward through directory history 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBnextd\fP [ -l | --list ] [POS]
+.fi
+.PP
+.SS "Description"
+\fCnextd\fP moves forwards \fCPOS\fP positions in the history of visited directories; if the end of the history has been hit, a warning is printed\&.
+.PP
+If the \fC-l\fP or \fC--list\fP flag is specified, the current directory history is also displayed\&.
+.PP
+Note that the \fCcd\fP command limits directory history to the 25 most recently visited directories\&. The history is stored in the \fC$dirprev\fP and \fC$dirnext\fP variables which this command manipulates\&.
+.PP
+You may be interested in the \fC\fCcdh\fP\fP command which provides a more intuitive way to navigate to recently visited directories\&.
+.SS "Example"
+.PP
+.nf
+
+\fBcd\fP /usr/src
+  Working directory is now /usr/src
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBcd\fP /usr/src/fish-shell
+  Working directory is now /usr/src/fish-shell
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBprevd\fP
+  Working directory is now /usr/src
+.fi
+.PP
+.PP
+.PP
+.nf
+\fBnextd\fP
+  Working directory is now /usr/src/fish-shell
+.fi
+.PP
+ 

@@ -1,0 +1,13 @@
+Package: com.mc.man-db-2.8.3
+Name: man-db
+Version: 2.8.3-4
+Section: Utility
+Architecture: iphoneos-arm
+Author: Debian Project
+Depends: com.mc.groff, com.mc.libpipeline-1.5.0
+Conflicts: org.thebigboss.man-db
+Replaces: org.thebigboss.man-db
+Maintainer: u/LULShotz
+Description: Compiled for ARM64.
+	mandb - create or update the manual page index caches
+	** run /usr/local/etc/create-manuser.sh to fix mandb

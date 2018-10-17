@@ -1,0 +1,27 @@
+.TH "eval" 1 "Tue Sep 4 2018" "Version 2.7.1" "fish" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+\fBeval\fP -- evaluate the specified commands 
+
+.PP
+.SS "Synopsis"
+.PP
+.nf
+
+\fBeval\fP [COMMANDS\&.\&.\&.]
+.fi
+.PP
+.SS "Description"
+\fCeval\fP evaluates the specified parameters as a command\&. If more than one parameter is specified, all parameters will be joined using a space character as a separator\&.
+.SS "Example"
+The following code will call the ls command\&. Note that \fCfish\fP does not support the use of shell variables as direct commands; \fCeval\fP can be used to work around this\&.
+.PP
+.PP
+.nf
+
+\fBset\fP cmd ls
+\fBeval\fP $cmd
+.fi
+.PP
+ 

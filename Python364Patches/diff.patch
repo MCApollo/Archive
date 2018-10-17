@@ -1,0 +1,122 @@
+--- /home/user/Python-3.6.4-Patches/configure.ac-backup4	2018-06-16 04:07:52.460179256 +0000
++++ configure.ac	2018-06-16 03:29:12.802154938 +0000
+@@ -2488,68 +2488,64 @@
+ 		else
+ 			LDSHARED='ld -b'
+ 		fi ;;
+-#	Darwin/1.3*)
+-#		LDSHARED='$(CC) -bundle'
+-#		LDCXXSHARED='$(CXX) -bundle'
+-#		if test "$enable_framework" ; then
+-#			# Link against the framework. All externals should be defined.
+-#			BLDSHARED="$LDSHARED "'$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+-#			LDSHARED="$LDSHARED "'$(PYTHONFRAMEWORKPREFIX)/$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+-#			LDCXXSHARED="$LDCXXSHARED "'$(PYTHONFRAMEWORKPREFIX)/$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+-#		else
+-#			# No framework. Ignore undefined symbols, assuming they come from Python
+-#			LDSHARED="$LDSHARED -undefined suppress"
+-#			LDCXXSHARED="$LDCXXSHARED -undefined suppress"
+-#		fi ;;
+-#	Darwin/1.4*|Darwin/5.*|Darwin/6.*)
+-#		LDSHARED='$(CC) -bundle'
+-#		LDCXXSHARED='$(CXX) -bundle'
+-#		if test "$enable_framework" ; then
+-#			# Link against the framework. All externals should be defined.
+-#			BLDSHARED="$LDSHARED "'$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+-#			LDSHARED="$LDSHARED "'$(PYTHONFRAMEWORKPREFIX)/$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+-#			LDCXXSHARED="$LDCXXSHARED "'$(PYTHONFRAMEWORKPREFIX)/$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+-#		else
+-#			# No framework, use the Python app as bundle-loader
+-#			BLDSHARED="$LDSHARED "'-bundle_loader $(BUILDPYTHON)'
+-#			LDSHARED="$LDSHARED "'-bundle_loader $(BINDIR)/python$(VERSION)$(EXE)'
+-#			LDCXXSHARED="$LDCXXSHARED "'-bundle_loader $(BINDIR)/python$(VERSION)$(EXE)'
+-#		fi ;;
++	Darwin/1.3*)
++		LDSHARED='$(CC) -bundle'
++		LDCXXSHARED='$(CXX) -bundle'
++		if test "$enable_framework" ; then
++			# Link against the framework. All externals should be defined.
++			BLDSHARED="$LDSHARED "'$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
++			LDSHARED="$LDSHARED "'$(PYTHONFRAMEWORKPREFIX)/$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
++			LDCXXSHARED="$LDCXXSHARED "'$(PYTHONFRAMEWORKPREFIX)/$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
++		else
++			# No framework. Ignore undefined symbols, assuming they come from Python
++			LDSHARED="$LDSHARED -undefined suppress"
++			LDCXXSHARED="$LDCXXSHARED -undefined suppress"
++		fi ;;
++	Darwin/1.4*|Darwin/5.*|Darwin/6.*)
++		LDSHARED='$(CC) -bundle'
++		LDCXXSHARED='$(CXX) -bundle'
++		if test "$enable_framework" ; then
++			# Link against the framework. All externals should be defined.
++			BLDSHARED="$LDSHARED "'$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
++			LDSHARED="$LDSHARED "'$(PYTHONFRAMEWORKPREFIX)/$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
++			LDCXXSHARED="$LDCXXSHARED "'$(PYTHONFRAMEWORKPREFIX)/$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
++		else
++			# No framework, use the Python app as bundle-loader
++			BLDSHARED="$LDSHARED "'-bundle_loader $(BUILDPYTHON)'
++			LDSHARED="$LDSHARED "'-bundle_loader $(BINDIR)/python$(VERSION)$(EXE)'
++			LDCXXSHARED="$LDCXXSHARED "'-bundle_loader $(BINDIR)/python$(VERSION)$(EXE)'
++		fi ;;
+ 	Darwin/*)
+ 		# Use -undefined dynamic_lookup whenever possible (10.3 and later).
+ 		# This allows an extension to be used in any Python
+ 
+-#		dep_target_major=`echo ${MACOSX_DEPLOYMENT_TARGET} | \
+-#				sed 's/\([[0-9]]*\)\.\([[0-9]]*\).*/\1/'`
+-#		dep_target_minor=`echo ${MACOSX_DEPLOYMENT_TARGET} | \
+-#				sed 's/\([[0-9]]*\)\.\([[0-9]]*\).*/\2/'`
+-#		if test ${dep_target_major} -eq 10 && \
+-#		   test ${dep_target_minor} -le 2
+-#		then
+-#			# building for OS X 10.0 through 10.2
+-#			LDSHARED='$(CC) -bundle'
+-#			LDCXXSHARED='$(CXX) -bundle'
+-#			if test "$enable_framework" ; then
+-#				# Link against the framework. All externals should be defined.
+-#				BLDSHARED="$LDSHARED "'$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+-#				LDSHARED="$LDSHARED "'$(PYTHONFRAMEWORKPREFIX)/$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+-#				LDCXXSHARED="$LDCXXSHARED "'$(PYTHONFRAMEWORKPREFIX)/$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+-#			else
+-#				# No framework, use the Python app as bundle-loader
+-#				BLDSHARED="$LDSHARED "'-bundle_loader $(BUILDPYTHON)'
+-#				LDSHARED="$LDSHARED "'-bundle_loader $(BINDIR)/python$(VERSION)$(EXE)'
+-#				LDCXXSHARED="$LDCXXSHARED "'-bundle_loader $(BINDIR)/python$(VERSION)$(EXE)'
+-#			fi
+-#		else
+-			# Make sure this gets set.
+-			LDSHARED='$(CC)'
+-			LDCXXSHARED='$(CXX)'
+-			BLDSHARED="$LDSHARED"
++		dep_target_major=`echo ${MACOSX_DEPLOYMENT_TARGET} | \
++				sed 's/\([[0-9]]*\)\.\([[0-9]]*\).*/\1/'`
++		dep_target_minor=`echo ${MACOSX_DEPLOYMENT_TARGET} | \
++				sed 's/\([[0-9]]*\)\.\([[0-9]]*\).*/\2/'`
++		if test ${dep_target_major} -eq 10 && \
++		   test ${dep_target_minor} -le 2
++		then
++			# building for OS X 10.0 through 10.2
++			LDSHARED='$(CC) -bundle'
++			LDCXXSHARED='$(CXX) -bundle'
+ 			if test "$enable_framework" ; then
+-				LDSHARED="$LDSHARED -bundle"
++				# Link against the framework. All externals should be defined.
++				BLDSHARED="$LDSHARED "'$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
++				LDSHARED="$LDSHARED "'$(PYTHONFRAMEWORKPREFIX)/$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
++				LDCXXSHARED="$LDCXXSHARED "'$(PYTHONFRAMEWORKPREFIX)/$(PYTHONFRAMEWORKDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+ 			else
+-				LDSHARED="$LDSHARED -dynamiclib"
++				# No framework, use the Python app as bundle-loader
++				BLDSHARED="$LDSHARED "'-bundle_loader $(BUILDPYTHON)'
++				LDSHARED="$LDSHARED "'-bundle_loader $(BINDIR)/python$(VERSION)$(EXE)'
++				LDCXXSHARED="$LDCXXSHARED "'-bundle_loader $(BINDIR)/python$(VERSION)$(EXE)'
+ 			fi
++		else
++			# building for OS X 10.3 and later
++			LDSHARED='$(CC) -bundle -undefined dynamic_lookup'
++			LDCXXSHARED='$(CXX) -bundle -undefined dynamic_lookup'
++			BLDSHARED="$LDSHARED"
++		fi
+ 		;;
+ 	Linux*|GNU*|QNX*)
+ 		LDSHARED='$(CC) -shared'
