@@ -4,7 +4,7 @@ Version: 10.4-4
 Section: Data Storage
 Architecture: iphoneos-arm
 Author: PostgreSQL
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
 	—

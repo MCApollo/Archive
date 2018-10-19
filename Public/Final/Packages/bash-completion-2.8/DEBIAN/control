@@ -4,7 +4,7 @@ Version: 2.8
 Section: Terminal Support
 Architecture: iphoneos-arm
 Author: D. Paleino
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Requires Bash
 	Allow tab to help auto-complete command sequences. 
 	** Relogin so /etc/profile is executed.

@@ -7,6 +7,6 @@ Author: Debian Project
 Depends: com.mc.groff, com.mc.libpipeline-1.5.0
 Conflicts: org.thebigboss.man-db
 Replaces: org.thebigboss.man-db
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	mandb - create or update the manual page index caches

@@ -5,6 +5,6 @@ Section: Terminal Support
 Architecture: iphoneos-arm
 Author: tmux
 Depends: com.mc.libevent-2.0.22, ncurses
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Screen multiplexer

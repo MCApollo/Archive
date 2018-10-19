@@ -4,6 +4,6 @@ Version: 1.0.35
 Section: Utility
 Architecture: iphoneos-arm
 Author: Steve Fried
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	NETBIOS nameserver scanner

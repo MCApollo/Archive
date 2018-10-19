@@ -4,6 +4,6 @@ Version: 20170430
 Section: Networking
 Architecture: iphoneos-arm
 Author: Dag-Erling Smørgrav
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	OpenPAM is an open source PAM library that focuses on simplicity, correctness, and cleanliness. Its aim is to gather the best features of Solaris PAM, ​XSSO and Linux-PAM, plus some innovations of its own.

@@ -4,7 +4,7 @@ Version: 4.24-2
 Section: Development
 Architecture: iphoneos-arm
 Author: Schmorp
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Libev is an event loop: you register interest in certain events (such as a file descriptor being readable or a timeout occurring), and it will manage these event sources and provide your program with events.
 	** Note: event.h moved to libev/event.

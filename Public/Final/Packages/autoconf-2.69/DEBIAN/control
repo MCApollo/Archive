@@ -5,7 +5,7 @@ Section: Utility
 Architecture: iphoneos-arm
 Author: GNU
 Depends: perl
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	contains programs for producing shell scripts that can automatically configure source code.
 	http://repo.bingner.com/ for perl

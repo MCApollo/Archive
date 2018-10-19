@@ -5,4 +5,4 @@ Section: Utility
 Architecture: iphoneos-arm
 Description: Adds colored syntax to nano by editing the rc file.
 Author: nano
-Maintainer: u/LULShotz
+Maintainer: outdated

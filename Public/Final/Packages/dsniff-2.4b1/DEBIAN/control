@@ -5,7 +5,7 @@ Section: Networking
 Architecture: iphoneos-arm
 Author: Dug Song
 Depends: com.mc.libnids, com.mc.berkeleydb, com.mc.libpcap, openssl
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.   - "mcapollo.github.io"
 	Various tools to sniff network traffic for cleartext insecurities
 	** This is a fork of Dug Song's dsniff tools.

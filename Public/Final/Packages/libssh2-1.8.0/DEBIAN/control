@@ -5,6 +5,6 @@ Section: Development
 Architecture: iphoneos-arm
 Author: Salvador Fandiño
 Depends: libgpg-error
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	libssh2 is a client-side C library implementing the SSH2 protocol

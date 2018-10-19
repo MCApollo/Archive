@@ -4,6 +4,6 @@ Version: 3.0-3
 Section: Utility
 Architecture: iphoneos-arm
 Author: Michal Zalewski
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Passive fingerprinter.

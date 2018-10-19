@@ -5,7 +5,7 @@ Section: Utility
 Architecture: iphoneos-arm
 Author: https://nghttp2.org/
 Depends:
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	nghttp2 is an implementation of HTTP/2 and its header compression algorithm, HPACK.
 	** This package has no use, nghttp2 is already on the electra repo.

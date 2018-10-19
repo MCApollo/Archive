@@ -4,6 +4,6 @@ Version: 2.2.5-3
 Section: Utility
 Architecture: iphoneos-arm
 Author: Glenn Chappell
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Banner-like program prints strings as ASCII art

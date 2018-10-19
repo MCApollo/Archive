@@ -5,7 +5,7 @@ Section: Development
 Architecture: iphoneos-arm
 Author: Tesseract
 Depends: com.mc.leptonica
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Tesseract Open Source OCR Engine
 	`

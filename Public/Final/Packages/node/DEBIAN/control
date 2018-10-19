@@ -4,6 +4,6 @@ Version: 8.0
 Section: Utility
 Architecture: iphoneos-arm
 Author: Node.js Foundation
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: TY /u/TheNoim for compiling <3
 	Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.

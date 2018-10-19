@@ -4,6 +4,6 @@ Version: 1.2a
 Section: Utility
 Architecture: iphoneos-arm
 Author: Chris Allegretta
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	CMatrix is based on the screensaver from The Matrix website. It shows text flying in and out in a terminal like as seen in "The Matrix" movie. It can scroll lines all at the same rate or asynchronously and at a user-defined speed.

@@ -5,6 +5,6 @@ Section: Utility
 Architecture: iphoneos-arm
 Depends: python
 Author: sqlmapproject
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Automatic SQL injection and database takeover tool.

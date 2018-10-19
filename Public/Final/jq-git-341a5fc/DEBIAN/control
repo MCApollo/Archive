@@ -5,6 +5,6 @@ Section: Utility
 Architecture: iphoneos-arm
 Author: stedolan
 Depends: com.mc.oniguruma
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Command-line JSON processor.

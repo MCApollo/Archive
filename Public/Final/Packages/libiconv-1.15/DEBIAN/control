@@ -4,6 +4,6 @@ Version: 1.15-2
 Section: Utility
 Architecture: iphoneos-arm
 Author: GNU
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	LibIconv converts from one character encoding to another through Unicode conversion (see Web page for full list of supported encodings). It has also limited support for transliteration, i.e. when a character cannot be represented in the target character set, it is approximated through one or several similar looking characters. 

@@ -4,7 +4,7 @@ Version: 3.0.0-3
 Section: Text Editors
 Architecture: iphoneos-arm
 Author: GNU
-Maintainer: u/LULShotz
+Maintainer: outdated
 Conflicts: nano, com.mc.nanosyntax
 Provides: nano
 Replaces: nano 

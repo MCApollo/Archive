@@ -5,6 +5,6 @@ Section: Development
 Architecture: iphoneos-arm
 Author: DieterB.&ThomasK.
 Depends: com.mc.zlib
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	A C library for reading, creating, and modifying zip archives.

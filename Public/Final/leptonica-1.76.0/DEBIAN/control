@@ -5,6 +5,6 @@ Section: Development
 Architecture: iphoneos-arm
 Author: Dan Bloomberg
 Depends: com.mc.openjpeg, com.mc.tiff, com.mc.giflib, com.mc.zlib, com.mc.libjpeg, com.mc.libpng
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Leptonica is a pedagogically-oriented open source site containing software that is broadly useful for image processing and image analysis applications.

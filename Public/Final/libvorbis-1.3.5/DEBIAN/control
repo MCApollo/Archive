@@ -5,6 +5,6 @@ Section: Development
 Architecture: iphoneos-arm
 Author: xiph
 Depends: com.mc.libogg
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Vorbis audio encoder.

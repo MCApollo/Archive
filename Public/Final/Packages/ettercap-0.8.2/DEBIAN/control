@@ -5,7 +5,7 @@ Section: Networking
 Architecture: iphoneos-arm
 Author: ALoR & NaGA
 Depends: com.mc.libpcap, ncurses, openssl, com.mc.pcre, org.thebigboss.libnet, com.mc.zlib
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	 A suite for man in the middle attacks.
 	•

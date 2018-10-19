@@ -5,7 +5,7 @@ Section: Utility
 Architecture: iphoneos-arm
 Author: Phil Harvey
 Depends: perl
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Read, Write and Edit Meta Information!
 	** http://repo.bingner.com/ for perl.

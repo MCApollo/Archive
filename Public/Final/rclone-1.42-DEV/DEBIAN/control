@@ -4,7 +4,7 @@ Version: 1.42
 Section: Utility
 Architecture: iphoneos-arm
 Author: ncw
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	rsync for cloud storage.
 	.

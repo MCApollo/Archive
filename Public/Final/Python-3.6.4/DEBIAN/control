@@ -6,7 +6,7 @@ Architecture: iphoneos-arm
 Depends: openssl, com.mc.readline, com.mc.zlib, ncurses, lzma, findutils, ldid
 Author: Apollo J
 Conflicts: com.mc.python3
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64. -  "mcapollo.github.io"
 	python - an interpreted, interactive, object-oriented programming language
 	-

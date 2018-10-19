@@ -4,6 +4,6 @@ Version: 1.14.0
 Section: Development
 Architecture: iphoneos-arm
 Author: Greg Hudson
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	an asynchronous resolver library.

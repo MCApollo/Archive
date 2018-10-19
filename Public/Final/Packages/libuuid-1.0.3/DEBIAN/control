@@ -4,6 +4,6 @@ Version: 1.0.3
 Section: Development
 Architecture: iphoneos-arm
 Author: Theodore Y.
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	DCE compatible Universally Unique Identifier library

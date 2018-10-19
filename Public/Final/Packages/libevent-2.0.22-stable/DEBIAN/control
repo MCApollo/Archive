@@ -4,7 +4,7 @@ Version: 2.0.22-2
 Section: Utility
 Architecture: iphoneos-arm
 Author: Niels Provos
-Maintainer: u/LULShotz
+Maintainer: outdated
 Replaces: fm.was.libevent
 Breaks: fm.was.libevent
 Conflicts: fm.was.libevent

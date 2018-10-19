@@ -5,6 +5,6 @@ Section: Development
 Architecture: iphoneos-arm
 Author: Johannes S.
 Depends: com.mc.libpng, com.mc.libjpeg, gcrypt
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Cross-platform C library that allow you to easily implement VNC server or client functionality in your program.

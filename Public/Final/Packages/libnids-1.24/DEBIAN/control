@@ -5,6 +5,6 @@ Section: Development
 Architecture: iphoneos-arm
 Author: Rafal Wojtczuk
 Depends: com.mc.glib
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Libnids is an implementation of an E-component of Network Intrusion Detection System. It emulates the IP stack of Linux 2.0.x. Libnids offers IP defragmentation, TCP stream assembly and TCP port scan detection.

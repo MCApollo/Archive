@@ -5,7 +5,7 @@ Section: Utility
 Depends: org.thebigboss.libnet, com.mc.libpcap
 Architecture: iphoneos-arm
 Author: Axel Moller (n1mda)
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Pirni is a packet sniffer for the iPhone written by Axel Moller (n1mda)
 	Includes pirni-derv in /usr/local/pirni-derv 
 	Scripts derv has two main scripts: b4.sh 

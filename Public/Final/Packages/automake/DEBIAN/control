@@ -5,7 +5,7 @@ Section: Utility
 Architecture: iphoneos-arm
 Author: GNU
 Depends: perl
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	automatically generate verbose makefiles
 	http://repo.bingner.com/ for perl

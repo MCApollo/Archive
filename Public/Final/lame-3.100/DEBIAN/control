@@ -5,6 +5,6 @@ Section: Development
 Architecture: iphoneos-arm
 Author: lame
 Depends: ncurses, com.mc.libiconv
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	MP3 audio encoder.

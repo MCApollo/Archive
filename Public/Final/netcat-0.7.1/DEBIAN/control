@@ -4,7 +4,7 @@ Version: 0.7.1-4
 Section: Networking
 Architecture: iphoneos-arm
 Author: GNU
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64
 	GNU's version of netcat.
 	** nmap has a better version of ncat, this is just a stand-alone package.

@@ -5,7 +5,7 @@ Section: Development
 Architecture: iphoneos-arm
 Author: Philip Hazel
 Depends: com.mc.readline, com.mc.zlib, bzip2
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Perl-compatible regular expressions
 	Different from pcre2. Compiled with jit, utf, libz, libbz2, libreadline support.

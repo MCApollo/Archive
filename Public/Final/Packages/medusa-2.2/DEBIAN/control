@@ -5,6 +5,6 @@ Section: Networking
 Architecture: iphoneos-arm
 Depends: openssl, com.mc.libssh
 Author: Joe Mondloch
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Medusa is a speedy, parallel, and modular, login brute-forcer.

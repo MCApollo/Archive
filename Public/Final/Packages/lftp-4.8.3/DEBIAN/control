@@ -5,6 +5,6 @@ Section: Utility
 Depends: com.mc.readline, com.mc.zlib, ncurses, openssl
 Architecture: iphoneos-arm
 Author: Alexander Lukyanov
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64
 	lftp is a command-line program client for several file transfer protocols.	

@@ -5,6 +5,6 @@ Section: Utility
 Architecture: iphoneos-arm
 Author: tihmstar
 Depends: curl, com.mc.libzip, com.mc.libfragmentzip
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	A tool for browsing and downloading files from zip files on remote webserver.

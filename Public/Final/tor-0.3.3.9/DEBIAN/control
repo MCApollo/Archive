@@ -5,7 +5,7 @@ Section: Networking
 Architecture: iphoneos-arm
 Author: Tor Project
 Depends: lzma, openssl, com.mc.libevent-2.0.22, com.mc.zlib, grep, gawk, com.bingner.plutil
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Portal to the .onion network.
 	~

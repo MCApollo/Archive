@@ -5,6 +5,6 @@ Section: Utility
 Architecture: iphoneos-arm
 Depends: perl
 Author: Tony Monroe
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for arm64
 	Cowsay is a program that generates ASCII pictures of a cow with a message.

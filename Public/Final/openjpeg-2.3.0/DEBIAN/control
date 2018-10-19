@@ -5,6 +5,6 @@ Section: Development
 Architecture: iphoneos-arm
 Author: ISPGroup
 Depends: com.mc.zlib, com.mc.libjpeg
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	OpenJPEG is an open-source JPEG 2000 codec written in C language.

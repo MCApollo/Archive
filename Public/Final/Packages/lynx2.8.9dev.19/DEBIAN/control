@@ -4,6 +4,6 @@ Version: 2.8.9dev-2
 Section: Networking
 Architecture: iphoneos-arm
 Author: Lou Montulli
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	older, better, console web browser

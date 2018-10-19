@@ -4,6 +4,6 @@ Version: 1.4e-2
 Section: Utility
 Architecture: iphoneos-arm
 Author: Carson Harding
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Automatically restart SSH sessions and tunnels.

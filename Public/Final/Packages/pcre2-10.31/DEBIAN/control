@@ -4,6 +4,6 @@ Version: 10.31
 Section: Utility
 Architecture: iphoneos-arm
 Author: Philip Hazel
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Perl-compatible regular expression library

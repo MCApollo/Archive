@@ -5,7 +5,7 @@ Section: Development
 Architecture: iphoneos-arm
 Author: Snork
 Depends: com.mc.libpcap
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Data Acquisition library for packet I/O.
 	** Missing libdnet modules.

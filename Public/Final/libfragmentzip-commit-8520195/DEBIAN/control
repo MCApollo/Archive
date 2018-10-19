@@ -5,6 +5,6 @@ Section: Development
 Architecture: iphoneos-arm
 Author: tihmstar
 Depends: curl
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	A library allowing to download single files from a remote zip archive.

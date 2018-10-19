@@ -4,6 +4,6 @@ Version: 1.7.0
 Section: Development
 Architecture: iphoneos-arm
 Author: Google
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	VP8/VP9 video encoder and decoder.

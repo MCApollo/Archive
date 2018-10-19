@@ -4,6 +4,6 @@ Version: 1.22.0
 Section: Development
 Architecture: iphoneos-arm
 Author: libuv Team
-Maintainer: u/LULShotz
+Maintainer: outdated
 Description: Compiled for ARM64.
 	Cross-platform asynchronous I/O 
